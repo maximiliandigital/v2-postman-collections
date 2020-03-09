@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "586a637d-eab2-4eac-958d-88c213d4c30d",
-		"name": "Providers BFF",
+		"name": "Providers_BFF",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -18,14 +18,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/provider_bff/graphql",
-					"protocol": "http",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"localhost"
+						"{{PROVIDERS}}"
 					],
-					"port": "4000",
 					"path": [
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -45,6 +42,78 @@
 					}
 				},
 				"url": {
+					"raw": "{{PROVIDERS}}/graphql",
+					"host": [
+						"{{PROVIDERS}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPractitioner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createPractitioner($input: CreatePractitionerInput!) {\n  createPractitioner(input: $input) {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n  }\n}",
+						"variables": "{ \n\t\"input\": {\n\t\"firstname\": \"fname\",\n\t\"lastname\": \"lname\",\n\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{PROVIDERS}}/graphql",
+					"host": [
+						"{{PROVIDERS}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createTask($input: CreateTaskInput!) {\n  createTask(input: $input) {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n  }\n}",
+						"variables": "{ \n  \"input\": {\n    \"firstname\": \"fname\",\n\t\"lastname\": \"lname\",\n\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{PROVIDERS}}/graphql",
+					"host": [
+						"{{PROVIDERS}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createClient($input: CreateClientInput!) {\n  createClient(input: $input) {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n  }\n}",
+						"variables": "{ \n\t\"input\": {\n\t\t\"firstname\": \"fname\",\n\t\t\"lastname\": \"lname\",\n\t\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
+					}
+				},
+				"url": {
 					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
 					"protocol": "https",
 					"host": [
@@ -64,30 +133,23 @@
 			"response": []
 		},
 		{
-			"name": "createPractitioner",
+			"name": "allTasks",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation createPractitioner($input: CreatePractitionerInput!) {\n  createPractitioner(input: $input) {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n  }\n}",
-						"variables": "{ \n\t\"input\": {\n\t\t\"firstname\": \"fname\",\n\t\t\"lastname\": \"lname\",\n\t\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
+						"query": "query allTasks {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n}",
+						"variables": "{ \n\t\"input\": {\n\t\"firstname\": \"fname\",\n\t\"lastname\": \"lname\",\n\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
