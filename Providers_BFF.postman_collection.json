@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:4000/provider_bff/graphql",
+			"name": "getSubscriber",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -33,7 +33,7 @@
 			"response": []
 		},
 		{
-			"name": "practitioners-list",
+			"name": "getPractitioners",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -64,69 +64,7 @@
 			"response": []
 		},
 		{
-			"name": "practitioners-create",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation createPractitioner($input: CreatePractitionerInput!) {\n  createPractitioner(input: $input) {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n  }\n}",
-						"variables": "{ \n\t\"input\": {\n\t\t\"firstname\": \"fname\",\n\t\t\"lastname\": \"lname\",\n\t\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
-					}
-				},
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"provider_bff",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "practitioners-list",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "{\n    practitioners(offset: 0, limit: 2) {\n        uuid,\n        firstname,\n        lastname,\n        email,\n        createdBy,\n        updatedBy\n    }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"provider_bff",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "practitioners-create",
+			"name": "createPractitioner",
 			"request": {
 				"method": "POST",
 				"header": [],
