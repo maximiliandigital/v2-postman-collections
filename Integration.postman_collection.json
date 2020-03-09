@@ -1,0 +1,616 @@
+{
+	"info": {
+		"_postman_id": "a418a1e0-29eb-44fe-949d-351688a69796",
+		"name": "Integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Remits API",
+			"item": [
+				{
+					"name": "ServiceHandler New URI",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{PASSWORD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{USER_ID}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://remitsapi.waystar.com/geteobhistory/ServiceHandler.ashx?CustID=190262&ClaimNum=26462967&Exact=True&DOS=1/03/2009&ReqType=EOB&TS=1/8/2020 3:59:08 AM&Version=1.0&Signature=j7YkW5hMHwViwng+InZ0Y71JLXk=",
+							"protocol": "https",
+							"host": [
+								"remitsapi",
+								"waystar",
+								"com"
+							],
+							"path": [
+								"geteobhistory",
+								"ServiceHandler.ashx"
+							],
+							"query": [
+								{
+									"key": "CustID",
+									"value": "190262"
+								},
+								{
+									"key": "ClaimNum",
+									"value": "26462967"
+								},
+								{
+									"key": "Exact",
+									"value": "True"
+								},
+								{
+									"key": "DOS",
+									"value": "1/03/2009"
+								},
+								{
+									"key": "ReqType",
+									"value": "EOB"
+								},
+								{
+									"key": "TS",
+									"value": "1/8/2020 3:59:08 AM"
+								},
+								{
+									"key": "Version",
+									"value": "1.0"
+								},
+								{
+									"key": "Signature",
+									"value": "j7YkW5hMHwViwng+InZ0Y71JLXk="
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceHandler OLD URI",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "CustID",
+									"value": "190262",
+									"description": "ZirMed Customer ID",
+									"type": "text"
+								},
+								{
+									"key": "DOS",
+									"value": "12/20/2011",
+									"description": "MM/DD/CCYY - Date of service on original claim",
+									"type": "text"
+								},
+								{
+									"key": "ClaimNum",
+									"value": "7722337",
+									"description": "Patient control number sent on claim",
+									"type": "text"
+								},
+								{
+									"key": "Exact",
+									"value": "true",
+									"description": "Whether return should be exact matches; default is \"true\"",
+									"type": "text"
+								},
+								{
+									"key": "ReqType",
+									"value": "EOB",
+									"description": "Should be hardcoded to \"EOB\"",
+									"type": "text"
+								},
+								{
+									"key": "Version",
+									"value": "1.0",
+									"description": "Should be hardcoded to \"1.0\"",
+									"type": "text"
+								},
+								{
+									"key": "ZirMedRemitID",
+									"value": "",
+									"description": "Remittance ID from ZirMed custom-built 835",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "TS",
+									"value": "10/24/2018 8:42:24 PM",
+									"description": "UTC** TimeStamp for Signature MM/DD/CCYY HH:MI:SS PM",
+									"type": "text"
+								},
+								{
+									"key": "Signature",
+									"value": "{{HMAC_KEY}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.zirmed.com/Services/ServiceHandler.ashx",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zirmed",
+								"com"
+							],
+							"path": [
+								"Services",
+								"ServiceHandler.ashx"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Eligibility API",
+			"item": [
+				{
+					"name": "POST Gateway",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "DataFormat",
+									"value": "SF1",
+									"description": "The format of the inquiry being sent in the Data field. Valid values are: X12 – Use this when indicating that your inquiry is in X12 270 format.  SF1 – Use this to indicate when you are sending ZirMed’s simplified format.",
+									"type": "text"
+								},
+								{
+									"key": "ResponseType",
+									"value": "HTML",
+									"description": "The format you wish to receive back from ZirMed. Valid values are: HTML – This is the default value.  TEXT – Plain text.  271 – An X12 271 document.",
+									"type": "text"
+								},
+								{
+									"key": "Data",
+									"value": "ABC Clinic|Commercial Payer|12345678|John|Doe|01/15/2000|S|||30||66666||1|1P|||||HPI-1234567893",
+									"description": "The inquiry you are submitting in the format indicated by the DataFormat parameter.",
+									"type": "text"
+								},
+								{
+									"key": "UserID",
+									"value": "{{USER_ID}}",
+									"description": "Valid ZirMed web user ID",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "{{PASSWORD}}",
+									"description": "Password currently associated with the UserID",
+									"type": "text"
+								},
+								{
+									"key": "CustID",
+									"value": "",
+									"description": " Used to specify another ZirMed account under the same domain",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ELIGIBILITY_API_URL}}/1.0/Rest/Gateway/GatewayAsync.ashx",
+							"host": [
+								"{{ELIGIBILITY_API_URL}}"
+							],
+							"path": [
+								"1.0",
+								"Rest",
+								"Gateway",
+								"GatewayAsync.ashx"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Payer ID List",
+			"item": [
+				{
+					"name": "Get Payer ID List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://login.zirmed.com/ui/payers",
+							"protocol": "https",
+							"host": [
+								"login",
+								"zirmed",
+								"com"
+							],
+							"path": [
+								"ui",
+								"payers"
+							],
+							"query": [
+								{
+									"key": "PayerName",
+									"value": "",
+									"description": "Used for specific payer lookup; zero-length value indicates full wildcard.",
+									"disabled": true
+								},
+								{
+									"key": "AllStates",
+									"value": "On",
+									"description": "On/Off value for US states returned",
+									"disabled": true
+								},
+								{
+									"key": "StateCodes",
+									"value": "",
+									"description": "Comma-separated listing of two character state abbreviations for specific searches; non-zero length overrides \"AllStates=On\" condition",
+									"disabled": true
+								},
+								{
+									"key": "BCBS",
+									"value": "",
+									"description": "True/False for whether to return/not return Blue Cross/Blue Shield payers",
+									"disabled": true
+								},
+								{
+									"key": "Medicare",
+									"value": "",
+									"description": "True/False for whether to return/not return Medicare adjudicators & payers",
+									"disabled": true
+								},
+								{
+									"key": "Medicaid",
+									"value": "",
+									"description": "True/False for whether to return/not return Medicaid adjudicators & payers\n",
+									"disabled": true
+								},
+								{
+									"key": "DMERC",
+									"value": "",
+									"description": "True/False for whether to return/not return DME payers",
+									"disabled": true
+								},
+								{
+									"key": "TRICARE",
+									"value": "",
+									"description": "True/False for whether to return/not return TRICARE adjudicators & payers",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Claims API",
+			"item": [
+				{
+					"name": "Claim History OLD URI",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{PASSWORD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{USER_ID}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.zirmed.com/Services/ServiceHandler.ashx?CustID=00000&DOS=5/1/2019&ClaimNum=1234567&ReqType=CLM&Version=1.0",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zirmed",
+								"com"
+							],
+							"path": [
+								"Services",
+								"ServiceHandler.ashx"
+							],
+							"query": [
+								{
+									"key": "CustID",
+									"value": "00000",
+									"description": "WaystarCustomer ID"
+								},
+								{
+									"key": "DOS",
+									"value": "5/1/2019",
+									"description": "MM/DD/CCYY - Date of service (For multiple dates, use the first date of service on the first service line.)"
+								},
+								{
+									"key": "ClaimNum",
+									"value": "1234567",
+									"description": "Patient control number sent with the claim"
+								},
+								{
+									"key": "ReqType",
+									"value": "CLM",
+									"description": "Should be hardcoded to \"CLM\""
+								},
+								{
+									"key": "Version",
+									"value": "1.0",
+									"description": "Should be hardcoded to \"1.0\""
+								},
+								{
+									"key": "Signature",
+									"value": null,
+									"description": "See HMAC Security @ http://developer.zirmed.com/hmac-security-authentication.aspx",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Claim History New URI",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://claimsapi.zirmed.com/2.0/v1/History/GetClaimHistory?CustID=190262&ClaimNum=26462967&DOS=1/03/2009&ReqType=CLMHIST&TimeStamp=1/10/2020 3:10:38 AM&Version=2.0&ResponseType=HTML&Signature=8zuLItpdPl8eqtpIRGFFUYJ7l+c=",
+							"protocol": "https",
+							"host": [
+								"claimsapi",
+								"zirmed",
+								"com"
+							],
+							"path": [
+								"2.0",
+								"v1",
+								"History",
+								"GetClaimHistory"
+							],
+							"query": [
+								{
+									"key": "CustID",
+									"value": "190262"
+								},
+								{
+									"key": "ClaimNum",
+									"value": "26462967"
+								},
+								{
+									"key": "DOS",
+									"value": "1/03/2009"
+								},
+								{
+									"key": "ReqType",
+									"value": "CLMHIST"
+								},
+								{
+									"key": "TimeStamp",
+									"value": "1/10/2020 3:10:38 AM"
+								},
+								{
+									"key": "Version",
+									"value": "2.0"
+								},
+								{
+									"key": "ResponseType",
+									"value": "HTML"
+								},
+								{
+									"key": "Signature",
+									"value": "8zuLItpdPl8eqtpIRGFFUYJ7l+c="
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Proof of Timely Filling",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{CLAIMS_API_URL}}/1.0/Reports/POTFForm?CustID=00000&InstanceID=12345678&TS=07/17/2013 12:25:03 PM",
+							"host": [
+								"{{CLAIMS_API_URL}}"
+							],
+							"path": [
+								"1.0",
+								"Reports",
+								"POTFForm"
+							],
+							"query": [
+								{
+									"key": "CustID",
+									"value": "00000",
+									"description": "ZirMed Customer ID"
+								},
+								{
+									"key": "ClaimID",
+									"value": null,
+									"description": "ZirMed assigned ClaimID",
+									"disabled": true
+								},
+								{
+									"key": "InstanceID",
+									"value": "12345678",
+									"description": "ZirMed assigned InstanceID"
+								},
+								{
+									"key": "TS",
+									"value": "07/17/2013 12:25:03 PM",
+									"description": "TimeStamp (MM/DD/CCYY HH:MM:SS AM/PM)"
+								},
+								{
+									"key": "Signature",
+									"value": null,
+									"description": "See HMAC Security",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Missing Parameter",
+					"request": {
+						"auth": {
+							"type": "awsv4",
+							"awsv4": [
+								{
+									"key": "region",
+									"value": "us-west-2",
+									"type": "string"
+								},
+								{
+									"key": "secretKey",
+									"value": "hmRz+Bx//YYL9BsqEH1FmEubx1XN312D3pmWgWe9",
+									"type": "string"
+								},
+								{
+									"key": "accessKey",
+									"value": "AKIAWCYRROKM3NGFJW67",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://g4nhlcm0lj.execute-api.us-west-2.amazonaws.com/dev/claims_history/submit_request?CustID=190262&ClaimNum=26462967",
+							"protocol": "https",
+							"host": [
+								"g4nhlcm0lj",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"claims_history",
+								"submit_request"
+							],
+							"query": [
+								{
+									"key": "CustID",
+									"value": "190262"
+								},
+								{
+									"key": "ClaimNum",
+									"value": "26462967"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valid Request",
+					"request": {
+						"auth": {
+							"type": "awsv4",
+							"awsv4": [
+								{
+									"key": "region",
+									"value": "us-east-1",
+									"type": "string"
+								},
+								{
+									"key": "secretKey",
+									"value": "hmRz+Bx//YYL9BsqEH1FmEubx1XN312D3pmWgWe9",
+									"type": "string"
+								},
+								{
+									"key": "accessKey",
+									"value": "AKIAWCYRROKM3NGFJW67",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://g4nhlcm0lj.execute-api.us-west-2.amazonaws.com/dev/claims_history/submit_request?CustID=190262&ClaimNum=26462967&DOS=1/03/2009",
+							"protocol": "https",
+							"host": [
+								"g4nhlcm0lj",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"claims_history",
+								"submit_request"
+							],
+							"query": [
+								{
+									"key": "CustID",
+									"value": "190262"
+								},
+								{
+									"key": "ClaimNum",
+									"value": "26462967"
+								},
+								{
+									"key": "DOS",
+									"value": "1/03/2009"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

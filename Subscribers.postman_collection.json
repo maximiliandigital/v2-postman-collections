@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "6bbf763b-bb16-45c1-8cba-c014523b5843",
+		"name": "Subscribers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get List of Packages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCALHOST}}/subscription_package",
+					"host": [
+						"{{LOCALHOST}}"
+					],
+					"path": [
+						"subscription_package"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create List of Features",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{LOCALHOST}}/feature",
+					"host": [
+						"{{LOCALHOST}}"
+					],
+					"path": [
+						"feature"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a list of feature items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

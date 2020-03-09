@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "09c67bb4-db37-4670-8be3-30bc04f6a143",
+		"name": "Practitioners",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "practitioners-list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/practitioners?offset=0&limit=10",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"practitioners"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "search_key",
+							"value": "3c2696ab-690f-4c06-97b5-760ee76e8bf8",
+							"disabled": true
+						},
+						{
+							"key": "uuid",
+							"value": "3c2696ab-690f-4c06-97b5-760ee76e8bf8a",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "practitioners-create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstname\": \"Tester\",\n\t\"lastname\": \"Testing\",\n\t\"email\": \"tests23@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/practitioners",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"practitioners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "practitioners-show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/practitioners/show?uuid=bf611aea-25c1-4a37-8b1e-1d6ecc239b0c",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"practitioners",
+						"show"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "bf611aea-25c1-4a37-8b1e-1d6ecc239b0c"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

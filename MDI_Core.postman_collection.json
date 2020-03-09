@@ -1,0 +1,28 @@
+{
+	"info": {
+		"_postman_id": "ea4400b8-cdce-4c46-aa10-78a0920b25a0",
+		"name": "MDI Core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get tenant_subdomains",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{MDI_LOCAL_URL}}/v1/tenant_subdomains",
+					"host": [
+						"{{MDI_LOCAL_URL}}"
+					],
+					"path": [
+						"v1",
+						"tenant_subdomains"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
