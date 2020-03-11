@@ -1,52 +1,328 @@
 {
 	"info": {
-		"_postman_id": "6bbf763b-bb16-45c1-8cba-c014523b5843",
+		"_postman_id": "6671d8f7-9ec8-40a8-be33-cac735089f38",
 		"name": "Subscribers",
+		"description": "Subscriber domain APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Get List of Packages",
+			"name": "subscriptionPackage",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{LOCALHOST}}/subscription_package",
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/subscription_package",
+					"protocol": "https",
 					"host": [
-						"{{LOCALHOST}}"
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
 					],
 					"path": [
+						"dev",
 						"subscription_package"
 					]
-				}
+				},
+				"description": "List of subscription packages with feature items"
 			},
 			"response": []
 		},
 		{
-			"name": "Create List of Features",
+			"name": "featureList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/feature",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"feature"
+					]
+				},
+				"description": "List of feature items with subscription inclusion info"
+			},
+			"response": []
+		},
+		{
+			"name": "featureInit",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "{{LOCALHOST}}/feature",
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/feature",
+					"protocol": "https",
 					"host": [
-						"{{LOCALHOST}}"
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
 					],
 					"path": [
+						"dev",
 						"feature"
 					]
-				}
+				},
+				"description": "Creates feature items."
 			},
 			"response": []
 		},
 		{
-			"name": "Get a list of feature items",
+			"name": "subscriptionInitialize",
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": ""
-				}
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/subscription",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"subscription"
+					]
+				},
+				"description": "creates the 3 subscription packages"
+			},
+			"response": []
+		},
+		{
+			"name": "packageInitialize",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/subscription_features",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"subscription_features"
+					]
+				},
+				"description": "Creates package + feature items associations"
+			},
+			"response": []
+		},
+		{
+			"name": "subscriberCreate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"subscriber_name\": \"Test Subscriber Paul 123\",\n   \"subscription_id\": \"12\",\n   \"eula_version\": \"test-doc-v1.doc\",\n   \"coupon_id\": \"2\",\n   \"coupon_applied_on\": \"02/02/2020\",\n   \"activated_at\": \"02/02/2020\",\n   \"status\": 0\n}"
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/subscriber",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"subscriber"
+					],
+					"query": [
+						{
+							"key": "subscriber_name",
+							"value": "Test Subscriber Paul 123",
+							"disabled": true
+						},
+						{
+							"key": "subscription_id",
+							"value": "12",
+							"disabled": true
+						},
+						{
+							"key": "coupon_id",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "coupon_applied_on",
+							"value": "02/02/2020",
+							"disabled": true
+						},
+						{
+							"key": "activated_at",
+							"value": "02/02/2020",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "0",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Creates a subscriber"
+			},
+			"response": []
+		},
+		{
+			"name": "subscriberUpdate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n   \"uuid\": \"6eb9e64c-fab8-430d-96a4-943be8abcb86\",\n   \"subscriber_name\": \"Test Subscriber Paul 334\",\n   \"eula_version\": \"test-doc-v2.doc\",\n   \"status\": 0\n}"
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/subscriber",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"subscriber"
+					]
+				},
+				"description": "updates existing subscriber"
+			},
+			"response": []
+		},
+		{
+			"name": "subscribersSignup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"test123@gmail.com\", \n\t\"company\": \"Test 123\", \n\t\"eula_version\": \"test-123.doc\", \n\t\"last_name\": \"Test\", \n\t\"first_name\": \"Paul\", \n\t\"password\": \"Password@123\", \n\t\"mobile_number\": \"639178221234\"\n}"
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/subscribers_signup",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"subscribers_signup"
+					]
+				},
+				"description": "Signs-up new user in Auth0"
+			},
+			"response": []
+		},
+		{
+			"name": "subscribersVerification",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"test123@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/subscriber_verified",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"subscriber_verified"
+					]
+				},
+				"description": "Has the subscriber verified from the email?"
+			},
+			"response": []
+		},
+		{
+			"name": "mobileVerification",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mobile_number\": \"+639178221234\"\n}"
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mobile_verification",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"mobile_verification"
+					]
+				},
+				"description": "sends code the mobile number"
+			},
+			"response": []
+		},
+		{
+			"name": "mobileVerified",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mobile_number\": \"+639178221234\",\n\t\"code\": \"153467\"\n}"
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mobile_verified",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"mobile_verified"
+					]
+				},
+				"description": "Has the mobile number been modified?"
 			},
 			"response": []
 		}
