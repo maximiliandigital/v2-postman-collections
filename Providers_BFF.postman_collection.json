@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "586a637d-eab2-4eac-958d-88c213d4c30d",
+		"_postman_id": "48b81aa2-1389-43c7-8e16-ada56016dcdb",
 		"name": "Providers_BFF",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -109,8 +109,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation createClient($input: CreateClientInput!) {\n  createClient(input: $input) {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n  }\n}",
-						"variables": "{ \n\t\"input\": {\n\t\t\"firstname\": \"fname\",\n\t\t\"lastname\": \"lname\",\n\t\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
+						"query": "mutation createClient($input: CreateClientInput!) { \n\tcreateClient(input: $input) {\n    uuid\n    userRef\n    okToLeaveMessage\n    firstName\n    lastName\n    email\n    phone\n    createdBy\n    updatedBy\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"userRef\": \"52750b30ffbc7de3b123\",\n    \"okToLeaveMessage\": true,\n    \"firstName\": \"Asdf TestAAA\",\n    \"lastName\": \"BlablaAAA\",\n    \"email\": \"blatest_12345@blabla.com\",\n    \"phone\": \"000-123-456\",\n    \"createdBy\": \"User Test\",\n    \"updatedBy\": \"User Test\"\n  }\n}"
 					}
 				},
 				"url": {
