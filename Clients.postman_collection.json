@@ -1,9 +1,162 @@
 {
 	"info": {
-		"_postman_id": "fdf79c8b-bd71-4a3d-96bd-849dd1754206",
+		"_postman_id": "ea3df30d-d959-4917-882a-90b5bdd11b23",
 		"name": "Clients",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
-	"item": [],
+	"item": [
+		{
+			"name": "client-list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client-create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createClient($input: CreateClientInput!) {\n\tcreateClient(input: $input) {\n    uuid\n    userRef\n    okToLeaveMessage\n    firstName\n    lastName\n    email\n    phone\n    createdBy\n    updatedBy\n  }\n}",
+						"variables": "{\n  \"input\": {\n  \"userRef\": \"52750b30ffbc7de3b123\",\n  \"okToLeaveMessage\": true,\n  \"firstName\": \"Asdf TestAAA\",\n  \"lastName\": \"BlablaAAA\",\n  \"email\": \"blatest_12345@blabla.com\",\n  \"phone\": \"000-123-456\",\n  \"createdBy\": \"User Test\",\n  \"updatedBy\": \"User Test\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client-update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"Friday updated\",\n    \"last_name\": \"Jones updated\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/1cfd478e-b0de-4cb3-9460-0a8122729db7",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"clients",
+						"1cfd478e-b0de-4cb3-9460-0a8122729db7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/1bfb7d70-9cf0-4519-a8ce-6fe02877d9db",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"clients",
+						"1bfb7d70-9cf0-4519-a8ce-6fe02877d9db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client-show",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/show?uuid=1cfd478e-b0de-4cb3-9460-0a8122729db7",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"clients",
+						"show"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "1cfd478e-b0de-4cb3-9460-0a8122729db7"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
 	"protocolProfileBehavior": {}
 }
