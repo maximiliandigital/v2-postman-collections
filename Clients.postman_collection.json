@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "client-list",
+			"name": "list-clients",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -29,15 +29,24 @@
 			"response": []
 		},
 		{
-			"name": "client-create",
+			"name": "create-client",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation createClient($input: CreateClientInput!) {\n\tcreateClient(input: $input) {\n    uuid\n    userRef\n    okToLeaveMessage\n    firstName\n    lastName\n    email\n    phone\n    createdBy\n    updatedBy\n  }\n}",
-						"variables": "{\n  \"input\": {\n  \"userRef\": \"52750b30ffbc7de3b123\",\n  \"okToLeaveMessage\": true,\n  \"firstName\": \"Asdf TestAAA\",\n  \"lastName\": \"BlablaAAA\",\n  \"email\": \"blatest_12345@blabla.com\",\n  \"phone\": \"000-123-456\",\n  \"createdBy\": \"User Test\",\n  \"updatedBy\": \"User Test\"\n  }\n}"
+					"mode": "raw",
+					"raw": "{\n\t\"user_ref\": \"52750b30ffbc7de3a222\",\n    \"ok_to_leave_message\": true,\n    \"first_name\": \"Ana\",\n    \"last_name\": \"Banana\",\n    \"email\": \"banana_ana@bananameeru.com\",\n    \"phone\": \"888-123-456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
 					}
 				},
 				"url": {
@@ -59,13 +68,13 @@
 			"response": []
 		},
 		{
-			"name": "client-update",
+			"name": "update-client",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"first_name\": \"Friday updated\",\n    \"last_name\": \"Jones updated\"\n}",
+					"raw": "{\n\t\"first_name\": \"Ana updated\",\n    \"last_name\": \"Banana updated\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -73,7 +82,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/1cfd478e-b0de-4cb3-9460-0a8122729db7",
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/a514fa7f-361a-478a-9aeb-d499336fd5e1",
 					"protocol": "https",
 					"host": [
 						"kx72g7yl59",
@@ -85,19 +94,19 @@
 					"path": [
 						"dev",
 						"clients",
-						"1cfd478e-b0de-4cb3-9460-0a8122729db7"
+						"a514fa7f-361a-478a-9aeb-d499336fd5e1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "client-delete",
+			"name": "delete-client",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/1bfb7d70-9cf0-4519-a8ce-6fe02877d9db",
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/b628d660-c77b-457f-86eb-c45bb976fa01",
 					"protocol": "https",
 					"host": [
 						"kx72g7yl59",
@@ -109,14 +118,14 @@
 					"path": [
 						"dev",
 						"clients",
-						"1bfb7d70-9cf0-4519-a8ce-6fe02877d9db"
+						"b628d660-c77b-457f-86eb-c45bb976fa01"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "client-show",
+			"name": "show-client",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -133,7 +142,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/show?uuid=1cfd478e-b0de-4cb3-9460-0a8122729db7",
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/a514fa7f-361a-478a-9aeb-d499336fd5e1",
 					"protocol": "https",
 					"host": [
 						"kx72g7yl59",
@@ -145,13 +154,7 @@
 					"path": [
 						"dev",
 						"clients",
-						"show"
-					],
-					"query": [
-						{
-							"key": "uuid",
-							"value": "1cfd478e-b0de-4cb3-9460-0a8122729db7"
-						}
+						"a514fa7f-361a-478a-9aeb-d499336fd5e1"
 					]
 				}
 			},
