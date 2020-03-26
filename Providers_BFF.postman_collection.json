@@ -102,37 +102,6 @@
 			"response": []
 		},
 		{
-			"name": "createClient",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation createClient($input: CreateClientInput!) { \n\tcreateClient(input: $input) {\n    uuid\n    userRef\n    okToLeaveMessage\n    firstName\n    lastName\n    email\n    phone\n    createdBy\n    updatedBy\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"userRef\": \"52750b30ffbc7de3b123\",\n    \"okToLeaveMessage\": true,\n    \"firstName\": \"Asdf TestAAA\",\n    \"lastName\": \"BlablaAAA\",\n    \"email\": \"blatest_12345@blabla.com\",\n    \"phone\": \"000-123-456\",\n    \"createdBy\": \"User Test\",\n    \"updatedBy\": \"User Test\"\n  }\n}"
-					}
-				},
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"provider_bff",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "allTasks",
 			"request": {
 				"method": "POST",
@@ -142,6 +111,102 @@
 					"graphql": {
 						"query": "query allTasks {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n}",
 						"variables": "{ \n\t\"input\": {\n\t\"firstname\": \"fname\",\n\t\"lastname\": \"lname\",\n\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{PROVIDERS}}/graphql",
+					"host": [
+						"{{PROVIDERS}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clients",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n    clients(uuid: \"1cfd478e-b0de-4cb3-9460-0a8122729db7\") {\n    uuid\n  \tfirstName\n    lastName\n  \tuserRef\n    email\n  \tokToLeaveMessage\n    phone\n    createdBy\n    updatedBy\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{PROVIDERS}}/graphql",
+					"host": [
+						"{{PROVIDERS}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createClient($input: CreateClientInput!) { \n\tcreateClient(input: $input) {\n    uuid\n    userRef\n    okToLeaveMessage\n    firstName\n    lastName\n    email\n    phone\n    createdBy\n    updatedBy\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"userRef\": \"56789b30ffbc7de3b123\",\n    \"okToLeaveMessage\": false,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"email\": \"jsmith_1111@blabla.com\",\n    \"phone\": \"123-333-444\",\n    \"createdBy\": \"User Test\",\n    \"updatedBy\": \"User Test\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{PROVIDERS}}/graphql",
+					"host": [
+						"{{PROVIDERS}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateClient($input: UpdateClientInput!) { \n\tupdateClient(input: $input) {\n  \tuuid\n    userRef\n    okToLeaveMessage\n    firstName\n    lastName\n    email\n    phone\n    createdBy\n    updatedBy\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"1cfd478e-b0de-4cb3-9460-0a8122729db7\",\n    \"firstName\": \"Updated First1110\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{PROVIDERS}}/graphql",
+					"host": [
+						"{{PROVIDERS}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteClient($input: DeleteClientInput!) { \n    deleteClient(input: $input) {\n  \t    uuid\n    }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"c3175e75-fb84-4e6c-a8eb-d6b67e32f715\"\n  }\n}"
 					}
 				},
 				"url": {
