@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "d9c15cba-23ae-4c95-a916-85f08895dbf9",
+		"name": "Staffs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "staffs-list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/staffs",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"staffs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staffs-create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"subscriber_uuid\": \"2f57678c-9604-47d7-a77e-30e56af3ea57\",\n\t\"location_uuid\": \"6704b115-e608-4000-8dce-fa524e964ba7\",\n\t\"user_ref\": \"1\",\n\t\"first_name\": \"Tester\",\n\t\"last_name\": \"Testing\",\n\t\"email\": \"tests2@gmail.com\",\n\t\"phone\": \"000-123-345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/staffs",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"staffs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staffs-update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"Johnnie\",\n\t\"last_name\": \"Doe\",\n\t\"email\": \"email99@test.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/staffs/88e8aa72-b308-4926-829b-9a3fed85be6f",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"staffs",
+						"88e8aa72-b308-4926-829b-9a3fed85be6f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staffs-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/staffs/88e8aa72-b308-4926-829b-9a3fed85be6f",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"staffs",
+						"88e8aa72-b308-4926-829b-9a3fed85be6f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staffs-show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/staffs/5be641bc-14da-4d36-baeb-5a7740bbcc0e",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"staffs",
+						"5be641bc-14da-4d36-baeb-5a7740bbcc0e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staffs-supervisees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/staffs/67d9374b-bc8a-4b76-960c-295f6c5b49b6/subscribers/2f57678c-9604-47d7-a77e-30e56af3ea57/supervisees",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"staffs",
+						"67d9374b-bc8a-4b76-960c-295f6c5b49b6",
+						"subscribers",
+						"2f57678c-9604-47d7-a77e-30e56af3ea57",
+						"supervisees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staffs-subscriber-staff-update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"supervisor_uuid\": \"67d9374b-bc8a-4b76-960c-295f6c5b49b6\",\n\t\"location_uuid\": \"3d69660e-50f6-459a-8d22-df0c1618958c\",\n\t\"title\": \"PhD\",\n\t\"role\": 1,\n\t\"created_by\": \"update\",\n\t\"updated_by\": \"update\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/staffs/3d69660e-50f6-459a-8d22-df0c1618958c/subscribers/2f57678c-9604-47d7-a77e-30e56af3ea57",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"staffs",
+						"3d69660e-50f6-459a-8d22-df0c1618958c",
+						"subscribers",
+						"2f57678c-9604-47d7-a77e-30e56af3ea57"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
