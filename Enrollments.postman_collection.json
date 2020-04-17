@@ -1,160 +1,471 @@
 {
 	"info": {
-		"_postman_id": "b60efd84-9055-4899-9e3a-63046080d0db",
+		"_postman_id": "bd2222a6-835d-4b0f-9b89-2a86c9bfbfbc",
 		"name": "Enrollments",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "enrollment-list",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"enrollments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "enrollment-create",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"enrollments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "enrollment-update",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"test\",\n\t\"third_party_id\": \"test4\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "enrollments",
+			"item": [
+				{
+					"name": "enrollment-list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollments"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments/1",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"enrollments",
-						"1"
-					]
+				{
+					"name": "enrollment-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"third_party_id\": \"GH5678\",\n\t\"subscriber_uuid\": \"a8111d6c-80a5-11ea-bc55-0242ac123456\",\n\t\"client_uuid\": \"8735ab03-56ee-4cb6-887b-babb16876f16\",\n\t\"enrollment_status_id\": 3,\n\t\"enrollment_type_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments/7c11630a-96a7-42d7-b6f9-84161b3d24b9",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollments",
+								"7c11630a-96a7-42d7-b6f9-84161b3d24b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"third_party_id\": \"GH0000\",\n\t\"subscriber_uuid\": \"a8111d6c-80a5-11ea-bc55-0242ac120000\",\n\t\"client_uuid\": \"8735ab03-56ee-4cb6-887b-babb16876f00\",\n\t\"enrollment_status_id\": 3,\n\t\"enrollment_type_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments/1a1a415c-59c6-4068-96ac-05cc9e641e7a",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollments",
+								"1a1a415c-59c6-4068-96ac-05cc9e641e7a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollments-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments/e819df1e-3062-4f53-97e2-9d45c371298f",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollments",
+								"e819df1e-3062-4f53-97e2-9d45c371298f"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "enrollments-delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments/1",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"enrollments",
-						"1"
-					]
+			"name": "enrollment-types",
+			"item": [
+				{
+					"name": "enrollment-type-list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_types",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-type-list-search-key",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_types?search_key=H",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_types"
+							],
+							"query": [
+								{
+									"key": "search_key",
+									"value": "H"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-type-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"SoT\",\n\t\"description\": \"SoT Description right here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_types",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-type-show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_types/0569766d-9944-4c09-9723-59964bb412ec",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_types",
+								"0569766d-9944-4c09-9723-59964bb412ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-type-update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\": \"SoT UPDATED description here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_types/0569766d-9944-4c09-9723-59964bb412ec",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_types",
+								"0569766d-9944-4c09-9723-59964bb412ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-type-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_types/b5880334-4ed5-4f35-bc66-9cc3863ecf0e",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_types",
+								"b5880334-4ed5-4f35-bc66-9cc3863ecf0e"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "enrollment-show",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments/8",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"enrollments",
-						"8"
-					]
+			"name": "enrollment-statuses",
+			"item": [
+				{
+					"name": "enrollment-status-list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_statuses",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_statuses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-status-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": 2,\n\t\"subscriber_uuid\": \"c609d0c8-808e-11ea-bc55-0242ac130004\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_statuses",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_statuses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-status-show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_statuses/3",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_statuses",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-status-update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_statuses/4",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_statuses",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrollment-status-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollment_statuses/5",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"enrollment_statuses",
+								"5"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "practitioner-delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/practitioners/7e50e39b-c09b-41cf-a2b3-cb7c978d109e",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"practitioners",
-						"7e50e39b-c09b-41cf-a2b3-cb7c978d109e"
-					]
-				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
