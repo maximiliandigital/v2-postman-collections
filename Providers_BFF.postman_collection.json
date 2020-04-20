@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4fd4d680-4ce0-4212-a403-b23e006103d2",
+		"_postman_id": "48b81aa2-1389-43c7-8e16-ada56016dcdb",
 		"name": "Providers_BFF",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,18 +18,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -44,23 +37,16 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n    practitioners(offset: 0, limit: 2) {\n        uuid,\n        firstName,\n        lastName,\n        email,\n        phone,\n        createdBy,\n        updatedBy\n    }\n}",
+						"query": "{\n    practitioners(offset: 0, limit: 2) {\n        uuid,\n        firstname,\n        lastname,\n        email,\n        createdBy,\n        updatedBy\n    }\n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -75,23 +61,16 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation createPractitioner($input: CreatePractitionerInput!) {\n  createPractitioner(input: $input) {\n    firstName,\n    lastName,\n    email,\n    phone,\n    createdBy,\n    updatedBy\n  }\n}",
-						"variables": "{ \n\t\"input\": {\n\t\"firstName\": \"fname\",\n\t\"lastName\": \"lname\",\n\t\"email\": \"myemail8@email.com\",\n\t\"phone\": \"000-123-456\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
+						"query": "mutation createPractitioner($input: CreatePractitionerInput!) {\n  createPractitioner(input: $input) {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n  }\n}",
+						"variables": "{ \n\t\"input\": {\n\t\"firstname\": \"fname\",\n\t\"lastname\": \"lname\",\n\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -111,18 +90,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -137,23 +109,16 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  allTasks(subscriberUuid: \"asdf\") {\n    id\n    uuid\n    taskType\n    dueDate\n    details\n    client {\n      id\n      uuid\n      fullName\n      firstName \n      lastName\n      email\n    }\n  }\n}",
-						"variables": ""
+						"query": "query allTasks {\n    firstname,\n    lastname,\n    email,\n    createdBy,\n    updatedBy\n}",
+						"variables": "{ \n\t\"input\": {\n\t\"firstname\": \"fname\",\n\t\"lastname\": \"lname\",\n\t\"email\": \"myemail5@email.com\",\n    \"createdBy\": \"init\",\n    \"updatedBy\": \"init\"\n\t}\n}"
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -173,18 +138,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -204,18 +162,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -235,18 +186,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
 						"graphql"
 					]
 				}
@@ -266,18 +210,35 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/provider_bff/graphql",
-					"protocol": "https",
+					"raw": "{{PROVIDERS}}/graphql",
 					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{PROVIDERS}}"
 					],
 					"path": [
-						"dev",
-						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "caseloadClients",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  caseloadClients(subscriberUuid: \"09b3e566-73d3-11ea-bc55-0242ac130003\", staffUuid: \"optional parameter\") {\n  fullName\n  firstName\n  lastName\n  id\n  status\n  email\n  phone\n  tasks\n  allTasks\n  enrollment\n  enrollments\n  details {\n    type\n    referrer\n    staff\n    appointments\n    balance\n    payments\n  }\n  pid\n  cii\n  location\n  txTeam\n }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{PROVIDERS}}/graphql",
+					"host": [
+						"{{PROVIDERS}}"
+					],
+					"path": [
 						"graphql"
 					]
 				}
