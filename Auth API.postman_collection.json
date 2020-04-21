@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "6791eac4-3768-4e4a-957f-297c2103c44c",
+		"name": "Auth API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "86de3832-e576-40cc-b2f4-07cff70c1659",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": {{username}},\n\t\"password\": {{password}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://z51fgcyphl.execute-api.us-west-2.amazonaws.com/4934/auth/authenticate",
+					"protocol": "https",
+					"host": [
+						"z51fgcyphl",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"4934",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MFA Challenge",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"mfa_token\":      {{mfa_token}},\n  \"challenge_type\": {{mfa_challenge_type}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/challenge",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"mfa",
+						"challenge"
+					]
+				},
+				"description": "Using the mfa_token from login, request an mfa challenge for the user."
+			},
+			"response": []
+		},
+		{
+			"name": "MFA Associate Mobile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"body\": {\n    \"mfa_token\": \"Fe26.2*272dc2*205569d9ad1dc21b8fb98ba01940247472c95fb298d1b27006ca84ed9a655d17*Pd2anO0Ux_IX7V6HFajlzw*QlQKQF6hV8_ZF4yIHIMCHC2p3mXH-jRM25pgZjtOV9OEgCMHtPvxJqqOcmUSwC77UdukQXsJ1Jr_4d9SXz9dyVV6DlM9XL_lkyiwsP_IQFGFdRqQ7PUZShRh5xzNuuHiXIdK2ZnShRHyQoCl7EirshywOjIE1QAWgkaNSILrqWcCATxJdNZb3HXJidMoIlIRlEkEX8HgyADnVZBqv-JQkENrMc4PwuPMqzQVNIoH6GYcivpjGFB3jK2X5-J85AID5WAYbRyYPpjUHAekzm2ql8uIzScLkdsYf-59wn4VHOaeA-_UPrdoEABMEdPMVwW0Q2C6iAwDx5PyXHKJvRR1M0-Ht1VDXEDgHX825Leew-zuqjn-HRUYZlzi92wDquAQjsRIm-uZrQsaPys0CjVQ_zJ6USwpxsbTF2KTHBXzAY7LY5HY-3FW_YAudCR3NXqdgyh5AZD2voCMlbd_6LR5jJ8zpUiItP7G2cx1YAafwiYCqyi6CE9kt6Q0EsYzaQBglrkSpWC9d4UMejCpLHk2zgMpaGs-Ln4E2LzpenVEfn60yh1YefHtiGA6Z9ssxmiouj2qeOn1KkCb3Ig9oGtpXZqQPAmXLbDf2OACEE1zAJyZXuHaZnjMydnjPMmKelaQITp29UAugkHYpXubZi6991wfquk26Mnfyr2PK6NBjRp6UaLF7cDDQRV1E3uVjAWmALmRGsG3_9jSS7jtq8QKTjkfgKM8LQqtOoNZAR_4vd1GGZgUnSpIdqHg2e-Md3rsRG7Z4whoyULMiqvAU4tf-OXvwN6MNxcVqfgnwrgmKuw4fZnsHadts_1gm16sSDvo7f7oOzjLfvP_Gxyc8gzTRqUwNXn6Z-qVn2QsEISaNW7wL_coHbiHYctVpL2UFeK6NW9GyaaNU82RiMmz8M-CIAV5PldbvycJVz0I7-qIHl9leVRRSzu35jAho42C9zUAK8Xady5_4gf9ZhvdGpvKmikSfVmVlkOIbTRz3DKVdfxYc1ZwI59YrLin2ayt8jzXvRdwEDTZPSaipWc4qrgaLNOQYlDq5tgoYkKn5dD7kzbldI_m-V6j7cQeq0wwImyC7Ios6nuXAavC1CPxL2Ts7lMl1ihCGyPIvQ-Tgzutoj4oaPvQzu1iPY94HBO7Uu4LDqzWtG2yEHQf-x0Rv2IgQbOg_IjS7VAmAdFeRZSbYxP6RSZHcXwFC9N5HE0Cx3VyZTAq1WiTuCHk1Eg8S_3A7KHynclZ9uIBxLQaeeXuHPxnSsZo_ekTfkq46vfSndOhKivico3D4AYRJTIwcAF6bdbpfHEdEV8zZAugtcBpxr4565I1qTaykSp4j3qdGxxnu5jKkS_frpobdqm-WYx3Er2iufUUYYgST1h70FZkiWJFWrQRNZqw8iFUdyrHSTz_qCbu-RnEElKL2Tv0KfKg2SnTmgaFC_p2cGdx0Zr9HEWzPfKzWawEMvHKcC9rCo7U9p2HZl7rTD4Pk7dvODuNRnZhswspO0fZz65aCgZpkTn4Ra7dbsuX2ATKrlSjyjpYXvibfM_18G9YY6615dR4_VEPJ1zGGsoelyNY3NY1fi3lTpC9blU80TIVP2nFXcZOahnqDQeVGWrcVj_6tTI38LQABmwGQSJysjkpBpD9RSGeC4QqWLJf4Hye2sUL92R1QLC8DHFmJmIOxmEKQHv2zrvb0ILeLMbl2Z57Hil5ZbSEMBbP7CUPvG1UhaOoWpiRB2WWP8od8j1PwxzUe7kaZYOPD435HWH44cAS8tYeCxk*1587464282899*968732ff39fca19c517df5808a84538c6bdbd924326df491fdf83fb3561a798b*E4CCDatkAZosnmFaw6uaxUfjB6_52ypkSb3DqpdanJY\",\n    \"challenge_type\": \"oob\",\n    \"oob_channel\": \"sms\",\n    \"phone_number\": \"+63 927 1234567\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/associate",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"mfa",
+						"associate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MFA Associate Email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"body\": {\n    \"mfa_token\": \"Fe26.2*272dc2*205569d9ad1dc21b8fb98ba01940247472c95fb298d1b27006ca84ed9a655d17*Pd2anO0Ux_IX7V6HFajlzw*QlQKQF6hV8_ZF4yIHIMCHC2p3mXH-jRM25pgZjtOV9OEgCMHtPvxJqqOcmUSwC77UdukQXsJ1Jr_4d9SXz9dyVV6DlM9XL_lkyiwsP_IQFGFdRqQ7PUZShRh5xzNuuHiXIdK2ZnShRHyQoCl7EirshywOjIE1QAWgkaNSILrqWcCATxJdNZb3HXJidMoIlIRlEkEX8HgyADnVZBqv-JQkENrMc4PwuPMqzQVNIoH6GYcivpjGFB3jK2X5-J85AID5WAYbRyYPpjUHAekzm2ql8uIzScLkdsYf-59wn4VHOaeA-_UPrdoEABMEdPMVwW0Q2C6iAwDx5PyXHKJvRR1M0-Ht1VDXEDgHX825Leew-zuqjn-HRUYZlzi92wDquAQjsRIm-uZrQsaPys0CjVQ_zJ6USwpxsbTF2KTHBXzAY7LY5HY-3FW_YAudCR3NXqdgyh5AZD2voCMlbd_6LR5jJ8zpUiItP7G2cx1YAafwiYCqyi6CE9kt6Q0EsYzaQBglrkSpWC9d4UMejCpLHk2zgMpaGs-Ln4E2LzpenVEfn60yh1YefHtiGA6Z9ssxmiouj2qeOn1KkCb3Ig9oGtpXZqQPAmXLbDf2OACEE1zAJyZXuHaZnjMydnjPMmKelaQITp29UAugkHYpXubZi6991wfquk26Mnfyr2PK6NBjRp6UaLF7cDDQRV1E3uVjAWmALmRGsG3_9jSS7jtq8QKTjkfgKM8LQqtOoNZAR_4vd1GGZgUnSpIdqHg2e-Md3rsRG7Z4whoyULMiqvAU4tf-OXvwN6MNxcVqfgnwrgmKuw4fZnsHadts_1gm16sSDvo7f7oOzjLfvP_Gxyc8gzTRqUwNXn6Z-qVn2QsEISaNW7wL_coHbiHYctVpL2UFeK6NW9GyaaNU82RiMmz8M-CIAV5PldbvycJVz0I7-qIHl9leVRRSzu35jAho42C9zUAK8Xady5_4gf9ZhvdGpvKmikSfVmVlkOIbTRz3DKVdfxYc1ZwI59YrLin2ayt8jzXvRdwEDTZPSaipWc4qrgaLNOQYlDq5tgoYkKn5dD7kzbldI_m-V6j7cQeq0wwImyC7Ios6nuXAavC1CPxL2Ts7lMl1ihCGyPIvQ-Tgzutoj4oaPvQzu1iPY94HBO7Uu4LDqzWtG2yEHQf-x0Rv2IgQbOg_IjS7VAmAdFeRZSbYxP6RSZHcXwFC9N5HE0Cx3VyZTAq1WiTuCHk1Eg8S_3A7KHynclZ9uIBxLQaeeXuHPxnSsZo_ekTfkq46vfSndOhKivico3D4AYRJTIwcAF6bdbpfHEdEV8zZAugtcBpxr4565I1qTaykSp4j3qdGxxnu5jKkS_frpobdqm-WYx3Er2iufUUYYgST1h70FZkiWJFWrQRNZqw8iFUdyrHSTz_qCbu-RnEElKL2Tv0KfKg2SnTmgaFC_p2cGdx0Zr9HEWzPfKzWawEMvHKcC9rCo7U9p2HZl7rTD4Pk7dvODuNRnZhswspO0fZz65aCgZpkTn4Ra7dbsuX2ATKrlSjyjpYXvibfM_18G9YY6615dR4_VEPJ1zGGsoelyNY3NY1fi3lTpC9blU80TIVP2nFXcZOahnqDQeVGWrcVj_6tTI38LQABmwGQSJysjkpBpD9RSGeC4QqWLJf4Hye2sUL92R1QLC8DHFmJmIOxmEKQHv2zrvb0ILeLMbl2Z57Hil5ZbSEMBbP7CUPvG1UhaOoWpiRB2WWP8od8j1PwxzUe7kaZYOPD435HWH44cAS8tYeCxk*1587464282899*968732ff39fca19c517df5808a84538c6bdbd924326df491fdf83fb3561a798b*E4CCDatkAZosnmFaw6uaxUfjB6_52ypkSb3DqpdanJY\",\n    \"challenge_type\": \"oob\",\n    \"oob_channel\": \"email\",\n    \"email\": \"fborbe@treatanyone.com\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/associate",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"mfa",
+						"associate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MFA Verify",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"body\": {\n    \"mfa_token\": \"Fe26.2*272dc2*b22c3b1c0c83db8db4010300ad31db6d92573df8b0aad3191b21e6ab604b16ba*Ha-wJo8UzqxfJUFxbDQk8g*5FgRzsbT22t7d6gYKLk_afJ31S_4EJN3QlPcoQS5Ml-ZrkYEO16v-M24qoyCbaAioUx-Q-QwW7u3H5BvRq9SOmd2jQDU6JD1zz3v2cDPEDY8xptl6kerafydeBQyn5lRqjQYPz-8aBlFw2cDmboDcnU5KgXLROluik9ZeI0XG6OZC5AcbW9iuOIDTwsnDNVt2IS4T9LiZSv1aMbwVf0qP_aOuiTKR7Wh4scH8mbCw6csOYxbQ6_w7NM-b3PCEZcDZ4XztjNMx0f_N915l8Zza3rja1Uq2SeTxPFQya9OjagteMW1oWF4pXkO4W6RzIzZ48oZvVrSEncWeh58eOzrLvjp-gJUp6gBZZH6YxX-kcB2STqvE7Y6dELUtxdDyKwwa61zPbGBso1sRyo1_tyNLmkMcMvuXpYou84IDv9ajrwGnF1CHHVqFwnPh3DEcpzn564Q7ni3MlsLI-Emea8A3fRhpDwbgIAnffy7qBQRTSZJuU9JnHA00pNi1hwxqdc0uPgAjUm9wyMap2KIRergSjjJzPiV18JiKA4fKlNMXKPKLjLHMKcYF0ZsIStqjzzrHLY2xG8rLrEdPjlZYCwbDilKXS3CQdKV13LcR5J16GJVKZZC-OyGONDIRBGgs_ybsU5GOowIbNWZ64VYH8g28UCRf-gOKD6WKUxC32XZ4YV2dnl7N-OEaQIfV1PNAA3n7yw5uU598cmXUKsDS6y6Wfz-NiclZSkiwXxZs8AXxPRWmTTPRFXOTpTNUD0wIv2yx2tC9FQazcItlJlFwiGhFyFj3jollUtch1oLo_dxsTosySivI6YSGDbD70v9nbwLk-flBerLVZnMH6qpZLTSz7MAaq-MDJyU_L8PY3qAuicO2djbjzDHgqaWMhA_9zzoO1o_XOZQdXsU5ehV07GS6CU_wtJki0Ht8PMOa-Lw0QDbQq9sb86IyzBxhhc3bBjFyCMIlD_T98adJ9n8cSG97N3QRGKli-Jw7hJuIfbXv4A6_OcM7egW4ybNG5LkS3Z8ensgOkeY97ER8GpjxzGy-6MRokl7ar0shYAse1EpeRIy7TTwKUuonX9sUFFb02cfkJaOkDigfbvJqINk6sl1WMvGBUDORGMQpoXlhuRRBZswpqF8ifOo3ueenhkEw8hlBe6W_qS7CzYnwJGfXnQTqKSk8iltPbJj7Ap_vhZfBpe-YgMO8cwFOfOu0ciwkfVlcZZDHN49AM1JRl56hE0r01kwOZ1buW7iX_9IXnRs3rpYCo4SkiC1QsGmFEYqtrkL9aYQzvdrygcXjDP_3pq0A6eTpeHHVombBIEhz7oK7wKn-uTHqO34bse-MxkPuwl2wlRIqfojFwjd9I-ycy7DXcNAOYCI0JgXLGfjxskHP8BlA_ztNsHxIDzYdn3xNWk3qvaKKzHjNNFQ4gFm910zY9Q6XtOGgjXqqYFSA94_vFx8zqhCKyc1CTIPCeQa_X1xJds1aeCE9Sn_5pu5XSJfyDA14VvrifKOzGko8rf8hSclIOfLUNdzW-afCdtAKkQ5wHxmK9zExzW3FV505d22pculMyU7NeHUrJ-6DrEEYzr7H2Naa15fJuU6ytfmqgnsRWqipxQn_N7GvuFlWck75jJEBQ1bbhB21f5tTwEbYMedro3A_7191G6FaFtozvw5mYGwrwHJ4Ja57tDwYHamUeLiAt7r_Fvyt4UGuPZyXhVBhoceYDp9tIkrOdvWqMfI_9JZmXcFJKeSWGRcWhi16ccEcnwpZhrU8ODlG5cfFPo*1587465933586*33bf54b0c0e9d74452223e6811d4da4eab8a126222d8580fb420cb3a390ea820*j5QDnajicGuXd7GD_pv657ifkRlh2Oa2awoyXelSKkM\",\n    \"challenge_type\": \"oob\",\n    \"oob_code\": \"Fe26.2*272dc2*827e83fae39c35203e8ee86f10fd021bd51ea4448b80a204986264613c01e0be*NcufbXlD7jftiIVpKGoR-Q*hRgIXPlADqa1nEDzAkFY1vDMigNWh2eKY-CUorwOvJ8iaEDO16qnEY_UCPy31jevXpNsS7ZaODI82K0m4hRSjS1mecTrjxs6ArZPWwyaYmjcLMj5Zg8sHbXFRAfn9IhRTKPDRAFZ4HE5_roo7MWSu1mui_uMsL15rBzggZnt6TKfGR2frhru2Q2UCKkPsEYHDAw2ijTPl0S1PqasPmXqi2PY6-iaLpAiy5rMBNlvDUjzgsYgyrjBrbWVL-I7soyB9XqyoniDsgMqmRiltMrPvBqnuysgHlsNdRX_pRzVw3XzMr73FRRp8ydcL6mdcPrrlqX6t23vQSU9DIcqQOoj6A*1587465959204*20c60f34a03118cccc753013c22ccf8405d64670b0ae9c5d409de6c16b09c214*g7KhYVCR16RwVSaPWLBnbhbvj6fB9nwQN9ZLZeWzbnw\",\n    \"binding_code\": \"155712\"\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/verify",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"mfa",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
