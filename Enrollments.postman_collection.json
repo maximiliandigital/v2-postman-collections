@@ -94,6 +94,31 @@
 			"response": []
 		},
 		{
+			"name": "enrollment-subscriber-show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/enrollments/subscribers/d1b2f7ea-78ca-11ea-bc55-0242ac110002",
+					"protocol": "https",
+					"host": [
+						"kx72g7yl59",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"enrollments",
+						"subscribers",
+						"d1b2f7ea-78ca-11ea-bc55-0242ac110002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "enrollment-update",
 			"request": {
 				"method": "PUT",
