@@ -1,10 +1,149 @@
 {
 	"info": {
-		"_postman_id": "6791eac4-3768-4e4a-957f-297c2103c44c",
+		"_postman_id": "b1b8a055-441f-47d6-aef1-8d6531832424",
 		"name": "Auth API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "MFA",
+			"item": [
+				{
+					"name": "MFA Challenge",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"challenge_type\": \"oob\",\n    \"mfa_token\": \"MFA_TOKEN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/challenge",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"mfa",
+								"challenge"
+							]
+						},
+						"description": "Using the mfa_token from login, request an mfa challenge for the user."
+					},
+					"response": []
+				},
+				{
+					"name": "MFA Associate Mobile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"challenge_type\": \"oob\",\n    \"mfa_token\": \"MFA_TOKEN\",\n    \"oob_channel\": \"sms\",\n    \"phone_number\": \"+63 927 1234567\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/associate",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"mfa",
+								"associate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MFA Associate Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"challenge_type\": \"oob\",\n    \"mfa_token\": \"MFA_TOKENY\",\n    \"oob_channel\": \"email\",\n    \"email\": \"fborbe@treatanyone.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/associate",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"mfa",
+								"associate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MFA Verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"challenge_type\": \"oob\",\n    \"mfa_token\": \"MFA_TOKEN\",\n    \"oob_code\": \"OOB_TOKEN\",\n    \"binding_code\": \"155712\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/verify",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"mfa",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
 		{
 			"name": "Login",
 			"event": [
@@ -54,55 +193,46 @@
 			"response": []
 		},
 		{
-			"name": "MFA Challenge",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"challenge_type\": \"oob\",\n    \"mfa_token\": \"MFA_TOKEN\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/challenge",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"mfa",
-						"challenge"
-					]
-				},
-				"description": "Using the mfa_token from login, request an mfa challenge for the user."
+			"name": "Example Protected API",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
 			},
-			"response": []
-		},
-		{
-			"name": "MFA Associate Mobile",
 			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"challenge_type\": \"oob\",\n    \"mfa_token\": \"MFA_TOKEN\",\n    \"oob_channel\": \"sms\",\n    \"phone_number\": \"+63 927 1234567\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": "access_token obtained from login",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"description": "id_token obtained from login",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "a",
+						"description": "Subscriber UUID (any value for now)",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "b",
+						"description": "User UUID (any value for now)",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "c",
+						"description": "User Type (any value for now)",
+						"type": "text"
 					}
-				},
+				],
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/associate",
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/auth/protected_api",
 					"protocol": "https",
 					"host": [
 						"kx72g7yl59",
@@ -113,74 +243,15 @@
 					],
 					"path": [
 						"dev",
-						"mfa",
-						"associate"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "MFA Associate Email",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"challenge_type\": \"oob\",\n    \"mfa_token\": \"MFA_TOKENY\",\n    \"oob_channel\": \"email\",\n    \"email\": \"fborbe@treatanyone.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/associate",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"auth",
+						"protected_api"
 					],
-					"path": [
-						"dev",
-						"mfa",
-						"associate"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "MFA Verify",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"challenge_type\": \"oob\",\n    \"mfa_token\": \"MFA_TOKEN\",\n    \"oob_code\": \"OOB_TOKEN\",\n    \"binding_code\": \"155712\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
 						}
-					}
-				},
-				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/mfa/verify",
-					"protocol": "https",
-					"host": [
-						"kx72g7yl59",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"dev",
-						"mfa",
-						"verify"
 					]
 				}
 			},
