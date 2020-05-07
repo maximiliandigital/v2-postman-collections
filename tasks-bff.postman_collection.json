@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "98f76bf4-b4b2-42d3-abde-7dae8880c493",
+		"name": "tasks-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getTasks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  tasks(subscriberUuid: \"2f57678c-9604-47d7-a77e-30e56af3ea57\", staffUuid: \"5569ff30-2846-490a-b4c2-0b1d901e6a68\", page: 1, perPage: 100, sortProp: \"due_date\", sortOrder: ASC) {\n    totalCount\n    aggregateTasks {\n        approval\n        attendance\n        assessment\n        attendanceAlert\n        progressNote\n        clinicalReport\n        customTask\n    }\n    tasks {\n        kind\n        dueDate\n    }\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://4h65vmjb9b.execute-api.us-west-2.amazonaws.com/5220/provider_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"4h65vmjb9b",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5220",
+						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteTask($input: DeleteTaskInput!) { \n    deleteTask(input: $input) {\n  \t    uuid\n    }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"0eabe769-c12b-4110-bd09-4f262d02ff25\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://4h65vmjb9b.execute-api.us-west-2.amazonaws.com/5220/provider_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"4h65vmjb9b",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5220",
+						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createTask($input: CreateTaskInput!) {\n  createTask(input: $input) {\n    id,\n    uuid,\n    subscriberUuid,\n    clientUuid,\n    kind,\n    creatorId,\n    ownerId,\n    assignerId,\n    scheduleStartsAt,\n    scheduleRules,\n    dependencyUuidType,\n    dependencyUuid,\n    createdBy,\n    updatedBy,\n    createdAt,\n    updatedAt\n  }\n}",
+						"variables": "{\n\t\"input\": {\n\t\t\"subscriberUuid\": \"2f57678c-9604-47d7-a77e-30e56af3ea57\",\n\t\t\"creatorUuid\": \"5569ff30-2846-490a-b4c2-0b1d901e6a68\",\n\t\t\"clientUuid\": \"3da1c300-3d8a-4ee2-88b7-5b45f2cdd388\",\n\t\t\"enrollmentUuid\": \"3da1c300-3d8a-4ee2-88b7-5b45f2cdd388\",\n\t\t\"kind\": \"approval\",\n\t\t\"details\": \"Invididual\",\n\t\t\"scheduleStartsAt\": \"2020-05-05\",\n\t\t\"scheduleRules\": [\"FREQ=DAILY;COUNT=10\"],\n\t\t\"dependencyUuidType\": \"Sample Dependency\",\n\t\t\"dependencyUuid\": \"3da1c300-3d8a-4ee2-88b7-5b45f2cdd405\",\n\t\t\"createdBy\": \"bff\",\n\t\t\"updatedBy\": \"bff\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://4h65vmjb9b.execute-api.us-west-2.amazonaws.com/5220/provider_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"4h65vmjb9b",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5220",
+						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateTask($input: UpdateTaskInput!) {\n  updateTask(input: $input) {\n    id,\n    uuid,\n    subscriberUuid,\n    clientUuid,\n    kind,\n    creator {\n        uuid firstName lastName\n    },\n    owner {\n        uuid firstName lastName\n    },\n    assignedBy {\n        uuid firstName lastName\n    },\n    scheduleStartsAt,\n    scheduleRules,\n    dependencyUuidType,\n    dependencyUuid,\n    createdBy,\n    updatedBy,\n    createdAt,\n    updatedAt\n  }\n}",
+						"variables": "{\n\t\"input\": {\n\t\t\"uuid\": \"0eabe769-c12b-4110-bd09-4f262d02ff25\",\n\t\t\"kind\": \"assessment\",\n\t\t\"createdBy\": \"Updated bff\",\n\t\t\"updatedBy\": \"Updated bff\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://4h65vmjb9b.execute-api.us-west-2.amazonaws.com/5220/provider_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"4h65vmjb9b",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5220",
+						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
