@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "d917e645-1ab2-48d6-b918-990efd6550c4",
+		"name": "events-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listEvents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getEvents($subscriberUuid: ID!, $view: String, $startRange: ISO8601DateTime, $endRange: ISO8601DateTime, $sortOrder: SortOrder) {\n    events(subscriberUuid: $subscriberUuid, view: $view, startRange: $startRange, endRange: $endRange, sortOrder: $sortOrder) {\n        id\n        uuid\n        subscriberClientUuid\n        subscriberStaffUuid\n        subscriber {\n            subscriberName\n        }\n        location {\n            name\n        }\n        kind\n        enrollmentKind\n        startDate\n        endDate\n        bookingDate\n        attendanceStatus\n    }\n}",
+						"variables": "{\n\t\"subscriberUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n\t\"view\": \"all\",\n\t\"startRange\": \"2020-05-01\",\n\t\"endRange\": \"2020-05-20\",\n\t\"sortOrder\": \"ASC\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://u3x9yngb09.execute-api.us-west-2.amazonaws.com/5311/provider_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"u3x9yngb09",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5311",
+						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createEvent($input: CreateEventInput!) {\n    createEvent(input: $input) {\n        id\n        uuid\n        enrollmentUuid\n        subscriber { uuid subscriberName }\n        location { uuid name }\n        title\n        kind\n        enrollmentKind\n        scheduleRules\n        duration\n        createdBy\n        updatedBy\n        createdAt\n        updatedAt\n    }\n}",
+						"variables": "{\n\t\"input\": {\n\t\t\"subscriberUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n\t\t\"locationUuid\": \"9fbe2333-3cf7-4a16-b46f-a4ffd2b40e77\",\n\t\t\"enrollmentUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n\t\t\"subscriberClientUuid\": null,\n\t\t\"subscriberStaffUuid\": null,\n\t\t\"title\": \"Test Service\",\n\t\t\"kind\": \"service\",\n\t\t\"enrollmentKind\": null,\n\t\t\"scheduleRules\": \"{\\\"dtstart\\\":\\\"2020-05-19T00:00:00+00:00\\\",\\\"rrule\\\":\\\"FREQ=DAILY;COUNT=3\\\"}\",\n\t\t\"duration\": 1440,\n\t\t\"createdBy\": \"test\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://u3x9yngb09.execute-api.us-west-2.amazonaws.com/5311/provider_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"u3x9yngb09",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5311",
+						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateEvent($input: UpdateEventInput!) {\n        updateEvent(input: $input) {\n          id\n          uuid\n          enrollmentUuid\n          subscriberClientUuid\n          subscriberStaffUuid\n          subscriber { uuid subscriberName }\n          location { uuid name }\n          title\n          kind\n          enrollmentKind\n          scheduleRules\n          duration\n          createdBy\n          updatedBy\n          createdAt\n          updatedAt\n        }\n      }",
+						"variables": "{\n\t\"input\": {\n\t\t\"uuid\": \"b37defb9-6e37-4019-ac62-d53aa3df4e3a\",\n\t\t\"subscriberUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n\t\t\"locationUuid\": \"9fbe2333-3cf7-4a16-b46f-a4ffd2b40e77\",\n\t\t\"enrollmentUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n\t\t\"subscriberClientUuid\": null,\n\t\t\"subscriberStaffUuid\": null,\n\t\t\"title\": \"Test Service\",\n\t\t\"kind\": \"service\",\n\t\t\"enrollmentKind\": null,\n\t\t\"scheduleRules\": \"{\\\"rrule\\\":\\\"FREQ=DAILY;COUNT=2\\\"}\",\n\t\t\"duration\": 1440,\n\t\t\"updatedBy\": \"test\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://u3x9yngb09.execute-api.us-west-2.amazonaws.com/5311/provider_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"u3x9yngb09",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5311",
+						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteEvent($input: DeleteEventInput!) {\n    deleteEvent(input: $input) {\n        uuid\n    }\n}",
+						"variables": "{\n\t\"input\": {\n\t\t\"uuid\": \"b37defb9-6e37-4019-ac62-d53aa3df4e3a\",\n\t\t\"subscriberUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://u3x9yngb09.execute-api.us-west-2.amazonaws.com/5311/provider_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"u3x9yngb09",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5311",
+						"provider_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
