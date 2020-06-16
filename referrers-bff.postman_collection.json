@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "6913a8cd-27cf-4938-a1a1-48ec4755fdef",
+		"name": "referrers-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getReferrers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getReferrers($subscriberUuid: ID!, $searchKey: String) {\n  referrers(subscriberUuid: $subscriberUuid, searchKey: $searchKey) {\n    uuid\n    title\n    firstName\n    lastName\n    middleName\n    gender\n    email\n    phone\n    phoneExtension\n    address {\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n    }\n  }\n}\n",
+						"variables": "{\n    \"subscriberUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n    \"offset\": 0,\n    \"limit\": 10\n}"
+					}
+				},
+				"url": {
+					"raw": "https://a675c0n7v3.execute-api.us-west-2.amazonaws.com/5618/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"a675c0n7v3",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5618",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReferrerSupervisees",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getReferrerSupervisees($subscriberUuid: ID!, $supervisorUuid: ID!, $offset: Int, $limit: Int) {\n  referrerSupervisees(subscriberUuid: $subscriberUuid, supervisorUuid: $supervisorUuid, offset: $offset, limit: $limit) {\n    uuid\n    title\n    firstName\n    lastName\n    middleName\n    gender\n    email\n    phone\n    phoneExtension\n    address {\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n    }\n  }\n}\n",
+						"variables": "{\n\t\"subscriberUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n\t\"supervisorUuid\": \"954352ab-fc6c-4cd5-8e26-4a63d9c93ae1\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://a675c0n7v3.execute-api.us-west-2.amazonaws.com/5618/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"a675c0n7v3",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5618",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createReferrer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createReferrer($input: CreateReferrerInput!) {\n  createReferrer(input: $input) {\n    uuid\n    title\n    firstName\n    middleName\n    lastName\n    gender\n    email\n    phone\n    phoneExtension\n    createdBy\n    updatedBy\n    address {\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n  }\n}\n",
+						"variables": "{\n\t\"input\": {\n\t\t\"subscriberUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n\t\t\"organizationUuid\": \"3d1e0b9f-7d4e-4287-9e2f-4060285cff62\",\n\t\t\"supervisorUuid\": \"954352ab-fc6c-4cd5-8e26-4a63d9c93ae1\",\n\t\t\"title\": \"title\",\n\t\t\"firstName\": \"first_name\",\n\t\t\"middleName\": \"middle_name\",\n\t\t\"lastName\": \"last_name\",\n\t\t\"gender\": \"male\",\n\t\t\"phone\": \"+12345678901\",\n\t\t\"phoneExtension\": \"123\",\n\t\t\"email\": \"test4@tester.com\",\n\t\t\"currentUser\": \"current_user\",\n\t\t\"addressAttributes\": {\n\t\t\t\"addressLine1\": \"test-address-line-1\",\n\t\t\t\"addressLine2\": \"test-address-line-2\",\n\t\t\t\"city\": \"test-city\",\n\t\t\t\"state\": \"test-state\",\n\t\t\t\"postcode\": \"test-postcode\",\n\t\t\t\"currentUser\": \"test-current-user\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://v3za2zpg62.execute-api.us-west-2.amazonaws.com/5619/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"v3za2zpg62",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5619",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateReferrer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateReferrer($input: UpdateReferrerInput!) {\n  updateReferrer(input: $input) {\n    uuid\n    title\n    firstName\n    middleName\n    lastName\n    gender\n    email\n    phone\n    phoneExtension\n    createdBy\n    updatedBy\n    address {\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n  }\n}\n",
+						"variables": "{\n\t\"input\": {\n\t\t\"uuid\": \"f611685f-6cce-42f7-a4c5-7199c1d6a0f5\",\n\t\t\"title\": \"title\",\n\t\t\"firstName\": \"updated_firstname\",\n\t\t\"middleName\": \"updated_middlename\",\n\t\t\"lastName\": \"updated_lastname\",\n\t\t\"gender\": \"male\",\n\t\t\"phone\": \"+12345678901\",\n\t\t\"phoneExtension\": \"123\",\n\t\t\"email\": \"test4@tester.com\",\n\t\t\"currentUser\": \"update\",\n\t\t\"addressAttributes\": {\n\t\t\t\"addressLine1\": \"test-address-line-1\",\n\t\t\t\"addressLine2\": \"test-address-line-2\",\n\t\t\t\"city\": \"test-city\",\n\t\t\t\"state\": \"test-state\",\n\t\t\t\"postcode\": \"test-postcode\",\n\t\t\t\"currentUser\": \"test-current-user\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://v3za2zpg62.execute-api.us-west-2.amazonaws.com/5619/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"v3za2zpg62",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5619",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteReferrer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteReferrer($input: DeleteReferrerInput!) {\n  deleteReferrer(input: $input) {\n    uuid\n  }\n}\n",
+						"variables": "{\n\t\"input\": {\n\t\t\"uuid\": \"f611685f-6cce-42f7-a4c5-7199c1d6a0f5\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://v3za2zpg62.execute-api.us-west-2.amazonaws.com/5619/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"v3za2zpg62",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5619",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
