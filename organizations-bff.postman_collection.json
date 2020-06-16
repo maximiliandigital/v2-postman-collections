@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "738430b6-a56e-4872-8b1b-26bf959f614e",
+		"name": "organizations-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getOrganizations",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getOrganizations($filterKey: String, $filterValue: String, $offset: Int, $limit: Int) {\n  organizations(filterKey: $filterKey, filterValue: $filterValue, offset: $offset, limit: $limit) {\n    uuid\n    name\n    contactEmail\n    tpIdentifierName\n    contractIdentifier\n    contractIdentifierName\n    providerSiteReference\n    referrerDesignation\n    freeAccess\n    active\n    address {\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n    }\n  }\n}\n",
+						"variables": "{\n    \"offset\": 0,\n    \"limit\": 10\n}"
+					}
+				},
+				"url": {
+					"raw": "https://10rnyc5hi1.execute-api.us-west-2.amazonaws.com/5620/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"10rnyc5hi1",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5620",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrganization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createOrganization($input: CreateOrganizationInput!) {\n  createOrganization(input: $input) {\n    uuid\n    organizationTypeId\n    organizationOfferingTypeId\n    pricingTypeId\n    name\n    contactEmail\n    tpIdentifierName\n    contractIdentifier\n    contractIdentifierName\n    providerSiteReference\n    referrerDesignation\n    freeAccess\n    active\n    createdBy\n    updatedBy\n    address {\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n  }\n}\n",
+						"variables": "{\n\t\"input\": {\n\t\t\"organizationTypeUuid\": \"729ff8a9-21f4-48c5-9fa2-95ae73f0299b\",\n\t\t\"organizationOfferingTypeUuid\": \"9afb9cb7-58bb-478f-b2ce-779dc1ce697e\",\n\t\t\"pricingTypeUuid\": \"772ce8ad-0ce6-401c-80ca-5bc27129cacf\",\n\t\t\"name\": \"test-name\",\n\t\t\"contactEmail\": \"test@testing.com\",\n\t\t\"tpIdentifierName\": \"tp_identifier_name\",\n\t\t\"contractIdentifier\": \"contract_identifier\",\n\t\t\"contractIdentifierName\": \"contract_identifier_name\",\n\t\t\"providerSiteReference\": \"provider_site_reference\",\n\t\t\"referrerDesignation\": \"referrer_designation\",\n\t\t\"freeAccess\": 1,\n\t\t\"active\": true,\n\t\t\"currentUser\": \"current-user\",\n\t\t\"addressAttributes\": {\n\t\t\t\"addressLine1\": \"test-address-line-1\",\n\t\t\t\"addressLine2\": \"test-address-line-2\",\n\t\t\t\"city\": \"test-city\",\n\t\t\t\"state\": \"test-state\",\n\t\t\t\"postcode\": \"test-postcode\",\n\t\t\t\"currentUser\": \"test-current-user\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://mefsj1dyq3.execute-api.us-west-2.amazonaws.com/5621/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"mefsj1dyq3",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5621",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrganization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateOrganization($input: UpdateOrganizationInput!) {\n  updateOrganization(input: $input) {\n    uuid\n    organizationTypeId\n    organizationOfferingTypeId\n    pricingTypeId\n    name\n    contactEmail\n    tpIdentifierName\n    contractIdentifier\n    contractIdentifierName\n    providerSiteReference\n    referrerDesignation\n    freeAccess\n    active\n    createdBy\n    updatedBy\n    address {\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n  }\n}\n",
+						"variables": "{\n\t\"input\": {\n\t\t\"uuid\": \"cdd1ba46-462f-4061-93d0-1985a4ae8621\",\n\t\t\"name\": \"test-name 3\",\n\t\t\"contactEmail\": \"test@testing.com\",\n\t\t\"tpIdentifierName\": \"tp_identifier_name1\",\n\t\t\"contractIdentifier\": \"contract_identifier1\",\n\t\t\"contractIdentifierName\": \"contract_identifier_name1\",\n\t\t\"providerSiteReference\": \"provider_site_reference1\",\n\t\t\"referrerDesignation\": \"referrer_designation\",\n\t\t\"freeAccess\": 1,\n\t\t\"active\": true,\n\t\t\"currentUser\": \"current-user\",\n\t\t\"addressAttributes\": {\n\t\t\t\"addressLine1\": \"test-address-line-1\",\n\t\t\t\"addressLine2\": \"test-address-line-2\",\n\t\t\t\"city\": \"test-city\",\n\t\t\t\"state\": \"test-state\",\n\t\t\t\"postcode\": \"test-postcode\",\n\t\t\t\"currentUser\": \"test-current-user\"\n\t\t}\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://mefsj1dyq3.execute-api.us-west-2.amazonaws.com/5621/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"mefsj1dyq3",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5621",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteOrganization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteOrganization($input: DeleteOrganizationInput!) {\n  deleteOrganization(input: $input) {\n    uuid\n  }\n}\n",
+						"variables": "{\n\t\"input\": {\n\t\t\"uuid\": \"cdd1ba46-462f-4061-93d0-1985a4ae8621\"\n\t}\n}"
+					}
+				},
+				"url": {
+					"raw": "https://mefsj1dyq3.execute-api.us-west-2.amazonaws.com/5621/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"mefsj1dyq3",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5621",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
