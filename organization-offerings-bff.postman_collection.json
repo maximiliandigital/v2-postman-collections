@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "682342da-ea91-47b8-a596-95a1bb056bea",
+		"name": "organization-offerings-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listOrganiztionOfferings",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getOfferings($organizationUuid: ID!, $offset: Int, $limit: Int) {\n  offerings(organizationUuid: $organizationUuid, offset: $offset, limit: $limit) {\n    uuid\n    organizationId\n    offeringTypeId\n    name\n    pricingSchedule\n    thirdPartyCode\n    priceCents\n    duration\n    noShowAmountCents\n    noShowPercent\n    discountAmountCents\n    discountPercent\n    active\n  }\n}\n",
+						"variables": "{\n\t\"organizationUuid\": \"3d1e0b9f-7d4e-4287-9e2f-4060285cff62\",\n\t\"offset\": 0,\n\t\"limit\": 10\n}"
+					},
+					"options": {
+						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "https://3k7h7tud3b.execute-api.us-west-2.amazonaws.com/5622/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"3k7h7tud3b",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5622",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrganizationOffering",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createOffering($input: CreateOfferingInput!) {\n  createOffering(input: $input) {\n    organizationId\n    offeringTypeId\n    name\n    pricingSchedule\n    thirdPartyCode\n    priceCents\n    duration\n    noShowAmountCents\n    noShowPercent\n    discountAmountCents\n    discountPercent\n    active\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}\n",
+						"variables": "{\n        \"input\": {\n          \"organizationUuid\": \"3d1e0b9f-7d4e-4287-9e2f-4060285cff62\",\n          \"offeringTypeUuid\": \"acc15364-a607-4174-94d4-a614d65d1382\",\n          \"name\": \"name\",\n          \"pricingSchedule\": \"test\",\n          \"thirdPartyCode\": \"test123\",\n          \"priceCents\": 100,\n          \"duration\": 1440,\n          \"noShowAmountCents\": 0,\n          \"noShowPercent\": 0,\n          \"discountAmountCents\": 0,\n          \"discountPercent\": 0,\n          \"active\": true,\n          \"currentUser\": \"test-user\"\n        }\n      }"
+					},
+					"options": {
+						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "https://wto1bhpxr6.execute-api.us-west-2.amazonaws.com/5623/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"wto1bhpxr6",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5623",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrganizationOffering",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateOffering($input: UpdateOfferingInput!) {\n  updateOffering(input: $input) {\n    uuid\n    organizationId\n    offeringTypeId\n    name\n    pricingSchedule\n    thirdPartyCode\n    priceCents\n    duration\n    noShowAmountCents\n    noShowPercent\n    discountAmountCents\n    discountPercent\n    active\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}\n",
+						"variables": "{\n        \"input\": {\n          \"uuid\": \"143247ea-42d7-46c0-9d51-f760010ef233\",\n          \"name\": \"sample update\",\n          \"pricingSchedule\": \"test1\",\n          \"thirdPartyCode\": \"test1234\",\n          \"priceCents\": 1000,\n          \"duration\": 300,\n          \"noShowAmountCents\": 1,\n          \"noShowPercent\": 1,\n          \"discountAmountCents\": 1,\n          \"discountPercent\": 1,\n          \"active\": true,\n          \"currentUser\": \"test-update-user\"\n        }\n      }"
+					},
+					"options": {
+						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "https://wto1bhpxr6.execute-api.us-west-2.amazonaws.com/5623/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"wto1bhpxr6",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5623",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteOrganizationOffering",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteOffering($input: DeleteOfferingInput!) {\n  deleteOffering(input: $input) {\n    uuid\n  }\n}\n",
+						"variables": "{\n\t\"input\": {\n\t\t\"uuid\": \"143247ea-42d7-46c0-9d51-f760010ef233\"\n\t}\n}"
+					},
+					"options": {
+						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "https://wto1bhpxr6.execute-api.us-west-2.amazonaws.com/5623/referrers_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"wto1bhpxr6",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5623",
+						"referrers_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
