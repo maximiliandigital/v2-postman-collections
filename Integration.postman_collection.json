@@ -610,6 +610,182 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Storage",
+			"item": [
+				{
+					"name": "File Upload",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "five_thousand_rows.xlsx"
+							},
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{upload_url}}",
+							"host": [
+								"{{upload_url}}"
+							]
+						},
+						"description": "File upload."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Upload URL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filename\": \"sample.xlsx\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/storage/upload_url",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"storage",
+								"upload_url"
+							]
+						},
+						"description": "Make a post request to /storage/upload_url with filename as body to get a presigned upload URL."
+					},
+					"response": []
+				},
+				{
+					"name": "Start Multipart Upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filename\": \"bigfile\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/storage/multipart/start",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"storage",
+								"multipart",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Abort Multipart Upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\": {{file_key}},\n    \"upload_id\": {{file_upload_id}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/storage/multipart/abort",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"storage",
+								"multipart",
+								"abort"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Multipart Upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\": {{file_key}},\n    \"upload_id\": {{file_upload_id}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/storage/multipart/complete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"storage",
+								"multipart",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Multipart Upload URL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\": {{file_key}},\n    \"upload_id\": {{file_upload_id}},\n    \"part_number\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/storage/multipart/upload_url",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"storage",
+								"multipart",
+								"upload_url"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Storage service endpoints",
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
