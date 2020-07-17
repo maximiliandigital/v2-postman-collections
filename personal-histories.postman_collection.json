@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "96c7d603-545b-402d-91e0-6e2b3c1ef0ad",
+		"name": "personal-histories",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create-personal-history",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n  \"details\": { \"category\": 2, \"type\": 8, \"age_of_first_offense\": 15, \"comment\": \"Lorem ipsum\" }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/personal_histories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"personal_histories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list-personal-histories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dev/personal_histories ",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"personal_histories "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-personal-history",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n  \"details\": { \"category\": 2, \"type\": 8, \"age_of_first_offense\": 15, \"comment\": \"Lorem ipsum\" }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/personal_histories/c0b46d05-ad42-4d48-a6d3-6fff9169a0fc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"personal_histories",
+						"c0b46d05-ad42-4d48-a6d3-6fff9169a0fc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show-personal-history",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dev/personal_histories/d1fc8aec-b824-4737-8470-681bcb93a81f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"personal_histories",
+						"d1fc8aec-b824-4737-8470-681bcb93a81f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-personal-history",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"details\": { \"category\": 2, \"type\": 8, \"age_of_first_offense\": 15, \"comment\": \"Test\" }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/personal_histories/d1fc8aec-b824-4737-8470-681bcb93a81f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"personal_histories",
+						"d1fc8aec-b824-4737-8470-681bcb93a81f"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

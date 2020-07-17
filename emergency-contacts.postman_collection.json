@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "1547921e-038e-41b4-9fb9-2f7593699797",
+		"name": "emergency-contacts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dev/emergency_contacts?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb&limit=10&offset=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"emergency_contacts"
+					],
+					"query": [
+						{
+							"key": "client_uuid",
+							"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dev/emergency_contacts/0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"emergency_contacts",
+						"0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dev/emergency_contacts/0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"emergency_contacts",
+						"0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client_uuid\": \"e76bec3c-53a8-4b2e-a573-23c0e114a94a\",\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"Jose\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"lives_at\": \"Parents\",\n    \"not_ok_to_leave_message\": true,\n    \"phone_contacts\": [{ \"phone_type\": \"landline\", \"phone_number\": \"213123131\"}],\n    \"email\": \"juan@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/emergency_contacts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"emergency_contacts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"not_ok_to_leave_message\": false,\n    \"phone_contacts\": [{ \"phone_type\": \"home\", \"phone_number\": \"213123131\"}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/emergency_contacts/f259173f-11ad-4116-9757-8afce063760e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"emergency_contacts",
+						"f259173f-11ad-4116-9757-8afce063760e"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
