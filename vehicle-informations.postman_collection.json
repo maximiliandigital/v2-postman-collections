@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "c122e5fb-da6d-47e6-b3aa-482326032715",
+		"name": "vehicle-informations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http",
+			"item": [
+				{
+					"name": "GET All Vehicle Informations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
+							"protocol": "https",
+							"host": [
+								"22jm1o3hq7",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"5638",
+								"vehicle_informations"
+							],
+							"query": [
+								{
+									"key": "client_uuid",
+									"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE Vehicle information",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n    \"year\": \"2023\",\n    \"make\": \"Isuzu\",\n    \"model\": \"MuX\",\n    \"color\": \"Black\",\n    \"license\": \"23342342\",\n    \"kind\": \"SUV\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations",
+							"protocol": "https",
+							"host": [
+								"22jm1o3hq7",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"5638",
+								"vehicle_informations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ Vehicle Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations/fb8f11df-8b64-414a-b20f-e960e9e5978c",
+							"protocol": "https",
+							"host": [
+								"22jm1o3hq7",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"5638",
+								"vehicle_informations",
+								"fb8f11df-8b64-414a-b20f-e960e9e5978c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Vehicle Information",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations/80cf952d-8dcb-4378-b31c-73e2370fa415",
+							"protocol": "https",
+							"host": [
+								"22jm1o3hq7",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"5638",
+								"vehicle_informations",
+								"80cf952d-8dcb-4378-b31c-73e2370fa415"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Vehicle Information",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"color\": \"Blackest\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations/45c62ba1-b844-4b0d-b1a2-bcdde385fab8",
+							"protocol": "https",
+							"host": [
+								"22jm1o3hq7",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"5638",
+								"vehicle_informations",
+								"45c62ba1-b844-4b0d-b1a2-bcdde385fab8"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "get all vehicle informations gql",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query listVehicleInformations($clientUuid: ID!, $offset: Int, $limit: Int) {\n   listVehicleInformations(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n     uuid\n     year\n     make\n     model\n     color\n     license\n     createdBy\n   }\n}",
+						"variables": "{\n  \"clientUuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"22jm1o3hq7",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5638",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create vehicle information gql",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createVehicleInformation($input: CreateVehicleInformationInput!) { \n  createVehicleInformation(input: $input) {\n     uuid\n     year\n     make\n     model\n     color\n     license\n     createdBy\n     updatedBy\n     createdAt\n     updatedAt\n   }\n}",
+						"variables": "{\n  \"input\": {\n    \"clientUuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n     \"year\": \"2020\",\n     \"make\": \"Honda\",\n     \"model\": \"GTR 3\",\n     \"color\": \"Red\",\n    \"license\": \"Samplesense\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"22jm1o3hq7",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5638",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read  vehicle information GQL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query showVehicleInformation($uuid: ID!) {\n  showVehicleInformation(uuid: $uuid) {\n      uuid\n      year\n      make\n      model\n      color\n      license\n   }\n}",
+						"variables": "{\n   \"uuid\":\"ed9dc1c0-7f5c-42ee-94f7-f6492f5e346a\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"22jm1o3hq7",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5638",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete vehicle information gql",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteVehicleInformation($input: DeleteVehicleInformationInput!) {\n  deleteVehicleInformation(input: $input) {\n    uuid\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"45c62ba1-b844-4b0d-b1a2-bcdde385fab8\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"22jm1o3hq7",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5638",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update vehicle information gql",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateVehicleInformation($input: UpdateVehicleInformationInput!) { \n  updateVehicleInformation(input: $input) {\n    clientId\n    year\n    make\n    model\n    color\n    license\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+						"variables": "{ \n  \"input\": {\n    \"uuid\": \"1fb8b033-5667-444f-8465-b4ae7e7e620d\",\n    \"year\": \"2020\",\n    \"make\": \"Toyota\",\n    \"model\": \"Prius\",\n    \"color\": \"Green\",\n    \"license\": \"1232367\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"22jm1o3hq7",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"5638",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
