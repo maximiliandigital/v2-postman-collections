@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d591e741-4901-4b19-84a0-3e2830c28bdc",
+		"_postman_id": "0e58c2de-ca64-45ae-a511-ffe67406b936",
 		"name": "clients-service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,18 +11,68 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients",
+					"raw": "https://hdnqb157h3.execute-api.us-west-2.amazonaws.com/6113/clients?subscriber_uuid=0529b05b-d516-48ea-b454-d1638237fd6b",
 					"protocol": "https",
 					"host": [
-						"kx72g7yl59",
+						"hdnqb157h3",
 						"execute-api",
 						"us-west-2",
 						"amazonaws",
 						"com"
 					],
 					"path": [
-						"dev",
+						"6113",
 						"clients"
+					],
+					"query": [
+						{
+							"key": "subscriber_uuid",
+							"value": "0529b05b-d516-48ea-b454-d1638237fd6b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show-client-profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hdnqb157h3.execute-api.us-west-2.amazonaws.com/6113/clients/0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1/profile",
+					"protocol": "https",
+					"host": [
+						"hdnqb157h3",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6113",
+						"clients",
+						"0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1",
+						"profile"
+					],
+					"query": [
+						{
+							"key": "subscriber_uuid",
+							"value": "0529b05b-d516-48ea-b454-d1638237fd6b",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -74,7 +124,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"first_name\": \"Ana updated\",\n    \"last_name\": \"Banana updated\"\n}",
+					"raw": "{\n\t\"first_name\": \"Anana updated\",\n    \"last_name\": \"Banana updated\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -82,19 +132,19 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/a514fa7f-361a-478a-9aeb-d499336fd5e1",
+					"raw": "https://hdnqb157h3.execute-api.us-west-2.amazonaws.com/6113/clients/0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1",
 					"protocol": "https",
 					"host": [
-						"kx72g7yl59",
+						"hdnqb157h3",
 						"execute-api",
 						"us-west-2",
 						"amazonaws",
 						"com"
 					],
 					"path": [
-						"dev",
+						"6113",
 						"clients",
-						"a514fa7f-361a-478a-9aeb-d499336fd5e1"
+						"0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1"
 					]
 				}
 			},
@@ -142,19 +192,19 @@
 					}
 				},
 				"url": {
-					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/a514fa7f-361a-478a-9aeb-d499336fd5e1",
+					"raw": "https://hdnqb157h3.execute-api.us-west-2.amazonaws.com/6113/clients/0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1",
 					"protocol": "https",
 					"host": [
-						"kx72g7yl59",
+						"hdnqb157h3",
 						"execute-api",
 						"us-west-2",
 						"amazonaws",
 						"com"
 					],
 					"path": [
-						"dev",
+						"6113",
 						"clients",
-						"a514fa7f-361a-478a-9aeb-d499336fd5e1"
+						"0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1"
 					]
 				}
 			},
