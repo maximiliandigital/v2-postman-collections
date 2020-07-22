@@ -6,35 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "create-personal-history",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n  \"details\": { \"category\": 2, \"type\": 8, \"age_of_first_offense\": 15, \"comment\": \"Lorem ipsum\" }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/dev/personal_histories",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dev",
-						"personal_histories"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "list-personal-histories",
 			"request": {
 				"method": "GET",
@@ -130,6 +101,35 @@
 						"dev",
 						"personal_histories",
 						"d1fc8aec-b824-4737-8470-681bcb93a81f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-personal-history",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n  \"details\": { \"category\": 2, \"type\": 8, \"age_of_first_offense\": 15, \"number_of_admissions\": 10, \"age_of_first_admission\": 18, \"comment\": \"Lorem ipsum\" }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/personal_histories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"personal_histories"
 					]
 				}
 			},
