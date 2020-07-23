@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "22794dc6-a325-42f4-8bf9-654f60804e56",
+		"name": "clients-service-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "show client profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query showClientProfile($uuid: ID!) {\n  showClientProfile(uuid: $uuid) {\n      uuid\n      lastName\n      firstName\n      middleName\n      email\n      phone\n      dob\n      gender\n      height\n      weight\n      livesWith\n      employment\n      educationCompleted\n      medications {\n        uuid\n        name\n        dosage\n        dateStart\n        physicianName\n        physicianPhoneNumber\n        physicianEmail\n        timeOnMedication\n        comments\n      }\n      vehicleInformations {\n        uuid\n        year\n        make\n        model\n        color\n        license\n      }\n      children {\n        firstName\n      }\n      personalHistories {\n        uuid\n        details\n      }\n      emergencyContacts {\n        uuid\n        firstName\n        middleName\n        lastName\n        relationship\n        livesAt\n        notOkToLeaveMessage\n        phoneContacts\n        contactType\n        email\n      }\n      collateralContacts {\n        uuid\n        firstName\n        middleName\n        lastName\n        relationship\n        livesAt\n        notOkToLeaveMessage\n        phoneContacts\n        contactType\n        email\n      }\n   }\n}",
+						"variables": "{\n   \"uuid\":\"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://ub9j4k9vjg.execute-api.us-west-2.amazonaws.com/6164/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"ub9j4k9vjg",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6164",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
