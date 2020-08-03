@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "38bb5bdc-b598-47f7-a532-de6cc5ad3b66",
+		"name": "test-6578-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listGroups",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query listGroups($subscriberUuid: ID!, $searchKey: String, $includeGroupMembers: Boolean, $offset: Int, $limit: Int) {\n  groups(subscriberUuid: $subscriberUuid, searchKey: $searchKey, includeGroupMembers: $includeGroupMembers, offset: $offset, limit: $limit) {\n    uuid\n    subscriberUuid\n    locationUuid\n    name\n    note\n    duration\n    active\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    groupMembers {\n      memberDetails {\n        clientUuid\n        fullName\n      }\n    }\n  }\n}\n",
+						"variables": "{\n    \"subscriberUuid\": \"2b1cc544-603b-4d6e-930f-27116e7b86a6\",\n    \"searchKey\": \"name7\",\n    \"offset\": 0,\n    \"limit\": 10,\n    \"includeGroupMembers\": true\n}"
+					}
+				},
+				"url": {
+					"raw": "https://9m4a4ka0xl.execute-api.us-west-2.amazonaws.com/6578/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"9m4a4ka0xl",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6578",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createGroup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createGroup($input: CreateGroupInput!) {\n  createGroup(input: $input) {\n    subscriberUuid\n    locationUuid\n    name\n    note\n    duration\n    active\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    groupMembers {\n      id\n      uuid\n      groupId\n      clientId\n      enrollmentUuid\n      offeringUuid\n      joinedOn\n      deletedAt\n      createdBy\n      updatedBy\n    }\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"subscriberUuid\": \"2b1cc544-603b-4d6e-930f-27116e7b86a6\",\n        \"locationUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n        \"name\": \"name7\",\n        \"note\": \"note\",\n        \"duration\": 1440,\n        \"active\": true,\n        \"currentUser\": \"current_user\",\n        \"groupMembersAttributes\": [\n            {\n                \"clientId\": 40,\n                \"enrollmentUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n                \"offeringUuid\": \"612301d2-4849-4a63-9907-c269cb43d30f\",\n                \"joinedOn\": \"2020-07-30\",\n                \"currentUser\": \"current_user\"\n            }\n        ]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://9m4a4ka0xl.execute-api.us-west-2.amazonaws.com/6578/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"9m4a4ka0xl",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6578",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
