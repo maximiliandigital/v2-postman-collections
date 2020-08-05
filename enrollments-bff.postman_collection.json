@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "b4902d80-edbc-43b0-960a-4fe7207bb4c3",
+		"name": "enrollments-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createEnrollment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createEnrollment($input: CreateEnrollmentInput!) { \n    createEnrollment(input: $input) {\n      clientUuid\n      subscriberUuid\n      enrollmentTypeId\n      referralDate\n      referralReceivedDate\n      dischargedOn\n      locationUuid\n      treatmentStartDate\n      treatmentEndDate\n      enrollmentStatusId\n      firstAppointmentDate\n      reasonForReferral\n      referrerUuid\n      organizationUuid\n      caseUuid\n      refNum\n      pid\n      cii\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n\n      petitioner {\n        clientUuid\n        relationshipToOtherClient\n        clientRole\n        deletedAt\n        createdAt\n        updatedAt\n      }\n\n      respondent {\n        clientUuid\n        relationshipToOtherClient\n        clientRole\n        deletedAt\n        createdAt\n        updatedAt\n      }\n    }\n  }",
+						"variables": "{\n  \"input\": {\n    \"clientUuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n    \"subscriberId\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n    \"enrollmentTypeId\": 5,\n    \"referralDate\": \"2020-07-29 06:55:50\",\n    \"referralReceivedDate\": \"2020-07-29 06:55:50\",\n    \"dischargedOn\": \"2020-07-29\",\n    \"locationUuid\": \"4ae361b8-67d9-4759-a61c-564b4058406c\",\n    \"treatmentStartDate\": \"2020-07-29 06:55:50\",\n    \"treatmentEndDate\": \"2020-07-29 06:55:50\",\n    \"enrollmentStatusId\": 7,\n    \"firstAppointmentDate\": \"2020-07-29 06:55:50\",\n    \"reasonForReferral\": \"Test\",\n    \"relationshipToOtherClient\": \"Husband\",\n    \"referrerUuid\": \"7531a729-4cca-4f08-b573-2396bb84e5bb\",\n    \"organizationUuid\": \"cea6a0bc-0c4e-420b-81ff-29a0cc6e57bd\",\n    \"caseUuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n    \"refNum\": \"AA-233\",\n    \"pid\": \"BB-2345\",\n    \"cii\": \"CC-234\",\n    \"petitionerUuid\": \"187a0545-5a18-4786-9cd0-e61cf889329b\",\n    \"respondentUuid\": \"187a0545-5a18-4786-9cd0-e61cf889329b\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://w8p248l9ib.execute-api.us-west-2.amazonaws.com/6736/enrollments_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"w8p248l9ib",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6736",
+						"enrollments_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
