@@ -35,6 +35,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "listEnrollments",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query listEnrollments($clientUuid: ID!, $offset: Int, $limit: Int) {\n          listEnrollments(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n            id \n            uuid \n            clientUuid\n            subscriberUuid\n            enrollmentTypeId\n            referralDate\n            referralReceivedDate\n            dischargedOn\n            locationUuid\n            treatmentStartDate\n            treatmentEndDate\n            enrollmentStatusId\n            firstAppointmentDate\n            reasonForReferral\n            referrerUuid\n            organizationUuid\n            caseUuid\n            refNum\n            pid\n            cii\n            createdBy\n            updatedBy\n            createdAt\n            updatedAt\n\n            enrollmentClients{\n              id  \n              clientUuid\n              enrollmentId\n              relationshipToOtherClient\n              clientRole\n              deletedAt\n              createdAt\n              updatedAt\n            }\n\n            \n\n          }\n        }",
+						"variables": "{\n         \"offset\": 0,\n         \"limit\": 10,\n         \"clientUuid\": \"a08d5598-0c79-4721-aa88-e47887e68685\"\n        }"
+					}
+				},
+				"url": {
+					"raw": "https://z0a6jig13m.execute-api.us-west-2.amazonaws.com/6926/enrollments_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"z0a6jig13m",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6926",
+						"enrollments_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
