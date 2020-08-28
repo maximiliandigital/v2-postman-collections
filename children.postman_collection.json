@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "e2e7d084-eacb-4d20-988a-40560702f9bf",
+		"name": "children",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
+						"children"
+					],
+					"query": [
+						{
+							"key": "client_uuid",
+							"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children/6dd313ce-f22b-449f-a39c-9a007a317659",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
+						"children",
+						"6dd313ce-f22b-449f-a39c-9a007a317659"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children/77709e96-8b86-4c6b-8b0c-f95ae5014067",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
+						"children",
+						"77709e96-8b86-4c6b-8b0c-f95ae5014067"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lai\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daughter\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"95943-5891\",\n            \"is_primary\": true\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"456\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children/",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
+						"children",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\",\n            \"is_primary\": true\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"734\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children/5a606f17-5e34-4691-abb8-1d8dbca87d9d",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
+						"children",
+						"5a606f17-5e34-4691-abb8-1d8dbca87d9d"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
