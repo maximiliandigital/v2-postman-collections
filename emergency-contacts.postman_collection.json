@@ -11,28 +11,23 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/dev/emergency_contacts?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb&limit=10&offset=0",
-					"protocol": "http",
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
 					],
-					"port": "3000",
 					"path": [
-						"dev",
+						"6532",
 						"emergency_contacts"
 					],
 					"query": [
 						{
 							"key": "client_uuid",
 							"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
-						},
-						{
-							"key": "limit",
-							"value": "10"
-						},
-						{
-							"key": "offset",
-							"value": "0"
 						}
 					]
 				}
@@ -45,35 +40,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/dev/emergency_contacts/0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1",
-					"protocol": "http",
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts/0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
 					],
-					"port": "3000",
 					"path": [
-						"dev",
-						"emergency_contacts",
-						"0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/dev/emergency_contacts/0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dev",
+						"6532",
 						"emergency_contacts",
 						"0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1"
 					]
@@ -88,7 +65,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"client_uuid\": \"e76bec3c-53a8-4b2e-a573-23c0e114a94a\",\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"Jose\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"lives_at\": \"Parents\",\n    \"not_ok_to_leave_message\": true,\n    \"phone_contacts\": [{ \"phone_type\": \"landline\", \"phone_number\": \"213123131\"}],\n    \"email\": \"juan@example.com\"\n}",
+					"raw": "{\n    \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"Jose\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 1,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"is_primary\": true,\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"ordinality\": 1,\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        },\n        {\n            \"ordinality\": 2,\n            \"phone_type\": \"mobile\",\n            \"phone_number\": \"+12345678902\",\n            \"phone_extension\": \"456\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,29 +73,55 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/dev/emergency_contacts/",
-					"protocol": "http",
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
 					],
-					"port": "3000",
 					"path": [
-						"dev",
-						"emergency_contacts",
-						""
+						"6532",
+						"emergency_contacts"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "update",
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts/7531a729-4cca-4f34-b573-2396bb84e5bb",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
+						"emergency_contacts",
+						"7531a729-4cca-4f34-b573-2396bb84e5bb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"not_ok_to_leave_message\": false,\n    \"phone_contacts\": [{ \"phone_type\": \"home\", \"phone_number\": \"213123131\"}]\n}",
+					"raw": "{\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"J.\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 1,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"is_primary\": true,\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+1234325678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -126,16 +129,19 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/dev/emergency_contacts/f259173f-11ad-4116-9757-8afce063760e",
-					"protocol": "http",
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts/0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
 					],
-					"port": "3000",
 					"path": [
-						"dev",
+						"6532",
 						"emergency_contacts",
-						"f259173f-11ad-4116-9757-8afce063760e"
+						"0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1"
 					]
 				}
 			},
