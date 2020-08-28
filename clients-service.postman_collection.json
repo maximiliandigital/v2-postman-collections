@@ -1,33 +1,57 @@
 {
 	"info": {
-		"_postman_id": "7d4c6c74-0443-41fe-8c19-12455783d62d",
+		"_postman_id": "d591e741-4901-4b19-84a0-3e2830c28bdc",
 		"name": "clients-service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "list-clients",
+			"name": "delete",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://hdnqb157h3.execute-api.us-west-2.amazonaws.com/6113/clients?subscriber_uuid=0529b05b-d516-48ea-b454-d1638237fd6b",
+					"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/b628d660-c77b-457f-86eb-c45bb976fa01",
 					"protocol": "https",
 					"host": [
-						"hdnqb157h3",
+						"kx72g7yl59",
 						"execute-api",
 						"us-west-2",
 						"amazonaws",
 						"com"
 					],
 					"path": [
-						"6113",
+						"dev",
+						"clients",
+						"b628d660-c77b-457f-86eb-c45bb976fa01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/clients?subscriber_uuid=adda9a1f-98f1-4ce2-ba4a-372f0dc32f51",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
 						"clients"
 					],
 					"query": [
 						{
 							"key": "subscriber_uuid",
-							"value": "0529b05b-d516-48ea-b454-d1638237fd6b"
+							"value": "adda9a1f-98f1-4ce2-ba4a-372f0dc32f51"
 						}
 					]
 				}
@@ -35,64 +59,86 @@
 			"response": []
 		},
 		{
-			"name": "show-client-profile",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "show",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "https://hdnqb157h3.execute-api.us-west-2.amazonaws.com/6113/clients/0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1/profile",
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/clients/c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
 					"protocol": "https",
 					"host": [
-						"hdnqb157h3",
+						"9g908trvva",
 						"execute-api",
 						"us-west-2",
 						"amazonaws",
 						"com"
 					],
 					"path": [
-						"6113",
+						"6532",
 						"clients",
-						"0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1",
-						"profile"
-					],
-					"query": [
-						{
-							"key": "subscriber_uuid",
-							"value": "0529b05b-d516-48ea-b454-d1638237fd6b",
-							"disabled": true
-						}
+						"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "create-client",
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/clients/c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
+						"clients",
+						"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show-profile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/clients/c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb/profile",
+					"protocol": "https",
+					"host": [
+						"9g908trvva",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"6532",
+						"clients",
+						"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"not_ok_to_leave_message\": false,\n    \"first_name\": \"Bugs\",\n    \"last_name\": \"Bunny\",\n    \"email\": \"b_bunny_080502@example.com\",\n    \"phone\": \"123-085-111\",\n    \"ethnicity_id\": 1,\n    \"marital_status_id\": 1,\n    \"dob\": \"1986-03-11\",\n    \"gender\": \"male\",\n    \"created_by\": \"Daffy Duck\",\n    \"updated_by\": \"Daffy Duck\",\n    \"subscriber_uuid\": \"d1b2f7ea-78ca-11ea-bc55-0242ac130003\",\n    \"location_uuid\": \"d1b2fb32-78ca-11ea-bc55-0242ac130003\",\n    \"address\": {\n    \t\"address_line_1\": \"36 Manor Station Ave.\",\n    \t\"address_line_2\": \"Line 2\",\n    \t\"city\": \"Sidney\",\n    \t\"state\": \"OH\",\n    \t\"postcode\": \"45365\"\n    },\n    \"contacts_attributes\" : [\n    \t{\n\t    \t\"last_name\": \"Juana\",\n\t    \t\"first_name\": \"Change\",\n\t    \t\"lives_at\": \"Parents\",\n\t    \t\"not_ok_to_leave_message\": false,\n\t    \t\"phone_contacts\": [{ \"phone_type\": \"landline\", \"phone_number\": \"102947432\"}],\n\t    \t\"contact_type\": 1,\n\t    \t\"relationship\": \"mother\",\n\t    \t\"email\": \"juana_c@example.com\",\n\t    \t\"created_by\": \"Kevin Garnet\",\n\t    \t\"updated_by\": \"Kevin Garnet\"\n    \t},\n    \t{\n\t    \t\"last_name\": \"Manu\",\n\t    \t\"first_name\": \"Ginobli\",\n\t    \t\"lives_at\": \"Parents\",\n\t    \t\"not_ok_to_leave_message\": false,\n\t    \t\"phone_contacts\": [{ \"phone_type\": \"landline\", \"phone_number\": \"213123131\"}],\n\t    \t\"contact_type\": 2,\n\t    \t\"relationship\": \"father\",\n\t    \t\"email\": \"manu@example.com\",\n\t    \t\"created_by\": \"Manu Ginobli\",\n\t    \t\"updated_by\": \"Manu Ginobli\"\n    \t}\n    ],\n    \"children_attributes\" : [\n    \t{\n\t    \t\"last_name\": \"Pig\",\n\t    \t\"first_name\": \"Porky\",\n\t    \t\"middle_name\": \"P\",\n\t    \t\"gender\": \"male\",\n\t    \t\"relationship\": \"son\",\n\t    \t\"lives_with\": \"father\",\n\t    \t\"not_ok_to_leave_message\": false,\n\t    \t\"email\": \"ppig@example.com\",\n\t\t\t\"phone\": \"(223) 3422-234\",\n\t\t\t\"phone_type\": \"mobile\",\n\t\t\t\"dob\": \"1980-02-11\",\n\t    \t\"created_by\": \"Ray Allen\",\n\t    \t\"updated_by\": \"Ray Allen\"\n    \t},\n    \t{\n\t    \t\"last_name\": \"Goodman\",\n\t    \t\"first_name\": \"Penny\",\n\t    \t\"middle_name\": \"P\",\n\t    \t\"gender\": \"female\",\n\t    \t\"relationship\": \"stepdaughter\",\n\t    \t\"lives_with\": \"friend\",\n\t\t\t\"dob\": \"1989-12-27\",\n\t    \t\"not_ok_to_leave_message\": false,\n\t    \t\"email\": \"p_goodman@example.com\",\n\t    \t\"created_by\": \"Karl Malone\",\n\t    \t\"updated_by\": \"Karl Malone\"\n    \t}\n    ]\n}",
+					"raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"middle_name\": \"Lennon\",\n  \"dob\": \"1980-10-09\",\n  \"email\": \"john@doe.com\",\n  \"current_user\": \"test user\",\n  \"height\": 1.90,\n  \"weight\": 210,\n  \"user_ref\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36d3\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"ssn\": \"220-23-5602\",\n  \"ethnicity_id\": 1,\n  \"marital_status_id\": 1,\n  \"drivers_license\": \"8447315\",\n  \"lives_with\": \"friend\",\n  \"employment\": \"Intern\",\n  \"education_completed\": \"Bachelor's Degree\",\n  \"address_attributes\": {\n    \"address_line_1\": \"Block Block\",\n    \"address_line_2\": \"68254\",\n    \"city\": \"Paranaque\",\n    \"state\": \"MM\",\n    \"postcode\": \"8107\",\n    \"is_primary\": true,\n    \"current_user\": \"Peter Parker\"\n  },\n  \"contacts_attributes\": [\n    {\n      \"last_name\": \"Juan\",\n      \"middle_name\": \"Agustin\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 1,\n      \"relationship\": \"Father\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"San Roque\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Pasay\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"last_name\": \"Jane\",\n      \"middle_name\": \"Ramos\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 2,\n      \"relationship\": \"Mother\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Vicente\",\n        \"address_line_2\": \"69874\",\n        \"city\": \"Las Pinas\",\n        \"state\": \"MM\",\n        \"postcode\": \"1907\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 3,\n      \"phone_type\": \"office\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Jordan\",\n      \"first_name\": \"Michael\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"mj@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"last_name\": \"Byant\",\n      \"first_name\": \"Kobe\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"kb@example.com\",\n      \"current_user\": \"Gwen Stacy\",\n      \"address_attributes\": {\n        \"address_line_1\": \"Block 9\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Pasig\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -100,31 +146,32 @@
 					}
 				},
 				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/clients",
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/clients/",
 					"protocol": "https",
 					"host": [
-						"t5u8vjnkc3",
+						"9g908trvva",
 						"execute-api",
 						"us-west-2",
 						"amazonaws",
 						"com"
 					],
 					"path": [
-						"master",
-						"clients"
+						"6532",
+						"clients",
+						""
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "update-client",
+			"name": "update",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"first_name\": \"Anana updated\",\n    \"last_name\": \"Banana updated\"\n}",
+					"raw": "{\n  \"drivers_license\": \"844731235\",\n  \"current_user\": \"Peter Parker\",\n  \"address_attributes\": {\n    \"address_line_2\": \"6825423\"\n  },\n  \"contacts_attributes\": [\n    {\n      \"last_name\": \"Juan\",\n      \"middle_name\": \"Agustin\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 1,\n      \"relationship\": \"Father\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"San Roque\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Pasay\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"last_name\": \"Jane\",\n      \"middle_name\": \"Ramos\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 2,\n      \"relationship\": \"Mother\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Vicente\",\n        \"address_line_2\": \"69874\",\n        \"city\": \"Las Pinas\",\n        \"state\": \"MM\",\n        \"postcode\": \"1907\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 3,\n      \"phone_type\": \"office\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Jordan\",\n      \"first_name\": \"Michael\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"mj@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"last_name\": \"Byant\",\n      \"first_name\": \"Kobe\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"kb@example.com\",\n      \"current_user\": \"Gwen Stacy\",\n      \"address_attributes\": {\n        \"address_line_1\": \"Block 9\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Pasig\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -132,79 +179,19 @@
 					}
 				},
 				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/clients/a454828c-291c-45f4-87b5-bcec8f976d8a",
+					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/clients/a8d077d1-88d9-41e8-bbe8-b523671b4ac4",
 					"protocol": "https",
 					"host": [
-						"t5u8vjnkc3",
+						"9g908trvva",
 						"execute-api",
 						"us-west-2",
 						"amazonaws",
 						"com"
 					],
 					"path": [
-						"master",
+						"6532",
 						"clients",
-						"a454828c-291c-45f4-87b5-bcec8f976d8a"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete-client",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/clients/2ac526ae-d9fb-4004-baf1-89dbe4e677f4",
-					"protocol": "https",
-					"host": [
-						"t5u8vjnkc3",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"master",
-						"clients",
-						"2ac526ae-d9fb-4004-baf1-89dbe4e677f4"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "show-client",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/clients/0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1",
-					"protocol": "https",
-					"host": [
-						"t5u8vjnkc3",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"master",
-						"clients",
-						"0a8f453e-dccb-43fe-8bbe-8bcb1c495ab1"
+						"a8d077d1-88d9-41e8-bbe8-b523671b4ac4"
 					]
 				}
 			},
