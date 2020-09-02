@@ -1,33 +1,42 @@
 {
 	"info": {
-		"_postman_id": "b28ef42f-b12e-4b1a-8a22-37852ef2d24a",
+		"_postman_id": "3a2cb406-3984-42a5-95d1-26b3bbc579d6",
 		"name": "daily-obligations-service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "list-daily-obligations",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "198048af-cbb5-4312-bc78-627a2bb60074",
+						"exec": [
+							"// URL: []",
+							"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+							"// STAGE: [master, dev, custom stage - 6532]",
+							"pm.environment.set(\"STAGE\", \"6532\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/daily_obligations?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
-					"protocol": "https",
+					"raw": "{{URL}}{{STAGE}}/daily_obligations?client_uuid={{client_uuid}}",
 					"host": [
-						"t5u8vjnkc3",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{URL}}{{STAGE}}"
 					],
 					"path": [
-						"master",
 						"daily_obligations"
 					],
 					"query": [
 						{
 							"key": "client_uuid",
-							"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+							"value": "{{client_uuid}}"
 						}
 					]
 				}
@@ -36,6 +45,44 @@
 		},
 		{
 			"name": "create-daily-obligation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0dd42ddc-a541-465d-a2fa-b2467808f78c",
+						"exec": [
+							"// URL: []",
+							"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+							"// STAGE: [master, dev, custom stage - 6532]",
+							"pm.environment.set(\"STAGE\", \"6532\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b7a695fa-3851-4e60-8c07-90d97ccdda53",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var do_uuid = jsonData['uuid']",
+							"var do_address_id = jsonData['address']['id']",
+							"var do_phone_contact_0_id = jsonData['phone_contacts'][0]['id']",
+							"",
+							"console.log(do_uuid)",
+							"console.log(do_address_id)",
+							"console.log(do_phone_contact_0_id)",
+							"",
+							"postman.setEnvironmentVariable(\"daily_obligation_uuid\", do_uuid);",
+							"postman.setEnvironmentVariable(\"daily_obligation_address_id\", do_address_id);",
+							"postman.setEnvironmentVariable(\"daily_obligation_phone_contact_0_id\", do_phone_contact_0_id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -47,7 +94,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"client_uuid\": \"a454828c-291c-45f4-87b5-bcec8f976d8a\",\n    \"name\": \"Midwich Elementary School\",\n    \"obligation_type\": \"Employer\",\n    \"contact_person\": \"Dahlia Gillespie\",\n    \"contact_phone\": \"615-393-6250\",\n    \"contact_email\": \"d_gillespie@sh1999.com\",\n    \"schedule\": [\n        {\"day\": 0, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 1, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 2, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 3, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 4, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 5, \"start_time\": \"08:00 AM\", \"end_time\": \"12:00 PM\"},\n        {\"day\": 6, \"start_time\": \"08:00 AM\", \"end_time\": \"12:00 PM\"}\n    ],\n    \"address\": {\n        \"address_line_1\": \"235 Kidd\",\n        \"address_line_2\": \"Avenue\",\n        \"city\": \"Anchorage\",\n        \"state\": \"AK\",\n        \"postcode\": \"99501\"\n    },\n    \"current_user\": \"Harry Mason\"\n\n}",
+					"raw": "{\n    \"client_uuid\": \"{{client_uuid}}\",\n    \"name\": \"Midwich Elementary School\",\n    \"obligation_type\": \"Employer\",\n    \"contact_person\": \"Dahlia Gillespie\",\n    \"contact_phone\": \"615-393-6250\",\n    \"contact_email\": \"d_gillespie@sh1999.com\",\n    \"schedule\": [\n        {\"day\": 0, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 1, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 2, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 3, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 4, \"start_time\": \"09:00 AM\", \"end_time\": \"05:00 PM\"},\n        {\"day\": 5, \"start_time\": \"08:00 AM\", \"end_time\": \"12:00 PM\"},\n        {\"day\": 6, \"start_time\": \"08:00 AM\", \"end_time\": \"12:00 PM\"}\n    ],\n    \"address_attributes\": {\n        \"address_line_1\": \"235 Kidd\",\n        \"address_line_2\": \"Avenue\",\n        \"city\": \"Anchorage\",\n        \"state\": \"AK\",\n        \"postcode\": \"99501\",\n        \"current_user\": \"Mary Mason\"\n    },\n    \"phone_contacts_attributes\": [\n    {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n    },\n    {\n        \"ordinality\": 2,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678902\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n    },\n    {\n        \"ordinality\": 3,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678903\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n    }\n    ],\n    \"current_user\": \"Harry Mason\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -55,17 +102,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/daily_obligations/",
-					"protocol": "https",
+					"raw": "{{URL}}{{STAGE}}/daily_obligations/",
 					"host": [
-						"t5u8vjnkc3",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{URL}}{{STAGE}}"
 					],
 					"path": [
-						"master",
 						"daily_obligations",
 						""
 					]
@@ -79,19 +120,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/daily_obligations/29681f04-6745-4c66-b2fc-a382a1ce6686",
-					"protocol": "https",
+					"raw": "{{URL}}{{STAGE}}/daily_obligations/{{daily_obligation_uuid}}",
 					"host": [
-						"t5u8vjnkc3",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{URL}}{{STAGE}}"
 					],
 					"path": [
-						"master",
 						"daily_obligations",
-						"29681f04-6745-4c66-b2fc-a382a1ce6686"
+						"{{daily_obligation_uuid}}"
 					]
 				}
 			},
@@ -103,19 +138,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/daily_obligations/26fb0be9-9a36-46bb-8e37-373fec76753f",
-					"protocol": "https",
+					"raw": "{{URL}}{{STAGE}}/daily_obligations/{{daily_obligation_uuid}}",
 					"host": [
-						"t5u8vjnkc3",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{URL}}{{STAGE}}"
 					],
 					"path": [
-						"master",
 						"daily_obligations",
-						"26fb0be9-9a36-46bb-8e37-373fec76753f"
+						"{{daily_obligation_uuid}}"
 					]
 				}
 			},
@@ -128,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Third Street Elementary School\",\n    \"obligation_type\": \"School\",\n    \"contact_person\": \"Peter Prickly\",\n    \"contact_phone\": \"412-377-6897\",\n    \"contact_email\": \"d_gillespie@sh1999.com\",\n    \"schedule\": [\n        {\"day\": 1, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"},\n        {\"day\": 2, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"},\n        {\"day\": 3, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"},\n        {\"day\": 4, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"},\n        {\"day\": 5, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"}\n    ],\n    \"address\": {\n        \"address_line_1\": \"3814 Jacobs\",\n        \"address_line_2\": \"Street\",\n        \"city\": \"Sewickley\",\n        \"state\": \"PA\",\n        \"postcode\": \"15143\"\n    },\n    \"current_user\": \"Muriel Finster\"\n}",
+					"raw": "{\n    \"name\": \"Fourth Street Elementary School\",\n    \"obligation_type\": \"School\",\n    \"contact_person\": \"Peter Prickly\",\n    \"contact_phone\": \"412-377-6897\",\n    \"contact_email\": \"d_gillespie@sh1999.com\",\n    \"schedule\": [\n        {\"day\": 1, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"},\n        {\"day\": 2, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"},\n        {\"day\": 3, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"},\n        {\"day\": 4, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"},\n        {\"day\": 5, \"start_time\": \"10:00 AM\", \"end_time\": \"03:00 PM\"}\n    ],\n    \"address_attributes\": {\n        \"id\": \"{{daily_obligation_address_id}}\",\n        \"address_line_1\": \"doooo Jacobsen8989s\",\n        \"address_line_2\": \"Street\",\n        \"city\": \"Sewickley\",\n        \"state\": \"PA\",\n        \"postcode\": \"15143\",\n        \"current_user\": \"Muriel Finster\"\n    },\n    \"phone_contacts_attributes\": [\n    {\n        \"id\": \"{{daily_obligation_phone_contact_0_id}}\",\n        \"contactable_type\": \"DailyObligation\",\n        \"contactable_id\": 11,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678901\",\n        \"phone_extension\": \"445\",\n        \"not_okay_to_leave_message\": false,\n        \"primary\": false,\n        \"current_user\": \"test\",\n        \"ordinality\": 1\n    }\n    ],\n    \"current_user\": \"Muriel Finster\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -136,19 +165,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/master/daily_obligations/7b9e54bb-1d33-4c17-a757-52116b95e87f",
-					"protocol": "https",
+					"raw": "{{URL}}{{STAGE}}/daily_obligations/{{daily_obligation_uuid}}",
 					"host": [
-						"t5u8vjnkc3",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{URL}}{{STAGE}}"
 					],
 					"path": [
-						"master",
 						"daily_obligations",
-						"7b9e54bb-1d33-4c17-a757-52116b95e87f"
+						"{{daily_obligation_uuid}}"
 					]
 				}
 			},
