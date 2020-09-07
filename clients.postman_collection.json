@@ -1,0 +1,410 @@
+{
+	"info": {
+		"_postman_id": "63856bb7-d2f5-4bdc-a9ec-aa90c4f7cbd7",
+		"name": "clients",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2b7a96b0-e753-4688-9d68-f534383ab027",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "8bd70268-c3ef-4218-941f-344c91c3efa6",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/clients?subscriber_uuid={{subscriber_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"clients"
+									],
+									"query": [
+										{
+											"key": "subscriber_uuid",
+											"value": "{{subscriber_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8eab0f80-79e4-4a62-8de3-857173dd4d19",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa032673-671c-43a0-9d88-d70bb775de67",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var client_id = jsonData['id']",
+									"var client_uuid = jsonData['uuid']",
+									"var client_address_id = jsonData['address']['id']  ",
+									"var phone_contact_0_id = jsonData['phone_contacts'][0]['id']",
+									"var phone_contact_1_id = jsonData['phone_contacts'][1]['id']",
+									"var phone_contact_2_id = jsonData['phone_contacts'][2]['id']",
+									"",
+									"var contact_0_id = jsonData['contacts'][0]['id']",
+									"var contact_0_address_id = jsonData['contacts'][0]['address']['id']",
+									"var contact_0_phone_contact_0_id = jsonData['contacts'][0]['phone_contacts'][0]['id']",
+									"var contact_0_phone_contact_1_id = jsonData['contacts'][0]['phone_contacts'][1]['id']",
+									"",
+									"",
+									"var contact_1_id = jsonData['contacts'][1]['id']",
+									"var contact_1_address_id = jsonData['contacts'][1]['address']['id']",
+									"",
+									"var child_0_id = jsonData['children'][0]['id']",
+									"var child_1_id = jsonData['children'][1]['id']",
+									"",
+									"",
+									"console.log(client_uuid)",
+									"postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"middle_name\": \"Lennon\",\n  \"dob\": \"1980-10-09\",\n  \"email\": \"{{$randomEmail}}\",\n  \"current_user\": \"test user\",\n  \"height\": 1.90,\n  \"weight\": 210,\n  \"user_ref\": \"{{$guid}}\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"ssn\": \"220-23-5602\",\n  \"ethnicity_id\": 1,\n  \"marital_status_id\": 1,\n  \"drivers_license\": \"8447315\",\n  \"lives_with\": \"friend\",\n  \"employment\": \"Intern\",\n  \"education_completed\": \"Bachelor's Degree\",\n  \"address_attributes\": {\n    \"address_line_1\": \"Block Block\",\n    \"address_line_2\": \"68254\",\n    \"city\": \"Paranaque\",\n    \"state\": \"MM\",\n    \"postcode\": \"8107\",\n    \"current_user\": \"Peter Parker\"\n  },\n  \"contacts_attributes\": [\n    {\n      \"last_name\": \"Juan\",\n      \"middle_name\": \"Agustin\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 1,\n      \"relationship\": \"Father\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"San Roque\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Pasay\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"last_name\": \"Jane\",\n      \"middle_name\": \"Ramos\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 2,\n      \"relationship\": \"Mother\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Vicente\",\n        \"address_line_2\": \"69874\",\n        \"city\": \"Las Pinas\",\n        \"state\": \"MM\",\n        \"postcode\": \"1907\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 3,\n      \"phone_type\": \"office\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Jordan\",\n      \"first_name\": \"Michael\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"mj@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"last_name\": \"Byant\",\n      \"first_name\": \"Kobe\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"kb@example.com\",\n      \"current_user\": \"Gwen Stacy\",\n      \"address_attributes\": {\n        \"address_line_1\": \"Block 9\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Pasig\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ffcb4c94-6206-4723-912e-809ce1d962b9",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/clients/c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
+							"protocol": "https",
+							"host": [
+								"9g908trvva",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"6532",
+								"clients",
+								"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c8bf3447-768b-45c1-bb01-aafd078388f2",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/clients/c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
+							"protocol": "https",
+							"host": [
+								"9g908trvva",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"6532",
+								"clients",
+								"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show-profile",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cedb409c-6ddd-4208-a354-cdf00ada991e",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients/{{client_uuid}}/profile",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients",
+								"{{client_uuid}}",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9fa4e700-a10a-4564-93da-e7406062cc5a",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"drivers_license\": \"844731235\",\n  \"current_user\": \"Peter Parker\",\n  \"address_attributes\": {\n    \"id\": \"{{client_address_id}}\",\n    \"address_line_2\": \"68254232\",\n    \"current_user\": \"Bimmy Butler\"\n  },\n  \"contacts_attributes\": [\n    {\n      \"id\": \"{{contact_0_id}}\",\n      \"last_name\": \"Wayne\",\n      \"middle_name\": \"\",\n      \"first_name\": \"Bruce\",\n      \"contact_type\": 1,\n      \"relationship\": \"Father\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"id\": \"{{contact_0_phone_contact_0_id}}\",\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"id\": \"{{contact_0_phone_contact_1_id}}\",\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"id\": \"{{contact_0_address_id}}\",\n        \"address_line_1\": \"San Roque\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Pasay\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"id\": \"{{contact_1_id}}\",\n      \"last_name\": \"Jane\",\n      \"middle_name\": \"Ramos\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 2,\n      \"relationship\": \"Mother\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"id\": \"{{contact_1_address_id}}\",\n        \"address_line_1\": \"San Vicente\",\n        \"address_line_2\": \"69874\",\n        \"city\": \"Las Pinas\",\n        \"state\": \"MM\",\n        \"postcode\": \"1907\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"phone_contacts_attributes\": [\n    {\n      \"id\": \"{{phone_contact_0_id}}\",\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"id\": \"{{phone_contact_1_id}}\",\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"id\": \"{{phone_contact_2_id}}\",\n      \"ordinality\": 3,\n      \"phone_type\": \"office\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"id\": \"{{child_0_id}}\",\n      \"last_name\": \"Jordan\",\n      \"first_name\": \"Michael\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"mj@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"is_primary\": true,\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"id\": \"{{child_1_id}}\",\n      \"last_name\": \"Byant\",\n      \"first_name\": \"Kobe\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"kb@example.com\",\n      \"current_user\": \"Gwen Stacy\",\n      \"address_attributes\": {\n        \"address_line_1\": \"Block 9\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Pasig\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients/{{client_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients",
+								"{{client_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete not yet working",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "83fe2ab7-f84c-48f4-bf04-60572fc89073",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://kx72g7yl59.execute-api.us-west-2.amazonaws.com/dev/clients/b628d660-c77b-457f-86eb-c45bb976fa01",
+							"protocol": "https",
+							"host": [
+								"kx72g7yl59",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"clients",
+								"b628d660-c77b-457f-86eb-c45bb976fa01"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "show client profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showClientProfile($uuid: ID!) {\n  showClientProfile(uuid: $uuid) {\n      uuid\n      lastName\n      firstName\n      middleName\n      email\n      phone\n      dob\n      gender\n      height\n      weight\n      livesWith\n      employment\n      educationCompleted\n      medications {\n        uuid\n        name\n        dosage\n        dateStart\n        physicianName\n        physicianPhoneNumber\n        physicianEmail\n        timeOnMedication\n        comments\n      }\n      vehicleInformations {\n        uuid\n        year\n        make\n        model\n        color\n        license\n      }\n      children {\n        firstName\n      }\n      personalHistories {\n        uuid\n        details\n      }\n      emergencyContacts {\n        uuid\n        firstName\n        middleName\n        lastName\n        relationship\n        livesAt\n        notOkToLeaveMessage\n        phoneContacts\n        contactType\n        email\n      }\n      collateralContacts {\n        uuid\n        firstName\n        middleName\n        lastName\n        relationship\n        livesAt\n        notOkToLeaveMessage\n        phoneContacts\n        contactType\n        email\n      }\n   }\n}",
+								"variables": "{\n   \"uuid\":\"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\"\n}"
+							}
+						},
+						"url": {
+							"raw": "https://ub9j4k9vjg.execute-api.us-west-2.amazonaws.com/6164/clients_bff/graphql",
+							"protocol": "https",
+							"host": [
+								"ub9j4k9vjg",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"6164",
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
