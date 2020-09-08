@@ -1,158 +1,447 @@
 {
 	"info": {
-		"_postman_id": "d4e31170-d5c5-4e7d-9d3a-e1a634b5c5fa",
+		"_postman_id": "108f7841-3c61-4871-a3e8-4e70fbc596b5",
 		"name": "collateral-contacts",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "list",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/collateral_contacts?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"collateral_contacts"
-					],
-					"query": [
+			"name": "setup",
+			"item": [
+				{
+					"name": "list",
+					"event": [
 						{
-							"key": "client_uuid",
-							"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+							"listen": "prerequest",
+							"script": {
+								"id": "d3e4116f-11ac-4a67-830e-bc1e4d1bac13",
+								"exec": [
+									"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+									"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"master\");",
+									"",
+									"// uuids: ",
+									"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+									"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+									"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+									"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+									"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+									"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e023ba54-228a-4a96-8925-9dbb7dc8d1c7",
+								"exec": [
+									"// This will be moved to subscribers, or a setup url, or authorizer",
+									"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+									"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+									"",
+									"// uuids: ",
+									"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+									"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+									"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+									"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+									"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+									"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/collateral_contacts?client_uuid={{client_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"collateral_contacts"
+							],
+							"query": [
+								{
+									"key": "client_uuid",
+									"value": "{{client_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "create",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"Jose\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 2,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"is_primary\": true,\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"ordinality\": 1,\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        },\n        {\n            \"ordinality\": 2,\n            \"phone_type\": \"mobile\",\n            \"phone_number\": \"+12345678902\",\n            \"phone_extension\": \"456\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        },\n        {\n            \"ordinality\": 3,\n            \"phone_type\": \"office\",\n            \"phone_number\": \"+12345678903\",\n            \"phone_extension\": \"456\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "service",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a343f5ab-fff2-48b6-abe5-f042d53f2a64",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var cc_uuid = jsonData['uuid']",
+									"var cc_address_id = jsonData['address']['id']",
+									"var cc_phone_contact_0_id = jsonData['phone_contacts'][0]['id']",
+									"",
+									"console.log(cc_uuid)",
+									"console.log(cc_address_id)",
+									"console.log(cc_phone_contact_0_id)",
+									"",
+									"postman.setEnvironmentVariable(\"collateral_contact_uuid\", cc_uuid);",
+									"postman.setEnvironmentVariable(\"collateral_contact_address_id\", cc_address_id);",
+									"postman.setEnvironmentVariable(\"collateral_contact_phone_contact_0_id\", cc_phone_contact_0_id);",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_uuid\": \"{{client_uuid}}\",\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"Jose\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 2,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address 3\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"ordinality\": 1,\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        },\n        {\n            \"ordinality\": 2,\n            \"phone_type\": \"mobile\",\n            \"phone_number\": \"+12345678902\",\n            \"phone_extension\": \"456\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        },\n        {\n            \"ordinality\": 3,\n            \"phone_type\": \"office\",\n            \"phone_number\": \"+12345678903\",\n            \"phone_extension\": \"456\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/collateral_contacts",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"collateral_contacts"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/collateral_contacts",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"collateral_contacts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/collateral_contacts/94677117-6674-4977-b6f5-38e69d609253",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"collateral_contacts",
-						"94677117-6674-4977-b6f5-38e69d609253"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "show",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/collateral_contacts/4731e95a-2ae5-48a4-a08a-5eee17d8b9af",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"collateral_contacts",
-						"4731e95a-2ae5-48a4-a08a-5eee17d8b9af"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"J.\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 2,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"is_primary\": true,\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/collateral_contacts/{{collateral_contact_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"collateral_contacts",
+								"{{collateral_contact_uuid}}"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/collateral_contacts/a5ce7fcb-b4d3-4c21-957c-fbcd6c8eeb3a",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"collateral_contacts",
-						"a5ce7fcb-b4d3-4c21-957c-fbcd6c8eeb3a"
-					]
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/collateral_contacts/{{collateral_contact_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"collateral_contacts",
+								"{{collateral_contact_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Memo\",\n    \"middle_name\": \"J.\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 2,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n        \"address_line_1\": \"Test Address\",\n        \"address_line_2\": \"Test Address\",\n        \"city\": \"California\",\n        \"state\": \"CA\",\n        \"postcode\": \"1127\",\n        \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"id\": \"{{collateral_contact_phone_contact_0_id}}\",\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678901\",\n            \"phone_extension\": \"888\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/collateral_contacts/{{collateral_contact_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"collateral_contacts",
+								"{{collateral_contact_uuid}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all collateral contacts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c5313e6-60b7-4200-bac8-4830fa883831",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "b7e19ee2-b17b-423e-9b4a-fa137bc91ddf",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query collateralContacts($clientUuid: ID!, $offset: Int, $limit: Int) {\n  collateralContacts(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n    uuid\n    firstName\n    middleName\n    lastName\n    contactType\n    email\n    createdBy\n    updatedBy\n\n    clientContacts{\n      id\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n      createdBy\n      updatedBy\n    }\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientsCustomFields{\n      id\n      subscriberUuid\n      customFieldUuid\n      name\n      entity\n      sectionName\n      textValue\n      numericValue\n      dateValue\n      multiLineValue\n      choiceValue\n      createdBy\n      updatedBy\n    }\n  }\n}",
+										"variables": "{\n \"offset\": 0,\n \"limit\": 10,\n \"clientUuid\": \"{{client_uuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"clients_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create collateral contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "759711f2-dfe9-4267-9e23-43ef13a2c019",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var createdData = jsonData['data']['createCollateralContact']",
+									"",
+									"var client_id = createdData['id']",
+									"var client_uuid = createdData['uuid']",
+									"var client_address_id = createdData['address']['id']  ",
+									"var phone_contact_0_id = createdData['phoneContacts'][0]['id']",
+									"var phone_contact_1_id = createdData['phone_contacts'][1]['id']",
+									"var phone_contact_2_id = createdData['phone_contacts'][2]['id']",
+									"",
+									"var contact_0_id = createdData['contacts'][0]['id']",
+									"var contact_0_address_id = jsonData['contacts'][0]['address']['id']",
+									"var contact_0_phone_contact_0_id = jsonData['contacts'][0]['phone_contacts'][0]['id']",
+									"var contact_0_phone_contact_1_id = jsonData['contacts'][0]['phone_contacts'][1]['id']",
+									"",
+									"",
+									"var contact_1_id = jsonData['contacts'][1]['id']",
+									"var contact_1_address_id = jsonData['contacts'][1]['address']['id']",
+									"",
+									"var child_0_id = jsonData['children'][0]['id']",
+									"var child_1_id = jsonData['children'][1]['id']",
+									"",
+									"",
+									"console.log(client_uuid)",
+									"postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createCollateralContact($input: CreateCollateralContactInput!) {\n  createCollateralContact(input: $input) {\n    uuid\n    firstName\n    middleName\n    lastName\n    contactType\n    email\n    createdBy\n    updatedBy\n\n    clientContacts{\n      id\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n      createdBy\n      updatedBy\n    }\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientsCustomFields{\n      id\n      subscriberUuid\n      customFieldUuid\n      name\n      entity\n      sectionName\n      textValue\n      numericValue\n      dateValue\n      multiLineValue\n      choiceValue\n      createdBy\n      updatedBy\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"clientUuid\": \"{{client_uuid}}\",\n    \"firstName\": \"Juan\",\n    \"middleName\": \"Jose\",\n    \"lastName\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contactType\": 2,\n    \"currentUser\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"addressAttributes\": {\n      \"addressLine1\": \"Test Address\",\n      \"addressLine2\": \"Test Address\",\n      \"city\": \"California\",\n      \"state\": \"CA\",\n      \"postcode\": \"1127\",\n      \"currentUser\": \"test\"\n    },\n    \"phoneContactsAttributes\": [\n        {\n          \"ordinality\": 1,\n          \"phoneType\": \"home\",\n          \"phoneNumber\": \"+12345678901\",\n          \"phoneExtension\": \"123\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 2,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678902\",\n          \"phoneExtension\": \"456\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 3,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678903\",\n          \"phoneExtension\": \"324\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        }\n    ]\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update collateral contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateCollateralContact($input: UpdateCollateralContactInput!) {\n  updateCollateralContact(input: $input) {\n    uuid\n    firstName\n    middleName\n    lastName\n    contactType\n    email\n    createdBy\n    updatedBy\n\n    clientContacts{\n      id\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n      createdBy\n      updatedBy\n    }\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientsCustomFields{\n      id\n      subscriberUuid\n      customFieldUuid\n      name\n      entity\n      sectionName\n      textValue\n      numericValue\n      dateValue\n      multiLineValue\n      choiceValue\n      createdBy\n      updatedBy\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\": \"{{collateral_contact_uuid}}\",\n    \"firstName\": \"Michael\",\n    \"email\": \"test@gmail.com\"\n  }\n}\n"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete collateral contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteCollateralContact($input: DeleteCollateralContactInput!) {\n  deleteCollateralContact(input: $input) {\n    uuid\n  }\n}\n",
+								"variables": "{\n  \"input\": {\n    \"uuid\": \"{{collateral_contact_uuid}}\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show / get collateral contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query collateralContact($uuid: ID!) {\n  collateralContact(uuid: $uuid) {\n    uuid\n    firstName\n    middleName\n    lastName\n    contactType\n    email\n    createdBy\n    updatedBy\n\n    clientContacts{\n      id\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n      createdBy\n      updatedBy\n    }\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientsCustomFields{\n      id\n      subscriberUuid\n      customFieldUuid\n      name\n      entity\n      sectionName\n      textValue\n      numericValue\n      dateValue\n      multiLineValue\n      choiceValue\n      createdBy\n      updatedBy\n    }\n  }\n}",
+								"variables": "{\n    \"uuid\": \"{{collateral_contact_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "aa6ec9c7-e964-47e7-ae52-9fb9ff7a28d8",
+				"id": "d01d5a9e-7b2c-4d31-90b3-4df38dba6657",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -162,7 +451,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a7a819d5-c7fe-441f-8575-9adfb7992899",
+				"id": "4b9c75c8-6b23-4e84-b07b-5b86b2e77aa4",
 				"type": "text/javascript",
 				"exec": [
 					""

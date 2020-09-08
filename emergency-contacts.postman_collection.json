@@ -1,151 +1,445 @@
 {
 	"info": {
-		"_postman_id": "1547921e-038e-41b4-9fb9-2f7593699797",
+		"_postman_id": "d3c80af1-5b3e-4112-9dd5-f12d72c0abbd",
 		"name": "emergency-contacts",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "list",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"emergency_contacts"
-					],
-					"query": [
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
 						{
-							"key": "client_uuid",
-							"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2a849d35-3ee1-4969-bea5-8c8cb45e8e42",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "2fb3bc8a-8588-4b65-961e-b46bb5872b45",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/emergency_contacts?client_uuid={{client_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"emergency_contacts"
+									],
+									"query": [
+										{
+											"key": "client_uuid",
+											"value": "{{client_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "show",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts/0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
 					],
-					"path": [
-						"6532",
-						"emergency_contacts",
-						"0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"Jose\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 1,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"is_primary\": true,\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"ordinality\": 1,\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        },\n        {\n            \"ordinality\": 2,\n            \"phone_type\": \"mobile\",\n            \"phone_number\": \"+12345678902\",\n            \"phone_extension\": \"456\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				},
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"emergency_contacts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts/7531a729-4cca-4f34-b573-2396bb84e5bb",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"emergency_contacts",
-						"7531a729-4cca-4f34-b573-2396bb84e5bb"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "put",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"J.\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 1,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"is_primary\": true,\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+1234325678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "afc9e3a5-6f04-436f-8a19-fefc9256400e",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9cfa5a17-a0d8-4a40-9983-04898e7b99fc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var ec_uuid = jsonData['uuid']",
+									"var ec_address_id = jsonData['address']['id']",
+									"var ec_phone_contact_0_id = jsonData['phone_contacts'][0]['id']",
+									"",
+									"console.log(do_uuid)",
+									"console.log(do_address_id)",
+									"console.log(do_phone_contact_0_id)",
+									"",
+									"postman.setEnvironmentVariable(\"emergency_contact_uuid\", ec_uuid);",
+									"postman.setEnvironmentVariable(\"emergency_contact_address_id\", ec_address_id);",
+									"postman.setEnvironmentVariable(\"emergency_contact_phone_contact_0_id\", ec_phone_contact_0_id);",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/emergency_contacts/0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
 					],
-					"path": [
-						"6532",
-						"emergency_contacts",
-						"0a8f453e-dccb-57fe-8bbe-8bcb1c495ab1"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_uuid\": \"{{client_uuid}}\",\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"Jose\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 1,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"is_primary\": true,\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"ordinality\": 1,\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        },\n        {\n            \"ordinality\": 2,\n            \"phone_type\": \"mobile\",\n            \"phone_number\": \"+12345678902\",\n            \"phone_extension\": \"456\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/emergency_contacts",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"emergency_contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf92e86c-8043-4854-ba5e-4024e21377ad",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/emergency_contacts/{{emergency_contacts_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"emergency_contacts",
+								"{{emergency_contacts_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c7deecbf-6c7c-4e94-b9ca-54ba00c46977",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Juan\",\n    \"middle_name\": \"J.\",\n    \"last_name\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contact_type\": 1,\n    \"current_user\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"address_attributes\": {\n    \"address_line_1\": \"Test Address\",\n    \"address_line_2\": \"Test Address\",\n    \"city\": \"California\",\n    \"state\": \"CA\",\n    \"postcode\": \"1127\",\n    \"is_primary\": true,\n    \"current_user\": \"test\"\n    },\n    \"phone_contacts_attributes\": [\n        {\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+1234325678901\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"current_user\": \"test\"\n        }\n    ]\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/emergency_contacts/{{emergency_contact_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"emergency_contacts",
+								"{{emergency_contact_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "056eff6c-c618-4ea5-95ed-8c8a395d8d53",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/emergency_contacts/{{emergency_contact_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"emergency_contacts",
+								"{{emergency_contact_uuid}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all emergency contacts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "03ae8ea5-b182-4ef9-a0a8-38a88db7a7f7",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "ce227f42-d492-40c9-bb3e-436090804f0a",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query emergencyContacts($clientUuid: ID!, $offset: Int, $limit: Int) {\n  emergencyContacts(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n    uuid\n    firstName\n    middleName\n    lastName\n    contactType\n    email\n    createdBy\n    updatedBy\n\n    clientContacts{\n      id\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n      createdBy\n      updatedBy\n    }\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientsCustomFields{\n      id\n      subscriberUuid\n      customFieldUuid\n      name\n      entity\n      sectionName\n      textValue\n      numericValue\n      dateValue\n      multiLineValue\n      choiceValue\n      createdBy\n      updatedBy\n    }\n  }\n}",
+										"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"clientUuid\": \"{{client_uuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"clients_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create emergency contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createEmergencyContact($input: CreateEmergencyContactInput!) {\n  createEmergencyContact(input: $input) {\n    uuid\n    firstName\n    middleName\n    lastName\n    contactType\n    email\n    createdBy\n    updatedBy\n\n    clientContacts{\n      id\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n      createdBy\n      updatedBy\n    }\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientsCustomFields{\n      id\n      subscriberUuid\n      customFieldUuid\n      name\n      entity\n      sectionName\n      textValue\n      numericValue\n      dateValue\n      multiLineValue\n      choiceValue\n      createdBy\n      updatedBy\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"clientUuid\": \"{{client_uuid}}\",\n    \"firstName\": \"Juan\",\n    \"middleName\": \"Jose\",\n    \"lastName\": \"Dela Cruz\",\n    \"relationship\": \"Father\",\n    \"contactType\": 1,\n    \"currentUser\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"addressAttributes\": {\n      \"addressLine1\": \"Test Address\",\n      \"addressLine2\": \"Test Address\",\n      \"city\": \"California\",\n      \"state\": \"CA\",\n      \"postcode\": \"1127\",\n      \"currentUser\": \"test\"\n    },\n    \"phoneContactsAttributes\": [\n        {\n          \"ordinality\": 1,\n          \"phoneType\": \"home\",\n          \"phoneNumber\": \"+12345678901\",\n          \"phoneExtension\": \"123\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 2,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678902\",\n          \"phoneExtension\": \"456\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 3,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678903\",\n          \"phoneExtension\": \"324\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        }\n    ]\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update emergency contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateEmergencyContact($input: UpdateEmergencyContactInput!) {\n  updateEmergencyContact(input: $input) {\n    uuid\n    firstName\n    middleName\n    lastName\n    contactType\n    email\n    createdBy\n    updatedBy\n\n    clientContacts{\n      id\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n      createdBy\n      updatedBy\n    }\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientsCustomFields{\n      id\n      subscriberUuid\n      customFieldUuid\n      name\n      entity\n      sectionName\n      textValue\n      numericValue\n      dateValue\n      multiLineValue\n      choiceValue\n      createdBy\n      updatedBy\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\": \"{{emergency_contact_uuid}}\",\n    \"firstName\": \"Michael\",\n    \"email\": \"test@gmail.com\"\n  }\n}\n"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get / show an emergency contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query emergencyContact($uuid: ID!) {\n  emergencyContact(uuid: $uuid) {\n    uuid\n    firstName\n    middleName\n    lastName\n    contactType\n    email\n    createdBy\n    updatedBy\n\n    clientContacts{\n      id\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n      createdBy\n      updatedBy\n    }\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientsCustomFields{\n      id\n      subscriberUuid\n      customFieldUuid\n      name\n      entity\n      sectionName\n      textValue\n      numericValue\n      dateValue\n      multiLineValue\n      choiceValue\n      createdBy\n      updatedBy\n    }\n  }\n}",
+								"variables": "{\n    \"uuid\": \"{{emergency_contacts_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete an emergency contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteEmergencyContact($input: DeleteEmergencyContactInput!) {\n  deleteEmergencyContact(input: $input) {\n    uuid\n  }\n}",
+								"variables": "{\n    \"uuid\": \"{{emergency_contact_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
