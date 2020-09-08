@@ -6,39 +6,86 @@
 	},
 	"item": [
 		{
-			"name": "http",
+			"name": "service",
 			"item": [
 				{
-					"name": "GET All Vehicle Informations",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
-							"protocol": "https",
-							"host": [
-								"22jm1o3hq7",
-								"execute-api",
-								"us-west-2",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"5638",
-								"vehicle_informations"
-							],
-							"query": [
+					"name": "setup",
+					"item": [
+						{
+							"name": "get",
+							"event": [
 								{
-									"key": "client_uuid",
-									"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+									"listen": "prerequest",
+									"script": {
+										"id": "e246e3d2-0dea-4d1c-8820-07fbd96d407a",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "b4409ee6-b86c-4193-afac-3cfde6bf0a08",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/vehicle_informations?client_uuid={{client_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"vehicle_informations"
+									],
+									"query": [
+										{
+											"key": "client_uuid",
+											"value": "{{client_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "CREATE Vehicle information",
+					"name": "create",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -47,7 +94,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n    \"year\": \"2023\",\n    \"make\": \"Isuzu\",\n    \"model\": \"MuX\",\n    \"color\": \"Black\",\n    \"license\": \"23342342\",\n    \"kind\": \"SUV\"\n}",
+							"raw": "{\n    \"client_uuid\": \"{{client_uuid}}\",\n    \"year\": \"2023\",\n    \"make\": \"Isuzu\",\n    \"model\": \"MuX\",\n    \"color\": \"Black\",\n    \"license\": \"23342342\",\n    \"kind\": \"SUV\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -55,17 +102,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations",
-							"protocol": "https",
+							"raw": "{{URL}}{{STAGE}}/vehicle_informations",
 							"host": [
-								"22jm1o3hq7",
-								"execute-api",
-								"us-west-2",
-								"amazonaws",
-								"com"
+								"{{URL}}{{STAGE}}"
 							],
 							"path": [
-								"5638",
 								"vehicle_informations"
 							]
 						}
@@ -73,55 +114,43 @@
 					"response": []
 				},
 				{
-					"name": "READ Vehicle Information",
+					"name": "show",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations/fb8f11df-8b64-414a-b20f-e960e9e5978c",
-							"protocol": "https",
+							"raw": "{{URL}}{{STAGE}}/vehicle_informations/{{vehicle_info_uuid}}",
 							"host": [
-								"22jm1o3hq7",
-								"execute-api",
-								"us-west-2",
-								"amazonaws",
-								"com"
+								"{{URL}}{{STAGE}}"
 							],
 							"path": [
-								"5638",
 								"vehicle_informations",
-								"fb8f11df-8b64-414a-b20f-e960e9e5978c"
+								"{{vehicle_info_uuid}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "DELETE Vehicle Information",
+					"name": "delete",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations/80cf952d-8dcb-4378-b31c-73e2370fa415",
-							"protocol": "https",
+							"raw": "{{URL}}{{STAGE}}/vehicle_informations/{{vehicle_info_uuid}}",
 							"host": [
-								"22jm1o3hq7",
-								"execute-api",
-								"us-west-2",
-								"amazonaws",
-								"com"
+								"{{URL}}{{STAGE}}"
 							],
 							"path": [
-								"5638",
 								"vehicle_informations",
-								"80cf952d-8dcb-4378-b31c-73e2370fa415"
+								"{{vehicle_info_uuid}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "UPDATE Vehicle Information",
+					"name": "update",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -135,19 +164,13 @@
 							}
 						},
 						"url": {
-							"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/vehicle_informations/45c62ba1-b844-4b0d-b1a2-bcdde385fab8",
-							"protocol": "https",
+							"raw": "{{URL}}{{STAGE}}/vehicle_informations/{{vehicle_info_uuid}}",
 							"host": [
-								"22jm1o3hq7",
-								"execute-api",
-								"us-west-2",
-								"amazonaws",
-								"com"
+								"{{URL}}{{STAGE}}"
 							],
 							"path": [
-								"5638",
 								"vehicle_informations",
-								"45c62ba1-b844-4b0d-b1a2-bcdde385fab8"
+								"{{vehicle_info_uuid}}"
 							]
 						}
 					},
@@ -157,159 +180,188 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "get all vehicle informations gql",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": " query listVehicleInformations($clientUuid: ID!, $offset: Int, $limit: Int) {\n   listVehicleInformations(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n     uuid\n     year\n     make\n     model\n     color\n     license\n     createdBy\n   }\n}",
-						"variables": "{\n  \"clientUuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\"\n}"
-					}
-				},
-				"url": {
-					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"22jm1o3hq7",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "get all vehicle informations",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "adbd23a6-e798-4e5b-afd5-051c4bf31b89",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "0ae92056-5ad3-4175-b3d8-446451f20c23",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": " query listVehicleInformations($clientUuid: ID!, $offset: Int, $limit: Int) {\n   listVehicleInformations(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n     uuid\n     year\n     make\n     model\n     color\n     license\n     createdBy\n   }\n}",
+										"variables": "{\n  \"clientUuid\": \"{{client_uuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"clients_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
 					],
-					"path": [
-						"5638",
-						"clients_bff",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create vehicle information gql",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation createVehicleInformation($input: CreateVehicleInformationInput!) { \n  createVehicleInformation(input: $input) {\n     uuid\n     year\n     make\n     model\n     color\n     license\n     createdBy\n     updatedBy\n     createdAt\n     updatedAt\n   }\n}",
-						"variables": "{\n  \"input\": {\n    \"clientUuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n     \"year\": \"2020\",\n     \"make\": \"Honda\",\n     \"model\": \"GTR 3\",\n     \"color\": \"Red\",\n    \"license\": \"Samplesense\"\n  }\n}"
-					}
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				},
-				"url": {
-					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"22jm1o3hq7",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"5638",
-						"clients_bff",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "read  vehicle information GQL",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query showVehicleInformation($uuid: ID!) {\n  showVehicleInformation(uuid: $uuid) {\n      uuid\n      year\n      make\n      model\n      color\n      license\n   }\n}",
-						"variables": "{\n   \"uuid\":\"ed9dc1c0-7f5c-42ee-94f7-f6492f5e346a\"\n}"
-					}
+				{
+					"name": "create vehicle information",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createVehicleInformation($input: CreateVehicleInformationInput!) { \n  createVehicleInformation(input: $input) {\n     uuid\n     year\n     make\n     model\n     color\n     license\n     createdAt\n     updatedAt\n   }\n}",
+								"variables": "{\n  \"input\": {\n    \"clientUuid\": \"{{client_uuid}}\",\n     \"year\": \"2020\",\n     \"make\": \"Honda\",\n     \"model\": \"GTR 3\",\n     \"color\": \"Red\",\n    \"license\": \"Samplesense\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"22jm1o3hq7",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"5638",
-						"clients_bff",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete vehicle information gql",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation deleteVehicleInformation($input: DeleteVehicleInformationInput!) {\n  deleteVehicleInformation(input: $input) {\n    uuid\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"uuid\": \"45c62ba1-b844-4b0d-b1a2-bcdde385fab8\"\n  }\n}"
-					}
+				{
+					"name": "get / show vehicle information",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showVehicleInformation($uuid: ID!) {\n  showVehicleInformation(uuid: $uuid) {\n      uuid\n      year\n      make\n      model\n      color\n      license\n   }\n}",
+								"variables": "{\n   \"uuid\":\"{{vehicle_info_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"22jm1o3hq7",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"5638",
-						"clients_bff",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update vehicle information gql",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation updateVehicleInformation($input: UpdateVehicleInformationInput!) { \n  updateVehicleInformation(input: $input) {\n    clientId\n    year\n    make\n    model\n    color\n    license\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-						"variables": "{ \n  \"input\": {\n    \"uuid\": \"1fb8b033-5667-444f-8465-b4ae7e7e620d\",\n    \"year\": \"2020\",\n    \"make\": \"Toyota\",\n    \"model\": \"Prius\",\n    \"color\": \"Green\",\n    \"license\": \"1232367\"\n  }\n}"
-					}
+				{
+					"name": "delete vehicle information",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteVehicleInformation($input: DeleteVehicleInformationInput!) {\n  deleteVehicleInformation(input: $input) {\n    uuid\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\": \"{{vehicle_info_uuid}}\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://22jm1o3hq7.execute-api.us-west-2.amazonaws.com/5638/clients_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"22jm1o3hq7",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"5638",
-						"clients_bff",
-						"graphql"
-					]
+				{
+					"name": "update vehicle information",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateVehicleInformation($input: UpdateVehicleInformationInput!) { \n  updateVehicleInformation(input: $input) {\n    clientId\n    year\n    make\n    model\n    color\n    license\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{vehicle_info_uuid}}\",\n    \"year\": \"2020\",\n    \"make\": \"Toyota\",\n    \"model\": \"Prius\",\n    \"color\": \"Green\",\n    \"license\": \"1232367\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
