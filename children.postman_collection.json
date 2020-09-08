@@ -1,152 +1,363 @@
 {
 	"info": {
-		"_postman_id": "e2e7d084-eacb-4d20-988a-40560702f9bf",
+		"_postman_id": "3479467c-2868-4091-8632-d0b0c7945a26",
 		"name": "children",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "list",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children?client_uuid=c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"children"
-					],
-					"query": [
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
 						{
-							"key": "client_uuid",
-							"value": "c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb"
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "481067d2-441f-43c4-b925-301075a7827a",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "817c3b08-c5da-4f5a-af01-e1687c0a73a2",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/children?client_uuid={{client_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"children"
+									],
+									"query": [
+										{
+											"key": "client_uuid",
+											"value": "{{client_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "show",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children/6dd313ce-f22b-449f-a39c-9a007a317659",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
 					],
-					"path": [
-						"6532",
-						"children",
-						"6dd313ce-f22b-449f-a39c-9a007a317659"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children/77709e96-8b86-4c6b-8b0c-f95ae5014067",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"children",
-						"77709e96-8b86-4c6b-8b0c-f95ae5014067"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lai\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daughter\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"95943-5891\",\n            \"is_primary\": true\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"456\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				},
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children/",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"6532",
-						"children",
-						""
-					]
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lai\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daughter\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"95943-5891\",\n            \"is_primary\": true\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"456\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\",\n            \"is_primary\": true\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"734\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "update",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\",\n            \"is_primary\": true\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"734\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list-children",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "43b87fdd-3888-49fa-8020-61040e2f3d76",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "ef3182fc-19dd-4afb-b3b3-4543003bb2e8",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listChildren($clientUuid: ID!, $searchKey: String, $offset: Int, $limit: Int) {\n  children(clientUuid: $clientUuid, searchKey: $searchKey, offset: $offset, limit: $limit) {\n    id\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    livesWith\n    email\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientChildren {\n      uuid\n      clientId\n      caseId\n      relationship\n    }\n  }\n}",
+										"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"clientUuid\": \"{{client_uuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"clients_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
 						}
-					}
-				},
-				"url": {
-					"raw": "https://9g908trvva.execute-api.us-west-2.amazonaws.com/6532/children/5a606f17-5e34-4691-abb8-1d8dbca87d9d",
-					"protocol": "https",
-					"host": [
-						"9g908trvva",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
 					],
-					"path": [
-						"6532",
-						"children",
-						"5a606f17-5e34-4691-abb8-1d8dbca87d9d"
-					]
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "get / show a child",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showChild($uuid: ID!) {\n  showChild(uuid: $uuid) {\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    livesWith\n    email\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientChildren {\n      uuid\n      clientId\n      caseId\n      relationship\n    }\n  }\n}",
+								"variables": "{\n    \"uuid\": \"{{child_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a child",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createChild($input: CreateChildInput!) {\n  createChild(input: $input) {\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    livesWith\n    email\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientChildren {\n      caseId\n      childId\n      clientId\n      relationship\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"clientUuid\": \"{{client_uuid}}\",\n    \"firstName\": \"Juan\",\n    \"middleName\": \"Jose\",\n    \"lastName\": \"Dela Cruz\",\n    \"relationship\": \"son\",\n    \"gender\": \"Male\",\n    \"livesWith\": \"other\",\n    \"currentUser\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"dob\": \"1997-11-19\",\n    \"addressAttributes\": {\n      \"addressLine1\": \"Test Address\",\n      \"addressLine2\": \"Test Address\",\n      \"city\": \"California\",\n      \"state\": \"CA\",\n      \"postcode\": \"1127\",\n      \"currentUser\": \"test\"\n    },\n    \"phoneContactsAttributes\": [\n        {\n          \"ordinality\": 1,\n          \"phoneType\": \"home\",\n          \"phoneNumber\": \"+12345678901\",\n          \"phoneExtension\": \"123\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 2,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678902\",\n          \"phoneExtension\": \"456\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 3,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678903\",\n          \"phoneExtension\": \"324\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        }\n    ]\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a child",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateChild($input: UpdateChildInput!) {\n  updateChild(input: $input) {\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    livesWith\n    email\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientChildren {\n      caseId\n      childId\n      clientId\n      relationship\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\": \"{{child_uuid}}\",\n    \"firstName\": \"Juan\",\n    \"middleName\": \"Jose\"\n  } \n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a child",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteChild($input: DeleteChildInput!) {\n  deleteChild(input: $input) {\n    uuid\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\": \"{{child_uuid}}\"\n  } \n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
