@@ -1,71 +1,383 @@
 {
 	"info": {
-		"_postman_id": "446a9aee-9d8c-419a-9465-37404c70aaa4",
+		"_postman_id": "54d35362-bdfb-4fb6-8a6b-69528c5129bf",
 		"name": "medications ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "query - show_medication",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query showMedication($uuid: ID!){\n    showMedication(uuid: $uuid){\n        uuid\n        clientId\n        name\n        dosage\n        dateStart\n        physicianName\n        physicianPhoneNumber\n    }\n}\n",
-						"variables": "{\n \"uuid\":\"c12dd803-37b0-4fc8-8ed7-31b5948d1230\"\n}"
-					}
-				},
-				"url": {
-					"raw": "https://8pikq2ujvd.execute-api.us-west-2.amazonaws.com/5215/clients_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"8pikq2ujvd",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "31c2b789-51ef-49a9-934a-87572d8f98ec",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "29b9b0dc-5d24-4a5e-b067-200bf8b07d27",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/dev/medications?client_uuid={{client_uuid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"dev",
+										"medications"
+									],
+									"query": [
+										{
+											"key": "client_uuid",
+											"value": "{{client_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
 					],
-					"path": [
-						"5215",
-						"clients_bff",
-						"graphql"
-					]
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"commens\": \"Test1\",\n    \"physician_email\": \"test@test.com\",\n    \"compliant\": true,\n    \"physician_phone_type\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/dev/medications/d329a9da-4722-4c92-8a9a-dea0827f134e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"medications",
+								"d329a9da-4722-4c92-8a9a-dea0827f134e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n          \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n          \"name\": \"Test Medication\",\n          \"dosage\": \"1 table per day\",\n          \"physician_name\": \"Dr. Boom\",\n          \"physician_phone_number\": \"23342342\",\n          \"commens\": \"Test\",\n          \"physician_email\": \"sample@test.com\",\n          \"prescription_type\": \"Prescription\",\n          \"compliant\": false,\n          \"physician_phone_type\": 2\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/dev/medications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"medications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dev/medications/7ed4e5fa-d009-4745-9234-6c1bdcecb237",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"medications",
+								"7ed4e5fa-d009-4745-9234-6c1bdcecb237"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dev/medications/d329a9da-4722-4c92-8a9a-dea0827f134e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"medications",
+								"d329a9da-4722-4c92-8a9a-dea0827f134e"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "query - list_medications",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query listMedications($offset: Int, $limit: Int){\n    listMedications(offset: $offset, limit: $limit){\n        uuid\n        clientId\n        name\n        dosage\n        dateStart\n        physicianName\n        physicianPhoneNumber\n    }\n}\n",
-						"variables": "{\n \"offset\": 0,\n \"limit\": 1\n}"
-					}
-				},
-				"url": {
-					"raw": "https://8pikq2ujvd.execute-api.us-west-2.amazonaws.com/5215/clients_bff/graphql",
-					"protocol": "https",
-					"host": [
-						"8pikq2ujvd",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all medications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "921208c2-13de-4d9a-bc27-c98bb4c144eb",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "9d454773-29dd-4c95-b322-e9de1d39b998",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listMedications($offset: Int, $limit: Int){\n    listMedications(offset: $offset, limit: $limit){\n        uuid\n        clientId\n        name\n        dosage\n        dateStart\n        physicianName\n        physicianPhoneNumber\n    }\n}\n",
+										"variables": "{\n \"offset\": 0,\n \"limit\": 1\n}"
+									}
+								},
+								"url": {
+									"raw": "https://8pikq2ujvd.execute-api.us-west-2.amazonaws.com/5215/clients_bff/graphql",
+									"protocol": "https",
+									"host": [
+										"8pikq2ujvd",
+										"execute-api",
+										"us-west-2",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"5215",
+										"clients_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
 					],
-					"path": [
-						"5215",
-						"clients_bff",
-						"graphql"
-					]
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "get / show a medication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showMedication($uuid: ID!){\n    showMedication(uuid: $uuid){\n        uuid\n        clientId\n        name\n        dosage\n        dateStart\n        physicianName\n        physicianPhoneNumber\n    }\n}\n",
+								"variables": "{\n    \"uuid\": \"{{medication_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a medication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": "{\n \"uuid\":\"c12dd803-37b0-4fc8-8ed7-31b5948d1230\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a medicartion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": "{\n \"uuid\":\"c12dd803-37b0-4fc8-8ed7-31b5948d1230\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a medication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": "{\n    \"uuid\": \"{{medication_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
