@@ -20,9 +20,9 @@
 										"id": "31c2b789-51ef-49a9-934a-87572d8f98ec",
 										"exec": [
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"pm.environment.set(\"URL\", \"https://cztzfe3xs7.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"pm.environment.set(\"STAGE\", \"master\");",
+											"pm.environment.set(\"STAGE\", \"7419\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -42,9 +42,9 @@
 										"exec": [
 											"// This will be moved to subscribers, or a setup url, or authorizer",
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"postman.setEnvironmentVariable(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"postman.setEnvironmentVariable(\"URL\", \"https://cztzfe3xs7.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"postman.setEnvironmentVariable(\"STAGE\", \"master\");",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7419\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -62,14 +62,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/dev/medications?client_uuid={{client_uuid}}",
-									"protocol": "http",
+									"raw": "{{URL}}{{STAGE}}/medications?client_uuid={{client_uuid}}",
 									"host": [
-										"localhost"
+										"{{URL}}{{STAGE}}"
 									],
-									"port": "3000",
 									"path": [
-										"dev",
 										"medications"
 									],
 									"query": [
@@ -87,43 +84,35 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "update",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"commens\": \"Test1\",\n    \"physician_email\": \"test@test.com\",\n    \"compliant\": true,\n    \"physician_phone_type\": 3\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/dev/medications/d329a9da-4722-4c92-8a9a-dea0827f134e",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"dev",
-								"medications",
-								"d329a9da-4722-4c92-8a9a-dea0827f134e"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1f93f89c-2ee0-4a42-80ff-93f2d69bb105",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var med_uuid = jsonData['uuid']",
+									"var med_phone_contact_0_id = jsonData['phone_contacts'][0]['id']",
+									"",
+									"// console.log(med_uuid)",
+									"// console.log(med_phone_contact_0_id)",
+									"",
+									"postman.setEnvironmentVariable(\"medication_uuid\", med_uuid);",
+									"postman.setEnvironmentVariable(\"medication_phone_contact_0_id\", med_phone_contact_0_id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n          \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n          \"name\": \"Test Medication\",\n          \"dosage\": \"1 table per day\",\n          \"physician_name\": \"Dr. Boom\",\n          \"physician_phone_number\": \"23342342\",\n          \"commens\": \"Test\",\n          \"physician_email\": \"sample@test.com\",\n          \"prescription_type\": \"Prescription\",\n          \"compliant\": false,\n          \"physician_phone_type\": 2\n        }",
+							"raw": "{\n    \"client_uuid\": \"{{client_uuid}}\",\n    \"name\": \"Test Medication\",\n    \"dosage\": \"1 table per day\",\n    \"physician_name\": \"Dr. Boom\",\n    \"commens\": \"Test\",\n    \"physician_email\": \"sample@test.com\",\n    \"prescription_type\": \"Prescription\",\n    \"compliant\": false,\n    \"current_user\": \"test@treatanyone.com\",\n    \"phone_contacts_attributes\": [\n    {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"primary\": true,\n        \"current_user\": \"test@treatanyone.com\"\n    },\n    {\n        \"ordinality\": 2,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"primary\": false,\n        \"current_user\": \"test@treatanyone.com\"\n    }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -131,14 +120,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/dev/medications",
-							"protocol": "http",
+							"raw": "{{URL}}{{STAGE}}/medications",
 							"host": [
-								"localhost"
+								"{{URL}}{{STAGE}}"
 							],
-							"port": "3000",
 							"path": [
-								"dev",
 								"medications"
 							]
 						}
@@ -151,16 +137,121 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/dev/medications/7ed4e5fa-d009-4745-9234-6c1bdcecb237",
-							"protocol": "http",
+							"raw": "{{URL}}{{STAGE}}/medications/{{medication_uuid}}",
 							"host": [
-								"localhost"
+								"{{URL}}{{STAGE}}"
 							],
-							"port": "3000",
 							"path": [
-								"dev",
 								"medications",
-								"7ed4e5fa-d009-4745-9234-6c1bdcecb237"
+								"{{medication_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update fails with same ordinality",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comments\": \"Test1\",\n    \"physician_email\": \"test@test.com\",\n    \"compliant\": true,\n    \"phone_contacts_attributes\": [\n    {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"primary\": true,\n        \"current_user\": \"test@treatanyone.com\"\n    }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/medications/{{medication_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"medications",
+								"{{medication_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with new phone contact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comments\": \"Test2\",\n    \"physician_email\": \"test@test.com\",\n    \"compliant\": true,\n    \"phone_contacts_attributes\": [\n    {\n        \"ordinality\": 3,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"primary\": true,\n        \"current_user\": \"test@treatanyone.com\"\n    }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/medications/{{medication_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"medications",
+								"{{medication_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with existing phone contact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comments\": \"Test3\",\n    \"physician_email\": \"test@test.com\",\n    \"compliant\": true,\n    \"phone_contacts_attributes\": [\n    {\n        \"id\": \"{{medication_phone_contact_0_id}}\",\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+99945678901\",\n        \"phone_extension\": \"555\",\n        \"not_okay_to_leave_message\": false,\n        \"primary\": true,\n        \"current_user\": \"test@treatanyone.com\"\n    }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/medications/{{medication_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"medications",
+								"{{medication_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with destroy of existing phone contact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comments\": \"Test4 - the destroyer\",\n    \"physician_email\": \"test@test.com\",\n    \"compliant\": true,\n    \"phone_contacts_attributes\": [\n    {\n        \"id\": \"{{medication_phone_contact_0_id}}\",\n        \"_destroy\": true\n    }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/medications/{{medication_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"medications",
+								"{{medication_uuid}}"
 							]
 						}
 					},
@@ -172,16 +263,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/dev/medications/d329a9da-4722-4c92-8a9a-dea0827f134e",
-							"protocol": "http",
+							"raw": "{{URL}}{{STAGE}}/medications/{{medication_uuid}}",
 							"host": [
-								"localhost"
+								"{{URL}}{{STAGE}}"
 							],
-							"port": "3000",
 							"path": [
-								"dev",
 								"medications",
-								"d329a9da-4722-4c92-8a9a-dea0827f134e"
+								"{{medication_uuid}}"
 							]
 						}
 					},
