@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "41cf6be7-c483-4abd-bf2d-8ffd0ae525fb",
+		"name": "medications-bff-QA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query listMedications($clientUuid: ID!, $offset: Int, $limit: Int) {\n  listMedications(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n    uuid\n    clientId\n    name\n    dosage\n    physicianName\n    timeOnMedication\n    comments\n    physicianEmail\n    compliant\n    prescriptionType\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n  }\n}",
+						"variables": "{\n    \"clientUuid\":\"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://s3z1bokmt4.execute-api.us-west-2.amazonaws.com/7403/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"s3z1bokmt4",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7403",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query showMedication($uuid: ID!) {\n  showMedication(uuid: $uuid) {\n    uuid\n    clientId\n    name\n    dosage\n    physicianName\n    timeOnMedication\n    comments\n    physicianEmail\n    compliant\n    prescriptionType\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n  }\n}",
+						"variables": "{\n    \"uuid\":\"488e6ca2-bf40-400c-8795-4fc21dede5cb\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://s3z1bokmt4.execute-api.us-west-2.amazonaws.com/7403/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"s3z1bokmt4",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7403",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createMedication($input: CreateMedicationInput!) { \n  createMedication(input: $input) {\n    clientId\n    name\n    dosage\n    physicianName\n    timeOnMedication\n    comments\n    physicianEmail\n    compliant\n    prescriptionType\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"clientUuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n    \"name\": \"Test Medication\",\n    \"dosage\": \"1 table per day\",\n    \"physicianName\": \"Dr. Boom\",\n    \"timeOnMedication\": \"11:30AM-03:00PM\",\n    \"comments\": \"Test Comment\",\n    \"physicianEmail\": \"sample@example.com\",\n    \"prescriptionType\": \"Prescription\",\n    \"compliant\": false,\n    \"physicianEmail\": \"sample@test.com\",\n    \"currentUser\": \"Test\",\n    \"timeOnMedication\": \"2 years\",\n    \"phoneContactsAttributes\": [\n        {\n          \"ordinality\": 1,\n          \"phoneType\": \"home\",\n          \"phoneNumber\": \"+12345678901\",\n          \"phoneExtension\": \"123\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 2,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678902\",\n          \"phoneExtension\": \"456\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 3,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678903\",\n          \"phoneExtension\": \"324\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        }\n    ]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://s3z1bokmt4.execute-api.us-west-2.amazonaws.com/7403/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"s3z1bokmt4",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7403",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateMedication($input: UpdateMedicationInput!) {\n  updateMedication(input: $input) {\n    clientId\n    name\n    dosage\n    physicianName\n    timeOnMedication\n    comments\n    physicianEmail\n    compliant\n    prescriptionType\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"488e6ca2-bf40-400c-8795-4fc21dede5cb\",\n    \"dosage\": \"3 tablet per week\",\n    \"physicianName\": \"Dr. Boom\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://s3z1bokmt4.execute-api.us-west-2.amazonaws.com/7403/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"s3z1bokmt4",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7403",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteMedication($input: DeleteMedicationInput!) {\n  deleteMedication(input: $input) {\n    uuid\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"488e6ca2-bf40-400c-8795-4fc21dede5cb\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://s3z1bokmt4.execute-api.us-west-2.amazonaws.com/7403/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"s3z1bokmt4",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7403",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
