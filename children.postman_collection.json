@@ -84,49 +84,34 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "show",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
-							"host": [
-								"{{URL}}{{STAGE}}"
-							],
-							"path": [
-								"children",
-								"{{child_uuid}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
-							"host": [
-								"{{URL}}{{STAGE}}"
-							],
-							"path": [
-								"children",
-								"{{child_uuid}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e5a7121-3274-4455-a3e0-7481aa0b455d",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var child_uuid = jsonData['uuid']",
+									"var child_phone_contact_0_id = jsonData['phone_contacts'][0]['id']",
+									"var child_address_id = jsonData['address']['id']",
+									"",
+									"postman.setEnvironmentVariable(\"child_uuid\", child_uuid);",
+									"postman.setEnvironmentVariable(\"child_phone_contact_0_id\", child_phone_contact_0_id);",
+									"postman.setEnvironmentVariable(\"child_address_id\", child_address_id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lai\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daughter\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"95943-5891\",\n            \"is_primary\": true\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"456\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
+							"raw": "{\n        \"client_uuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n        \"last_name\": \"Paris\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Simone\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daughter\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"age\": 9,\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"95943-5891\"\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"primary\": true,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"primary\": false,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"456\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -147,19 +132,217 @@
 					"response": []
 				},
 				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "update",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\",\n            \"is_primary\": true\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"734\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
+							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"age\": 8,\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\"\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"primary\": true,\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            },\n            {\n              \"ordinality\": 2,\n              \"primary\": false,\n              \"phone_type\": \"mobile\",\n              \"phone_number\": \"+12345678902\",\n              \"phone_extension\": \"734\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update fails with same phone ordinality",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"age\": 8,\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\"\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 1,\n              \"primary\": true,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"123\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with new phone contact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"age\": 8,\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\"\n        },\n        \"phone_contacts_attributes\": [\n            {\n              \"ordinality\": 3,\n              \"primary\": false,\n              \"phone_type\": \"home\",\n              \"phone_number\": \"+12345678901\",\n              \"phone_extension\": \"777\",\n              \"not_okay_to_leave_message\": false,\n              \"current_user\": \"test\"\n            }\n        ]    \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with existing phone contact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"age\": 8,\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\"\n        },\n        \"phone_contacts_attributes\": [\n            {\n                \"id\": \"{{child_phone_contact_0_id}}\",\n                \"ordinality\": 1,\n                \"phone_type\": \"home\",\n                \"phone_number\": \"+12345678901\",\n                \"phone_extension\": \"123\",\n                \"not_okay_to_leave_message\": false,\n                \"current_user\": \"test\"\n            }\n        ]    \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with destroy of existing phone contact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"age\": 8,\n        \"address\": {\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\"\n        },\n        \"phone_contacts_attributes\": [\n        {\n            \"id\": \"{{child_phone_contact_0_id}}\",\n            \"_destroy\": true\n        }] \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with existing address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cuneta\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"age\": 8,\n        \"address\": {\n            \"id\": \"{{child_address_id}}\",\n            \"address_line_1\": \"450 Mario Prairie, Elenifurt, NV 39251\",\n            \"address_line_2\": \"9570 Dexter Causeway, North Basilbury, AL 39770\",\n            \"city\": \"North Devinhaven\",\n            \"state\": \"New Hampshire\",\n            \"postcode\": \"123456\"\n        }\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with destroy of existing address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"last_name\": \"Schmitt\",\n        \"middle_name\": \"Cummerata\",\n        \"first_name\": \"Lian\",\n        \"gender\": \"Male\",\n        \"lives_with\": \"other\",\n        \"relationship\": \"daugther\",\n        \"email\": \"particia_gottlieb34@bogan.org\",\n        \"current_user\": \"test\",\n        \"dob\": \"1997-11-19\",\n        \"age\": 8,\n        \"address\": {\n            \"id\": \"{{child_address_id}}\",\n            \"_destroy\": true\n        }\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"children",
+								"{{child_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
 						"url": {
 							"raw": "{{URL}}{{STAGE}}/children/{{child_uuid}}",
 							"host": [
