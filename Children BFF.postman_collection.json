@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "84b05b8d-95cd-4ffe-a937-cffddb7c090f",
+		"name": "Children BFF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query listChildren($clientUuid: ID!, $searchKey: String, $offset: Int, $limit: Int) {\n  children(clientUuid: $clientUuid, searchKey: $searchKey, offset: $offset, limit: $limit) {\n    id\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    age\n    livesWith\n    email\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientChildren {\n      uuid\n      clientId\n      caseId\n      relationship\n    }\n  }\n}",
+						"variables": "{\n  \"clientUuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://9g2m1n9pse.execute-api.us-west-2.amazonaws.com/7492/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"9g2m1n9pse",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7492",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query showChild($uuid: ID!) {\n  showChild(uuid: $uuid) {\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    age\n    livesWith\n    email\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientChildren {\n      uuid\n      clientId\n      caseId\n      relationship\n    }\n  }\n}",
+						"variables": "{\n    \"uuid\": \"75fd1f66-0ffe-4ce6-80e8-3b6f5b336fb5\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://9g2m1n9pse.execute-api.us-west-2.amazonaws.com/7492/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"9g2m1n9pse",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7492",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createChild($input: CreateChildInput!) {\n  createChild(input: $input) {\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    age\n    livesWith\n    email\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientChildren {\n      caseId\n      childId\n      clientId\n      relationship\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"clientUuid\": \"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb\",\n    \"firstName\": \"Juan\",\n    \"middleName\": \"Jose\",\n    \"lastName\": \"Dela Cruz\",\n    \"relationship\": \"son\",\n    \"gender\": \"Male\",\n    \"livesWith\": \"other\",\n    \"currentUser\": \"test\",\n    \"email\": \"juan@example.com\",\n    \"dob\": \"1997-11-19\",\n    \"age\": 30,\n    \"addressAttributes\": {\n      \"addressLine1\": \"Test Address\",\n      \"addressLine2\": \"Test Address\",\n      \"city\": \"California\",\n      \"state\": \"CA\",\n      \"postcode\": \"1127\",\n      \"currentUser\": \"test\"\n    },\n    \"phoneContactsAttributes\": [\n        {\n          \"ordinality\": 1,\n          \"phoneType\": \"home\",\n          \"phoneNumber\": \"+12345678901\",\n          \"phoneExtension\": \"123\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 2,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678902\",\n          \"phoneExtension\": \"456\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        },\n        {\n          \"ordinality\": 3,\n          \"phoneType\": \"mobile\",\n          \"phoneNumber\": \"+12345678903\",\n          \"phoneExtension\": \"324\",\n          \"notOkayToLeaveMessage\": false,\n          \"currentUser\": \"test\",\n          \"primary\": false\n        }\n    ]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://9g2m1n9pse.execute-api.us-west-2.amazonaws.com/7492/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"9g2m1n9pse",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7492",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteChild($input: DeleteChildInput!) {\n  deleteChild(input: $input) {\n    uuid\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"20b7077d-3505-49fe-91db-b4e6e37e3a62\"\n  } \n}"
+					}
+				},
+				"url": {
+					"raw": "https://9g2m1n9pse.execute-api.us-west-2.amazonaws.com/7492/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"9g2m1n9pse",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7492",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateChild($input: UpdateChildInput!) {\n  updateChild(input: $input) {\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    age\n    livesWith\n    email\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address{\n      id\n      addressableId\n      addressableType\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    phoneContacts{\n      id\n      ordinality\n      phoneNumber\n      phoneExtension\n      phoneType\n      notOkayToLeaveMessage\n      createdBy\n      updatedBy\n    }\n\n    clientChildren {\n      caseId\n      childId\n      clientId\n      relationship\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"d80f2640-093a-4997-9740-682c44d23166\",\n    \"firstName\": \"Juan\",\n    \"middleName\": \"Jose\",\n    \"age\": 23\n  } \n}"
+					}
+				},
+				"url": {
+					"raw": "https://9g2m1n9pse.execute-api.us-west-2.amazonaws.com/7492/clients_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"9g2m1n9pse",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7492",
+						"clients_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
