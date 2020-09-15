@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "0972bd65-b4a7-4451-91fe-1153e3628878",
+		"name": "sexual-variables",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "c4839616-da3f-43a2-b583-1cac0025f078",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"7466\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "5c278f24-3312-4693-a915-265a76cec2f8",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7466\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/sexual_variables?enrollment_uuid={{enrollment_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"sexual_variables"
+									],
+									"query": [
+										{
+											"key": "enrollment_uuid",
+											"value": "{{enrollment_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1686ea14-2eb1-4f71-87b3-6b1042ea7c82",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "bcd7de5b-11fc-4117-bb1a-049a4057ed24",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var sexual_variable_id = jsonData['id']",
+									"var sexual_variable_uuid = jsonData['uuid']",
+									"",
+									"postman.setEnvironmentVariable(\"sexual_variable_id\", sexual_variable_id);",
+									"postman.setEnvironmentVariable(\"sexual_variable_uuid\", sexual_variable_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n  \"orgasms_per_typical_average_week\": 120,\n  \"highest_no_of_orgasms_in_n_last_months\": 5000,\n  \"age_at_first_exposure_to_sem\": 17,\n  \"no_of_times_viewed_sem_over_lifetime\": \"more than 8000 times\",\n  \"current_user\": \"test user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/sexual_variables",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"sexual_variables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e4e49a96-e01e-4524-8649-0a1b17550519",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/sexual_variables/{{sexual_variable_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"sexual_variables",
+								"{{sexual_variable_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52efe780-1f9b-4384-ae03-2898e09729ea",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/sexual_variables/{{sexual_variable_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"sexual_variables",
+								"{{sexual_variable_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3699549d-7b8b-415f-bef8-721050618a50",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"drivers_license\": \"844731235\",\n  \"current_user\": \"Peter Parker\",\n  \"address_attributes\": {\n    \"id\": \"{{client_address_id}}\",\n    \"address_line_2\": \"68254232\",\n    \"current_user\": \"Bimmy Butler\"\n  },\n  \"contacts_attributes\": [\n    {\n      \"id\": \"{{contact_0_id}}\",\n      \"last_name\": \"Wayne\",\n      \"middle_name\": \"\",\n      \"first_name\": \"Bruce\",\n      \"contact_type\": 1,\n      \"relationship\": \"Father\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"id\": \"{{contact_0_phone_contact_0_id}}\",\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"id\": \"{{contact_0_phone_contact_1_id}}\",\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"id\": \"{{contact_0_address_id}}\",\n        \"address_line_1\": \"San Roque\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Pasay\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"id\": \"{{contact_1_id}}\",\n      \"last_name\": \"Jane\",\n      \"middle_name\": \"Ramos\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 2,\n      \"relationship\": \"Mother\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"id\": \"{{contact_1_address_id}}\",\n        \"address_line_1\": \"San Vicente\",\n        \"address_line_2\": \"69874\",\n        \"city\": \"Las Pinas\",\n        \"state\": \"MM\",\n        \"postcode\": \"1907\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"phone_contacts_attributes\": [\n    {\n      \"id\": \"{{phone_contact_0_id}}\",\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"id\": \"{{phone_contact_1_id}}\",\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"id\": \"{{phone_contact_2_id}}\",\n      \"ordinality\": 3,\n      \"phone_type\": \"office\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"id\": \"{{child_0_id}}\",\n      \"last_name\": \"Jordan\",\n      \"first_name\": \"Michael\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"mj@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"id\": \"{{child_1_id}}\",\n      \"last_name\": \"Byant\",\n      \"first_name\": \"Kobe\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"kb@example.com\",\n      \"current_user\": \"Gwen Stacy\",\n      \"address_attributes\": {\n        \"address_line_1\": \"Block 9\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Pasig\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/sexual_variables/{{sexual_variable_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"sexual_variables",
+								"{{sexual_variable_uuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all enrollment sexual variables",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query sexualVariables($enrollmentUuid: ID!, $searchKey: String, $offset: Int, $limit: Int) {\n        sexualVariables(enrollmentUuid: $enrollmentUuid, searchKey: $searchKey, offset: $offset, limit: $limit) {\n          id\n          uuid\n          enrollmentId\n          orgasms_per_typical_average_week\n          highest_no_of_orgasms_in_n_last_months\n          age_at_first_exposure_to_sem\n          no_of_times_viewed_sem_over_lifetime\n          createdBy\n          updatedBy\n          createdAt\n          updatedAt\n        }\n      }",
+										"variables": "{\n \"offset\": 0,\n \"limit\": 10,\n \"enrollmentUuid\": \"{{enrollmentUuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "show sexual variable",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showSexualVariable($uuid: ID!) {\n  showSexualVariable(uuid: $uuid) {\n    uuid\n    orgasms_per_typical_average_week\n    highest_no_of_orgasms_in_n_last_months\n    age_at_first_exposure_to_sem\n    no_of_times_viewed_sem_over_lifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n   \"uuid\":\"{{sexual_variable_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update sexual variable",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateSexualVariable($input: UpdateSexualVariableInput!) { \n  updateSexualVariable(input: $input) {\n    id\n    uuid\n    enrollmentId\n    orgasms_per_typical_average_week\n    highest_no_of_orgasms_in_n_last_months\n    age_at_first_exposure_to_sem\n    no_of_times_viewed_sem_over_lifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{sexual_variable_uuid}}\",\n    \"orgasms_per_typical_average_week\": \"2020\",\n    \"highest_no_of_orgasms_in_n_last_months\": \"Toyota\",\n    \"age_at_first_exposure_to_sem\": \"Prius\",\n    \"no_of_times_viewed_sem_over_lifetime\": \"Green\",\n    \"current_user\": \"joserizal@dotc.gov.ph\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete sexual variable",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteSexualVariable($input: DeleteSexualVariableInput!) {\n  deleteSexualVariable(input: $input) {\n    uuid\n  }\n}",
+								"variables": "{\n   \"uuid\":\"{{sexual_variable_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create sexual variable",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createSexualVariable($input: CreateSexualVariableInput!) { \n  createSexualVariable(input: $input) {\n     id\n     uuid\n     enrollmentId\n     orgasms_per_typical_average_week\n     highest_no_of_orgasms_in_n_last_months\n     age_at_first_exposure_to_sem\n     no_of_times_viewed_sem_over_lifetime\n     createdAt\n     updatedAt\n   }\n}",
+								"variables": "{\n   \"uuid\":\"{{sexual_variable_uuid}}\",\n    \"orgasms_per_typical_average_week\": \"2020\",\n    \"highest_no_of_orgasms_in_n_last_months\": \"Toyota\",\n    \"age_at_first_exposure_to_sem\": \"Prius\",\n    \"no_of_times_viewed_sem_over_lifetime\": \"Green\",\n    \"current_user\": \"joserizal@dotc.gov.ph\"  \n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
