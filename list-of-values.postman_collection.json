@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "125eadbf-a081-49e7-878d-c7d3509f6a93",
+		"name": "list-of-values",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "list-of-values",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query listOfValues{\n  listOfValues{\n\n    maritalStatuses{\n        id\n        name\n        createdBy\n        updatedBy\n        createdAt\n        updatedAt\n    }\n\n    ethnicities{\n        id\n        name\n        createdBy\n        updatedBy\n        createdAt\n        updatedAt\n    }\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://q2dmfkg9ul.execute-api.us-west-2.amazonaws.com/7509/clients_bff/graphql",
+							"protocol": "https",
+							"host": [
+								"q2dmfkg9ul",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"7509",
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
