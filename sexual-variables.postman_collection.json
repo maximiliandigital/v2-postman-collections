@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0972bd65-b4a7-4451-91fe-1153e3628878",
+		"_postman_id": "8e2a4e4a-9882-46c5-9115-d8ebf7a03c36",
 		"name": "sexual-variables",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,7 +17,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "c4839616-da3f-43a2-b583-1cac0025f078",
+										"id": "7f81276a-52b2-4031-a5d0-a278e1556472",
 										"exec": [
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
 											"pm.environment.set(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
@@ -38,7 +38,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5c278f24-3312-4693-a915-265a76cec2f8",
+										"id": "70409dd5-f895-4bc2-a807-22f8366f4dba",
 										"exec": [
 											"// This will be moved to subscribers, or a setup url, or authorizer",
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
@@ -89,7 +89,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "1686ea14-2eb1-4f71-87b3-6b1042ea7c82",
+								"id": "c87ba4ff-cb8e-47b9-a67d-1bb1cf55750e",
 								"exec": [
 									""
 								],
@@ -99,7 +99,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "bcd7de5b-11fc-4117-bb1a-049a4057ed24",
+								"id": "e2771803-dd60-4c90-a2a1-3b0c0a93dd75",
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
 									"",
@@ -119,7 +119,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n  \"orgasms_per_typical_average_week\": 120,\n  \"highest_no_of_orgasms_in_n_last_months\": 5000,\n  \"age_at_first_exposure_to_sem\": 17,\n  \"no_of_times_viewed_sem_over_lifetime\": \"more than 8000 times\",\n  \"current_user\": \"test user\"\n}",
+							"raw": "{\n  \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n  \"orgasms_per_typical_average_week\": 4,\n  \"highest_no_of_orgasms_in_n_last_months\": 1,\n  \"age_at_first_exposure_to_sem\": 17,\n  \"no_of_times_viewed_sem_over_lifetime\": \"more than 8000 times\",\n  \"current_user\": \"test user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,7 +144,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e4e49a96-e01e-4524-8649-0a1b17550519",
+								"id": "776afc82-c44d-48aa-8658-5b599bca1426",
 								"exec": [
 									""
 								],
@@ -174,7 +174,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "52efe780-1f9b-4384-ae03-2898e09729ea",
+								"id": "89a65df7-5d52-4932-83ad-03a002da5207",
 								"exec": [
 									"// URL: []",
 									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
@@ -207,7 +207,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "3699549d-7b8b-415f-bef8-721050618a50",
+								"id": "5ec9c1e7-3bcb-4c90-a4b3-dc496b851f03",
 								"exec": [
 									""
 								],
@@ -220,7 +220,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"drivers_license\": \"844731235\",\n  \"current_user\": \"Peter Parker\",\n  \"address_attributes\": {\n    \"id\": \"{{client_address_id}}\",\n    \"address_line_2\": \"68254232\",\n    \"current_user\": \"Bimmy Butler\"\n  },\n  \"contacts_attributes\": [\n    {\n      \"id\": \"{{contact_0_id}}\",\n      \"last_name\": \"Wayne\",\n      \"middle_name\": \"\",\n      \"first_name\": \"Bruce\",\n      \"contact_type\": 1,\n      \"relationship\": \"Father\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"id\": \"{{contact_0_phone_contact_0_id}}\",\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"id\": \"{{contact_0_phone_contact_1_id}}\",\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"id\": \"{{contact_0_address_id}}\",\n        \"address_line_1\": \"San Roque\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Pasay\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"id\": \"{{contact_1_id}}\",\n      \"last_name\": \"Jane\",\n      \"middle_name\": \"Ramos\",\n      \"first_name\": \"Dela Cruz\",\n      \"contact_type\": 2,\n      \"relationship\": \"Mother\",\n      \"email\": \"test13234@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"id\": \"{{contact_1_address_id}}\",\n        \"address_line_1\": \"San Vicente\",\n        \"address_line_2\": \"69874\",\n        \"city\": \"Las Pinas\",\n        \"state\": \"MM\",\n        \"postcode\": \"1907\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"phone_contacts_attributes\": [\n    {\n      \"id\": \"{{phone_contact_0_id}}\",\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"id\": \"{{phone_contact_1_id}}\",\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"id\": \"{{phone_contact_2_id}}\",\n      \"ordinality\": 3,\n      \"phone_type\": \"office\",\n      \"phone_number\": \"+12345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"id\": \"{{child_0_id}}\",\n      \"last_name\": \"Jordan\",\n      \"first_name\": \"Michael\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"mj@example.com\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      }\n    },\n    {\n      \"id\": \"{{child_1_id}}\",\n      \"last_name\": \"Byant\",\n      \"first_name\": \"Kobe\",\n      \"middle_name\": \"J\",\n      \"gender\": \"male\",\n      \"relationship\": \"son\",\n      \"lives_with\": \"father\",\n      \"email\": \"kb@example.com\",\n      \"current_user\": \"Gwen Stacy\",\n      \"address_attributes\": {\n        \"address_line_1\": \"Block 9\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Pasig\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ]\n}",
+							"raw": "{\n    \"age_at_first_exposure_to_sem\": 3,\n    \"no_of_times_viewed_sem_over_lifetime\": \"more than 120 times\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
