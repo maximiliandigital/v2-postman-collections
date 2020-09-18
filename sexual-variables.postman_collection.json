@@ -257,8 +257,8 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query sexualVariables($enrollmentUuid: ID!, $searchKey: String, $offset: Int, $limit: Int) {\n        sexualVariables(enrollmentUuid: $enrollmentUuid, searchKey: $searchKey, offset: $offset, limit: $limit) {\n          id\n          uuid\n          enrollmentId\n          orgasms_per_typical_average_week\n          highest_no_of_orgasms_in_n_last_months\n          age_at_first_exposure_to_sem\n          no_of_times_viewed_sem_over_lifetime\n          createdBy\n          updatedBy\n          createdAt\n          updatedAt\n        }\n      }",
-										"variables": "{\n \"offset\": 0,\n \"limit\": 10,\n \"enrollmentUuid\": \"{{enrollmentUuid}}\"\n}"
+										"query": "query listSexualVariables($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listSexualVariables(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    orgasmsPerTypicalAverageWeek\n    highestNoOfOrgasmsInNLastMonths\n    ageAtFirstExposureToSem\n    noOfTimesViewedSemOverLifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+										"variables": "{\n \"enrollmentUuid\": \"{{enrollmentUuid}}\"\n}"
 									}
 								},
 								"url": {
@@ -286,7 +286,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query showSexualVariable($uuid: ID!) {\n  showSexualVariable(uuid: $uuid) {\n    uuid\n    orgasms_per_typical_average_week\n    highest_no_of_orgasms_in_n_last_months\n    age_at_first_exposure_to_sem\n    no_of_times_viewed_sem_over_lifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"query": "query showSexualVariable($uuid: ID!) {\n  showSexualVariable(uuid: $uuid) {\n    uuid\n    enrollmentId\n    orgasmsPerTypicalAverageWeek\n    highestNoOfOrgasmsInNLastMonths\n    ageAtFirstExposureToSem\n    noOfTimesViewedSemOverLifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
 								"variables": "{\n   \"uuid\":\"{{sexual_variable_uuid}}\"\n}"
 							}
 						},
@@ -311,8 +311,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation updateSexualVariable($input: UpdateSexualVariableInput!) { \n  updateSexualVariable(input: $input) {\n    id\n    uuid\n    enrollmentId\n    orgasms_per_typical_average_week\n    highest_no_of_orgasms_in_n_last_months\n    age_at_first_exposure_to_sem\n    no_of_times_viewed_sem_over_lifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{sexual_variable_uuid}}\",\n    \"orgasms_per_typical_average_week\": \"2020\",\n    \"highest_no_of_orgasms_in_n_last_months\": \"Toyota\",\n    \"age_at_first_exposure_to_sem\": \"Prius\",\n    \"no_of_times_viewed_sem_over_lifetime\": \"Green\",\n    \"current_user\": \"joserizal@dotc.gov.ph\"\n  }\n}"
+								"query": "mutation updateSexualVariable($input: UpdateSexualVariableInput!) {\n  updateSexualVariable(input: $input) {\n    uuid\n    enrollmentId\n    orgasmsPerTypicalAverageWeek\n    highestNoOfOrgasmsInNLastMonths\n    ageAtFirstExposureToSem\n    noOfTimesViewedSemOverLifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{sexual_variable_uuid}}\",\n    \"orgasmsPerTypicalAverageWeek\": 1,\n    \"highestNoOfOrgasmsInNLastMonths\": 2\n  }\n}"
 							}
 						},
 						"url": {
@@ -361,8 +361,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createSexualVariable($input: CreateSexualVariableInput!) { \n  createSexualVariable(input: $input) {\n     id\n     uuid\n     enrollmentId\n     orgasms_per_typical_average_week\n     highest_no_of_orgasms_in_n_last_months\n     age_at_first_exposure_to_sem\n     no_of_times_viewed_sem_over_lifetime\n     createdAt\n     updatedAt\n   }\n}",
-								"variables": "{\n   \"uuid\":\"{{sexual_variable_uuid}}\",\n    \"orgasms_per_typical_average_week\": \"2020\",\n    \"highest_no_of_orgasms_in_n_last_months\": \"Toyota\",\n    \"age_at_first_exposure_to_sem\": \"Prius\",\n    \"no_of_times_viewed_sem_over_lifetime\": \"Green\",\n    \"current_user\": \"joserizal@dotc.gov.ph\"  \n}"
+								"query": "mutation createSexualVariable($input: CreateSexualVariableInput!) {\n  createSexualVariable(input: $input) {\n    uuid\n    enrollmentId\n    orgasmsPerTypicalAverageWeek\n    highestNoOfOrgasmsInNLastMonths\n    ageAtFirstExposureToSem\n    noOfTimesViewedSemOverLifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n   \"enrollmentUuid\":\"{{enrollmentUuid}}\",\n    \"orgasmsPerTypicalAverageWeek\": 1,\n    \"highestNoOfOrgasmsInNLastMonths\": 2,\n    \"ageAtFirstExposureToSem\": 3,\n    \"noOfTimesViewedSemOverLifetime\": \"Green\",\n    \"currentUser\": \"joserizal@dotc.gov.ph\"  \n}"
 							}
 						},
 						"url": {
