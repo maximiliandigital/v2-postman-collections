@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "cdb8bcdb-f389-439c-a3a9-42307b3e0e25",
+		"name": "criminal-backgrounds",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "5fe1f837-5edd-48ea-851a-56ea1dfd39cc",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"7466\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "91d62c1b-3af8-4365-97cd-582aff91b0ef",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7466\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/criminal_backgrounds?enrollment_uuid={{enrollment_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"criminal_backgrounds"
+									],
+									"query": [
+										{
+											"key": "enrollment_uuid",
+											"value": "{{enrollment_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45f0c2bb-a2f6-4f92-835b-8600caf88efe",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6e93221-721e-4f5d-bd62-327383ef4448",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var criminal_background_id = jsonData['id']",
+									"var criminal_background_uuid = jsonData['uuid']",
+									"",
+									"postman.setEnvironmentVariable(\"criminal_background_id\", criminal_background_id);",
+									"postman.setEnvironmentVariable(\"criminal_background_uuid\", criminal_background_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n    \"age_at_first_offense\": { \"general\": 1, \"sexual\": 1, \"violent\": 5 },\n    \"no_of_charges\": { \"general\": 2, \"sexual\": 5, \"violent\": 9 },\n    \"number_of_convictions\": { \"general\": 1, \"sexual\": 2, \"violent\": 2 },\n    \"current_user\": \"tester@postman.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/criminal_backgrounds",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"criminal_backgrounds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cd2627f3-546c-440c-9af6-e49cfe57f6c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/criminal_backgrounds/{{criminal_background_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"criminal_backgrounds",
+								"{{criminal_background_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dded7ab1-c389-4399-a2ad-a666cd609df0",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/criminal_backgrounds/{{criminal_background_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"criminal_backgrounds",
+								"{{criminal_background_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "775d55af-d659-4cb7-b2f7-4a8c4de72ad6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"age_at_first_offense\": { \"general\": 10, \"sexual\": 13, \"violent\": 15 },\n    \"no_of_charges\": { \"general\": 17, \"sexual\": 25, \"violent\": 25 },\n    \"number_of_convictions\": { \"general\": 17, \"sexual\": 25, \"violent\": 25 },\n    \"current_user\": \"tester@postman.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/criminal_backgrounds/{{criminal_background_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"criminal_backgrounds",
+								"{{criminal_background_uuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all enrollment criminal backgrounds",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listCriminalBackgrounds($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listCriminalBackgrounds(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    age_at_first_offense\n    no_of_charges\n    number_of_convictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+										"variables": "{\n \"enrollmentUuid\": \"{{enrollmentUuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create criminal background",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createCriminalBackground($input: CreateCriminalBackgroundInput!) {\n  createCriminalBackground(input: $input) {\n    uuid\n    enrollmentId\n    age_at_first_offense\n    no_of_charges\n    number_of_convictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n   \"enrollmentUuid\":\"{{enrollmentUuid}}\",\n   \"age_at_first_offense\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"no_of_charges\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"number_of_convictions\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"currentUser\": \"joserizal@dotc.gov.ph\"  \n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update criminal background",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateCriminalBackground($input: UpdateCriminalBackgroundInput!) {\n  updateCriminalBackground(input: $input) {\n    uuid\n    enrollmentId\n    age_at_first_offense\n    no_of_charges\n    number_of_convictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{criminal_background_uuid}}\",\n    \"general\": 1,\n    \"highestNoOfOrgasmsInNLastMonths\": 2\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show criminal background",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showCriminalBackground($uuid: ID!) {\n  showCriminalBackground(uuid: $uuid) {\n    uuid\n    enrollmentId\n    age_at_first_offense\n    no_of_charges\n    number_of_convictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n   \"uuid\":\"{{criminal_background_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete criminal background",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteCriminalBackground($input: DeleteCriminalBackgroundInput!) {\n  deleteCriminalBackground(input: $input) {\n    uuid\n  }\n}",
+								"variables": "{\n   \"uuid\":\"{{criminal_background_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
