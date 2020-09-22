@@ -22,7 +22,7 @@
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
 											"pm.environment.set(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"pm.environment.set(\"STAGE\", \"7466\");",
+											"pm.environment.set(\"STAGE\", \"7700\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -44,7 +44,7 @@
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
 											"postman.setEnvironmentVariable(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"postman.setEnvironmentVariable(\"STAGE\", \"7466\");",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7700\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -109,6 +109,56 @@
 									"postman.setEnvironmentVariable(\"criminal_background_id\", criminal_background_id);",
 									"postman.setEnvironmentVariable(\"criminal_background_uuid\", criminal_background_uuid);",
 									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n    \"age_at_first_offense\": { \"general\": 1, \"sexual\": 1, \"violent\": 5 },\n    \"no_of_charges\": { \"general\": 2, \"sexual\": 5, \"violent\": 9 },\n    \"number_of_convictions\": { \"general\": 1, \"sexual\": 2, \"violent\": 2 },\n    \"current_user\": \"tester@postman.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/criminal_backgrounds",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"criminal_backgrounds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "call create again and it should fail",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "15bfa4d9-6016-4500-a738-4355f414de19",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "16a5a8d3-92e6-4b68-9863-9671187c8454",
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {",
+									"  pm.response.to.have.status(422);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
