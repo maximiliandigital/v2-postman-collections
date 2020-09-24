@@ -19,8 +19,8 @@
 									"script": {
 										"id": "5fe1f837-5edd-48ea-851a-56ea1dfd39cc",
 										"exec": [
-											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"pm.environment.set(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
+											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://16kdq0bk0d.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
 											"pm.environment.set(\"STAGE\", \"7700\");",
 											"",
@@ -42,7 +42,7 @@
 										"exec": [
 											"// This will be moved to subscribers, or a setup url, or authorizer",
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"postman.setEnvironmentVariable(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
+											"postman.setEnvironmentVariable(\"URL\", \"https://16kdq0bk0d.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
 											"postman.setEnvironmentVariable(\"STAGE\", \"7700\");",
 											"",
@@ -307,7 +307,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query listCriminalBackgrounds($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listCriminalBackgrounds(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    age_at_first_offense\n    no_of_charges\n    number_of_convictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+										"query": "query listCriminalBackgrounds($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listCriminalBackgrounds(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    ageAtFirstOffense\n    numberOfCharges\n    numberOfConvictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
 										"variables": "{\n \"enrollmentUuid\": \"{{enrollmentUuid}}\"\n}"
 									}
 								},
@@ -336,8 +336,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createCriminalBackground($input: CreateCriminalBackgroundInput!) {\n  createCriminalBackground(input: $input) {\n    uuid\n    enrollmentId\n    age_at_first_offense\n    no_of_charges\n    number_of_convictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-								"variables": "{\n   \"enrollmentUuid\":\"{{enrollmentUuid}}\",\n   \"age_at_first_offense\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"no_of_charges\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"number_of_convictions\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"currentUser\": \"joserizal@dotc.gov.ph\"  \n}"
+								"query": "mutation createCriminalBackground($input: CreateCriminalBackgroundInput!) {\n  createCriminalBackground(input: $input) {\n    uuid\n    enrollmentId\n    ageAtFirstOffense\n    numberOfCharges\n    numberOfConvictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n   \"enrollmentUuid\":\"{{enrollmentUuid}}\",\n   \"ageAtFirstOffense\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"numberOfCharges\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"numberOfConvictions\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"currentUser\": \"joserizal@dotc.gov.ph\"  \n}"
 							}
 						},
 						"url": {
@@ -361,8 +361,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation updateCriminalBackground($input: UpdateCriminalBackgroundInput!) {\n  updateCriminalBackground(input: $input) {\n    uuid\n    enrollmentId\n    age_at_first_offense\n    no_of_charges\n    number_of_convictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{criminal_background_uuid}}\",\n    \"general\": 1,\n    \"highestNoOfOrgasmsInNLastMonths\": 2\n  }\n}"
+								"query": "mutation updateCriminalBackground($input: UpdateCriminalBackgroundInput!) {\n  updateCriminalBackground(input: $input) {\n    uuid\n    enrollmentId\n    ageAtFirstOffense\n    numberOfCharges\n    numberOfConvictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{criminal_background_uuid}}\",\n    \"ageAtFirstOffense\": { \"general\": 7, \"sexual\": 8, \"violent\": 9 },\n   \"numberOfCharges\": { \"general\": 1, \"sexual\": 2, \"violent\": 3 },\n   \"numberOfConvictions\": { \"general\": 4, \"sexual\": 5, \"violent\": 6 },\n   \"currentUser\": \"andresbonifacio@dotc.gov.ph\"  \n  }\n}"
 							}
 						},
 						"url": {
@@ -386,7 +386,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query showCriminalBackground($uuid: ID!) {\n  showCriminalBackground(uuid: $uuid) {\n    uuid\n    enrollmentId\n    age_at_first_offense\n    no_of_charges\n    number_of_convictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"query": "query showCriminalBackground($uuid: ID!) {\n  showCriminalBackground(uuid: $uuid) {\n    uuid\n    enrollmentId\n    ageAtFirstOffense\n    numberOfCharges\n    numberOfConvictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
 								"variables": "{\n   \"uuid\":\"{{criminal_background_uuid}}\"\n}"
 							}
 						},
