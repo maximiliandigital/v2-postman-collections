@@ -257,7 +257,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query listSexualVariables($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listSexualVariables(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    orgasmsPerTypicalAverageWeek\n    highestNoOfOrgasmsInNLastMonths\n    ageAtFirstExposureToSem\n    noOfTimesViewedSemOverLifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+										"query": "query listOffenseHistories($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n    listOffenseHistories(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n        id\n        uuid\n        enrollmentId\n        indexOffense\n        offenseDisposition\n        offenseDetails\n        comments\n        createdBy\n        updatedBy\n        createdAt\n        updatedAt\n    }\n}",
 										"variables": "{\n \"enrollmentUuid\": \"{{enrollmentUuid}}\"\n}"
 									}
 								},
@@ -286,8 +286,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query showSexualVariable($uuid: ID!) {\n  showSexualVariable(uuid: $uuid) {\n    uuid\n    enrollmentId\n    orgasmsPerTypicalAverageWeek\n    highestNoOfOrgasmsInNLastMonths\n    ageAtFirstExposureToSem\n    noOfTimesViewedSemOverLifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-								"variables": "{\n   \"uuid\":\"{{sexual_variable_uuid}}\"\n}"
+								"query": "query showOffenseHistory($uuid: ID!) {\n    showOffenseHistory(uuid: $uuid) {\n    id\n    uuid\n    enrollmentId\n    indexOffense\n    offenseDisposition\n    offenseDetails\n    comments\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    }\n}",
+								"variables": "{\n   \"uuid\":\"{{offense_history_uuid}}\"\n}"
 							}
 						},
 						"url": {
@@ -311,8 +311,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation updateSexualVariable($input: UpdateSexualVariableInput!) {\n  updateSexualVariable(input: $input) {\n    uuid\n    enrollmentId\n    orgasmsPerTypicalAverageWeek\n    highestNoOfOrgasmsInNLastMonths\n    ageAtFirstExposureToSem\n    noOfTimesViewedSemOverLifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{sexual_variable_uuid}}\",\n    \"orgasmsPerTypicalAverageWeek\": 1,\n    \"highestNoOfOrgasmsInNLastMonths\": 2\n  }\n}"
+								"query": "mutation updateOffenseHistory($input: UpdateOffenseHistoryInput!) {\n  updateOffenseHistory(input: $input) {\n      id\n      uuid\n      enrollmentId\n      indexOffense\n      offenseDisposition\n      offenseDetails\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n  }\n}",
+								"variables": "{\n    \"input\": {\n        \"uuid\": \"{{offense_history_uuid}}\",\n        \"comments\": \"Test comment\",\n        \"offenseDetails\": {\n        \"offense_counts\": [\n            {\"counts\": \"Alcohol\", \"penal_code\": \"12345\", \"type\": \"Felony\"},\n            {\"counts\": \"Drugs\", \"penal_code\": \"AA32\", \"type\": \"Misdemeanor\"}\n        ],\n        \"offense_victims\": [\n            { \"victim\": \"Female\", \"age_range\": \"Child, 11 or Under\", \"victim_relationship\": \"Stranger\"},\n            { \"victim\": \"Male\", \"age_range\": \"Youth, 12 to 17\", \"victim_relationship\": \"Stranger\"}\n        ],\n        \"offense_date\": \"Sun, Feb 20, 1996\",\n        \"age_at_offense\": 17,\n        \"intoxication_at_offense\": \"Alcohol and Drugs\",\n        \"sentencing_date\": \"Sun, May 1, 1998\",\n        \"release_date\": \"Mon, July 7, 2001\",\n        \"incarceration_state\": \"California\",\n        \"incarceration_county\": \"Contra Costa\",\n        \"sentencing_length\": \"2 years, 6 months 3 weeks, 256 days\",\n        \"time_served\": \"2 years\",\n        \"incarceration_type\": \"State prision\",\n        \"parole_length\": \"450 days\"\n        }\n    }\n}"
 							}
 						},
 						"url": {
@@ -336,8 +336,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation deleteSexualVariable($input: DeleteSexualVariableInput!) {\n  deleteSexualVariable(input: $input) {\n    uuid\n  }\n}",
-								"variables": "{\n   \"uuid\":\"{{sexual_variable_uuid}}\"\n}"
+								"query": "mutation deleteOffenseHistory($input: DeleteOffenseHistoryInput!) {\n    deleteOffenseHistory(input: $input) {\n    uuid\n    }\n}",
+								"variables": "{\n   \"uuid\":\"{{offense_history_uuid}}\"\n}"
 							}
 						},
 						"url": {
@@ -361,8 +361,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createSexualVariable($input: CreateSexualVariableInput!) {\n  createSexualVariable(input: $input) {\n    uuid\n    enrollmentId\n    orgasmsPerTypicalAverageWeek\n    highestNoOfOrgasmsInNLastMonths\n    ageAtFirstExposureToSem\n    noOfTimesViewedSemOverLifetime\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-								"variables": "{\n   \"enrollmentUuid\":\"{{enrollmentUuid}}\",\n    \"orgasmsPerTypicalAverageWeek\": 1,\n    \"highestNoOfOrgasmsInNLastMonths\": 2,\n    \"ageAtFirstExposureToSem\": 3,\n    \"noOfTimesViewedSemOverLifetime\": \"Green\",\n    \"currentUser\": \"joserizal@dotc.gov.ph\"  \n}"
+								"query": "mutation createOffenseHistory($input: CreateOffenseHistoryInput!) {\n  createOffenseHistory(input: $input) {\n      id\n      uuid\n      enrollmentId\n      indexOffense\n      offenseDisposition\n      offenseDetails\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n  }\n}",
+								"variables": "{\n    \"input\": {\n        \"enrollmentUuid\": \"{{enrollmentUuid}}\",\n        \"indexOffense\": true,\n        \"offenseDisposition\": \"Incarceration\",\n        \"comments\": \"Test\",\n        \"currentUser\": \"test user\",\n        \"offenseDetails\": {\n        \"offense_counts\": [\n            {\"counts\": \"Alcohol\", \"penal_code\": \"1234\", \"type\": \"Felony\"},\n            {\"counts\": \"Drugs\", \"penal_code\": \"AA32\", \"type\": \"Misdemeanor\"}\n        ],\n        \"offense_victims\": [\n            { \"victim\": \"Female\", \"age_range\": \"Child, 11 or Under\", \"victim_relationship\": \"Stranger\"},\n            { \"victim\": \"Male\", \"age_range\": \"Youth, 12 to 17\", \"victim_relationship\": \"Stranger\"}\n        ],\n        \"offense_date\": \"Sun, Feb 20, 1996\",\n        \"age_at_offense\": 17,\n        \"intoxication_at_offense\": \"Alcohol and Drugs\",\n        \"sentencing_date\": \"Sun, May 1, 1998\",\n        \"release_date\": \"Mon, July 7, 2001\",\n        \"incarceration_state\": \"California\",\n        \"incarceration_county\": \"Contra Costa\",\n        \"sentencing_length\": \"2 years, 6 months 3 weeks, 256 days\",\n        \"time_served\": \"2 years\",\n        \"incarceration_type\": \"State prision\",\n        \"parole_length\": \"450 days\"\n        }\n    }\n}"
 							}
 						},
 						"url": {
