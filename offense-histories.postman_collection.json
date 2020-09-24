@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "c8cdabbe-5eb0-4c30-903d-cdcaf43cc1bd",
+		"name": "offense-histories",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d389834a-c7b8-418e-9ddd-2b0156d1280a",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"7466\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "18f5132a-7309-4b8b-aff1-7d5f18ba8c53",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://shwlth9acj.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7466\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/offense_histories?enrollment_uuid={{enrollment_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"offense_histories"
+									],
+									"query": [
+										{
+											"key": "enrollment_uuid",
+											"value": "{{enrollment_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fc9d5fa8-152b-4296-aed1-4bed021f3bd8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2622fd4f-6649-4949-8d34-013c1b8e6b75",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var sexual_variable_id = jsonData['id']",
+									"var sexual_variable_uuid = jsonData['uuid']",
+									"",
+									"postman.setEnvironmentVariable(\"sexual_variable_id\", sexual_variable_id);",
+									"postman.setEnvironmentVariable(\"sexual_variable_uuid\", sexual_variable_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n  \"comments\": \"Test\",\n  \"index_offense\": true,\n  \"offense_disposition\": \"Incarceration\",\n  \"current_user\": \"test\",\n  \"offense_details\": {\n      \"offense_counts\": [\n          {\"counts\": \"Alcohol\", \"penal_code\": \"1234\", \"type\": \"Felony\"},\n          {\"counts\": \"Drugs\", \"penal_code\": \"AA32\", \"type\": \"Misdemeanor\"}\n      ],\n      \"offense_victims\": [\n          { \"victim\": \"Female\", \"age_range\": \"Child, 11 or Under\", \"victim_relationship\": \"Stranger\"},\n          { \"victim\": \"Male\", \"age_range\": \"Youth, 12 to 17\", \"victim_relationship\": \"Stranger\"}\n      ],\n      \"offense_date\": \"Sun, Feb 20, 1996\",\n      \"age_at_offense\": 17,\n      \"intoxication_at_offense\": \"Alcohol and Drugs\",\n      \"sentencing_date\": \"Sun, May 1, 1998\",\n      \"release_date\": \"Mon, July 7, 2001\",\n      \"incarceration_state\": \"California\",\n      \"incarceration_county\": \"Contra Costa\",\n      \"sentencing_length\": \"2 years, 6 months 3 weeks, 256 days\",\n      \"time_served\": \"2 years\",\n      \"incarceration_type\": \"State prision\",\n      \"parole_length\": \"450 days\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/offense_histories",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"offense_histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "deae301f-7782-430b-ba09-e705a21330fa",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/offense_histories/{{offense_history_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"offense_histories",
+								"{{offense_history_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "998416f8-5d96-4f9f-9217-bdbb5981e7f6",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/offense_histories/{{offense_history_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"offense_histories",
+								"{{offense_history_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a3bff3c5-d822-490e-b032-88cf2d4fbf6e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comments\": \"Test 1234\",\n    \"index_offense\": false,\n    \"offense_details\": {\n        \"offense_counts\": [\n            {\"counts\": \"Alcohol\", \"penal_code\": \"12324\", \"type\": \"Felony\"},\n            {\"counts\": \"Drugs\", \"penal_code\": \"AA322\", \"type\": \"Misdemeanor\"}\n        ],\n        \"offense_victims\": [\n            { \"victim\": \"Female\", \"age_range\": \"Child, 11 or Under\", \"victim_relationship\": \"Stranger\"},\n            { \"victim\": \"Male\", \"age_range\": \"Youth, 12 to 17\", \"victim_relationship\": \"Stranger\"}\n        ],\n        \"offense_date\": \"Sun, Feb 20, 1996\",\n        \"age_at_offense\": 17,\n        \"intoxication_at_offense\": \"Alcohol and Drugs\",\n        \"sentencing_date\": \"Mon, May 2, 1998\",\n        \"release_date\": \"Mon, July 7, 2001\",\n        \"incarceration_state\": \"California\",\n        \"incarceration_county\": \"Contra Costa\",\n        \"sentencing_length\": \"2 years, 6 months 3 weeks, 256 days\",\n        \"time_served\": \"2 years\",\n        \"incarceration_type\": \"State prision\",\n        \"parole_length\": \"450 days\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/offense_histories/{{offense_history_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"offense_histories",
+								"{{offense_history_uuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all enrollment offense histories",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listOffenseHistories($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n    listOffenseHistories(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n        id\n        uuid\n        enrollmentId\n        indexOffense\n        offenseDisposition\n        offenseDetails\n        comments\n        createdBy\n        updatedBy\n        createdAt\n        updatedAt\n    }\n}",
+										"variables": "{\n \"enrollmentUuid\": \"{{enrollmentUuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "show offense history",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showOffenseHistory($uuid: ID!) {\n    showOffenseHistory(uuid: $uuid) {\n    id\n    uuid\n    enrollmentId\n    indexOffense\n    offenseDisposition\n    offenseDetails\n    comments\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    }\n}",
+								"variables": "{\n   \"uuid\":\"{{offense_history_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update offense history",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateOffenseHistory($input: UpdateOffenseHistoryInput!) {\n  updateOffenseHistory(input: $input) {\n      id\n      uuid\n      enrollmentId\n      indexOffense\n      offenseDisposition\n      offenseDetails\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n  }\n}",
+								"variables": "{\n    \"input\": {\n        \"uuid\": \"{{offense_history_uuid}}\",\n        \"comments\": \"Test comment\",\n        \"offenseDetails\": {\n        \"offense_counts\": [\n            {\"counts\": \"Alcohol\", \"penal_code\": \"12345\", \"type\": \"Felony\"},\n            {\"counts\": \"Drugs\", \"penal_code\": \"AA32\", \"type\": \"Misdemeanor\"}\n        ],\n        \"offense_victims\": [\n            { \"victim\": \"Female\", \"age_range\": \"Child, 11 or Under\", \"victim_relationship\": \"Stranger\"},\n            { \"victim\": \"Male\", \"age_range\": \"Youth, 12 to 17\", \"victim_relationship\": \"Stranger\"}\n        ],\n        \"offense_date\": \"Sun, Feb 20, 1996\",\n        \"age_at_offense\": 17,\n        \"intoxication_at_offense\": \"Alcohol and Drugs\",\n        \"sentencing_date\": \"Sun, May 1, 1998\",\n        \"release_date\": \"Mon, July 7, 2001\",\n        \"incarceration_state\": \"California\",\n        \"incarceration_county\": \"Contra Costa\",\n        \"sentencing_length\": \"2 years, 6 months 3 weeks, 256 days\",\n        \"time_served\": \"2 years\",\n        \"incarceration_type\": \"State prision\",\n        \"parole_length\": \"450 days\"\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete offense history",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteOffenseHistory($input: DeleteOffenseHistoryInput!) {\n    deleteOffenseHistory(input: $input) {\n    uuid\n    }\n}",
+								"variables": "{\n   \"uuid\":\"{{offense_history_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create offense history",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createOffenseHistory($input: CreateOffenseHistoryInput!) {\n  createOffenseHistory(input: $input) {\n      id\n      uuid\n      enrollmentId\n      indexOffense\n      offenseDisposition\n      offenseDetails\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n  }\n}",
+								"variables": "{\n    \"input\": {\n        \"enrollmentUuid\": \"{{enrollmentUuid}}\",\n        \"indexOffense\": true,\n        \"offenseDisposition\": \"Incarceration\",\n        \"comments\": \"Test\",\n        \"currentUser\": \"test user\",\n        \"offenseDetails\": {\n        \"offense_counts\": [\n            {\"counts\": \"Alcohol\", \"penal_code\": \"1234\", \"type\": \"Felony\"},\n            {\"counts\": \"Drugs\", \"penal_code\": \"AA32\", \"type\": \"Misdemeanor\"}\n        ],\n        \"offense_victims\": [\n            { \"victim\": \"Female\", \"age_range\": \"Child, 11 or Under\", \"victim_relationship\": \"Stranger\"},\n            { \"victim\": \"Male\", \"age_range\": \"Youth, 12 to 17\", \"victim_relationship\": \"Stranger\"}\n        ],\n        \"offense_date\": \"Sun, Feb 20, 1996\",\n        \"age_at_offense\": 17,\n        \"intoxication_at_offense\": \"Alcohol and Drugs\",\n        \"sentencing_date\": \"Sun, May 1, 1998\",\n        \"release_date\": \"Mon, July 7, 2001\",\n        \"incarceration_state\": \"California\",\n        \"incarceration_county\": \"Contra Costa\",\n        \"sentencing_length\": \"2 years, 6 months 3 weeks, 256 days\",\n        \"time_served\": \"2 years\",\n        \"incarceration_type\": \"State prision\",\n        \"parole_length\": \"450 days\"\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
