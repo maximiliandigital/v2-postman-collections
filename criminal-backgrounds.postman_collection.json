@@ -20,9 +20,9 @@
 										"id": "5fe1f837-5edd-48ea-851a-56ea1dfd39cc",
 										"exec": [
 											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
-											"pm.environment.set(\"URL\", \"https://16kdq0bk0d.execute-api.us-west-2.amazonaws.com/\");",
+											"pm.environment.set(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"pm.environment.set(\"STAGE\", \"7700\");",
+											"pm.environment.set(\"STAGE\", \"7707\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -30,7 +30,7 @@
 											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
 											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
 											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
-											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+											"pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
 										],
 										"type": "text/javascript"
 									}
@@ -42,9 +42,9 @@
 										"exec": [
 											"// This will be moved to subscribers, or a setup url, or authorizer",
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"postman.setEnvironmentVariable(\"URL\", \"https://16kdq0bk0d.execute-api.us-west-2.amazonaws.com/\");",
+											"postman.setEnvironmentVariable(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"postman.setEnvironmentVariable(\"STAGE\", \"7700\");",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7707\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -52,7 +52,8 @@
 											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
 											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
 											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
-											"postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+											"postman.setEnvironmentVariable(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");",
+											"postman.setEnvironmentVariable(\"enrollment_uuid\", \"9c5c2aae-89ab-48c5-a2d1-d2eca84baadc\");"
 										],
 										"type": "text/javascript"
 									}
@@ -60,7 +61,58 @@
 							],
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{URL}}{{STAGE}}/criminal_backgrounds?enrollment_uuid={{enrollment_uuid}}",
 									"host": [
@@ -301,14 +353,63 @@
 					"item": [
 						{
 							"name": "list all enrollment criminal backgrounds",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "bd35567b-d2d9-4341-b33b-516485b0c640",
+										"exec": [
+											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"7707\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"// pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "graphql",
 									"graphql": {
 										"query": "query listCriminalBackgrounds($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listCriminalBackgrounds(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    ageAtFirstOffense\n    numberOfCharges\n    numberOfConvictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-										"variables": "{\n \"enrollmentUuid\": \"{{enrollmentUuid}}\"\n}"
+										"variables": "{\n \"enrollmentUuid\": \"{{enrollment_uuid}}\"\n}"
 									}
 								},
 								"url": {
@@ -330,14 +431,56 @@
 				},
 				{
 					"name": "create criminal background",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7cb7db4b-8e1c-4b11-ae82-8b6ffd24d958",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var criminal_background_uuid = jsonData['data']['createCriminalBackground']['uuid']",
+									"postman.setEnvironmentVariable(\"criminal_background_uuid\", criminal_background_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation createCriminalBackground($input: CreateCriminalBackgroundInput!) {\n  createCriminalBackground(input: $input) {\n    uuid\n    enrollmentId\n    ageAtFirstOffense\n    numberOfCharges\n    numberOfConvictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-								"variables": "{\n   \"enrollmentUuid\":\"{{enrollmentUuid}}\",\n   \"ageAtFirstOffense\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"numberOfCharges\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"numberOfConvictions\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n   \"currentUser\": \"joserizal@dotc.gov.ph\"  \n}"
+								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{enrollment_uuid}}\",\n     \"ageAtFirstOffense\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n     \"numberOfCharges\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n     \"numberOfConvictions\": { \"general\": 2, \"sexual\": 8, \"violent\": 15 },\n     \"currentUser\": \"joserizal@dotc.gov.ph\"  \n  }\n}"
 							}
 						},
 						"url": {
@@ -357,12 +500,38 @@
 					"name": "update criminal background",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation updateCriminalBackground($input: UpdateCriminalBackgroundInput!) {\n  updateCriminalBackground(input: $input) {\n    uuid\n    enrollmentId\n    ageAtFirstOffense\n    numberOfCharges\n    numberOfConvictions\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{criminal_background_uuid}}\",\n    \"ageAtFirstOffense\": { \"general\": 7, \"sexual\": 8, \"violent\": 9 },\n   \"numberOfCharges\": { \"general\": 1, \"sexual\": 2, \"violent\": 3 },\n   \"numberOfConvictions\": { \"general\": 4, \"sexual\": 5, \"violent\": 6 },\n   \"currentUser\": \"andresbonifacio@dotc.gov.ph\"  \n  }\n}"
+								"variables": "{ \n  \"input\": {\n    \"uuid\": \"{{criminal_background_uuid}}\",\n    \"ageAtFirstOffense\": { \"general\": 77, \"sexual\": 8, \"violent\": 9 },\n     \"numberOfCharges\": { \"general\": 1, \"sexual\": 2, \"violent\": 3 },\n     \"numberOfConvictions\": { \"general\": 4, \"sexual\": 5, \"violent\": 6 },\n     \"currentUser\": \"andresbonifacio@dotc.gov.ph\"  \n  }\n}"
 							}
 						},
 						"url": {
@@ -382,7 +551,33 @@
 					"name": "show criminal background",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
@@ -407,12 +602,38 @@
 					"name": "delete criminal background",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation deleteCriminalBackground($input: DeleteCriminalBackgroundInput!) {\n  deleteCriminalBackground(input: $input) {\n    uuid\n  }\n}",
-								"variables": "{\n   \"uuid\":\"{{criminal_background_uuid}}\"\n}"
+								"variables": "{\n  \"input\": {\n    \"uuid\":\"{{criminal_background_uuid}}\"\n  }\n}"
 							}
 						},
 						"url": {
