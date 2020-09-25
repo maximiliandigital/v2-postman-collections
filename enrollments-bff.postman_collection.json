@@ -66,6 +66,63 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "show-enrollment-details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query showEnrollmentDetails($uuid: ID!) {\n    showEnrollmentDetails(uuid: $uuid) {\n    id\n    clientUuid\n    subscriberUuid\n    enrollmentTypeId\n    referralDate\n    referralReceivedDate\n    dischargedOn\n    locationUuid\n    treatmentStartDate\n    treatmentEndDate\n    enrollmentStatusId\n    firstAppointmentDate\n    reasonForReferral\n    referrerUuid\n    organizationUuid\n    caseUuid\n    refNum\n    pid\n    cii\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    sexualVariable{\n        id\n        uuid\n        enrollmentId\n        orgasmsPerTypicalAverageWeek\n        highestNoOfOrgasmsInNLastMonths\n        ageAtFirstExposureToSem\n        noOfTimesViewedSemOverLifetime\n        createdBy\n        updatedBy\n        createdAt\n        updatedAt\n    }\n\n    criminalBackground{\n        id  \n        uuid\n        enrollmentId\n        ageAtFirstOffense\n        numberOfCharges\n        numberOfConvictions\n        createdBy\n        updatedBy\n        createdAt\n        updatedAt\n    }\n\n    offenseHistories{\n        id\n        uuid\n        enrollmentId\n        indexOffense\n        offenseDisposition\n        offenseDetails\n        comments\n        createdBy\n        updatedBy\n        createdAt\n        updatedAt\n    }\n  }\n}",
+						"variables": "{\n  \"uuid\": \"9c5c2aae-89ab-48c5-a2d1-d2eca84baadc\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://euajec762f.execute-api.us-west-2.amazonaws.com/7812/enrollments_bff/graphql",
+					"protocol": "https",
+					"host": [
+						"euajec762f",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"7812",
+						"enrollments_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
