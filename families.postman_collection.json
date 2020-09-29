@@ -1,0 +1,876 @@
+{
+	"info": {
+		"_postman_id": "6f5697c5-d697-43bc-8352-8d4105526776",
+		"name": "families",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "create family",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7b85fd10-0397-4f28-a5e2-c95437593912",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6ca4395-2624-428e-a831-1105a7dad9f5",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"petitioner_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"respondent_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Debra\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"daughter\",\n      \"relationship_to_petitioner\": \"daughter\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    },\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Amenediel\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"son\",\n      \"relationship_to_petitioner\": \"son\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"peytonlist@cobrakai.com\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41342678908\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"marymouser@cobrakai.com\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41342678909\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create family - missing required parameters (case_name, subscriber_uuid, location_uuid)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "51da7b78-25ce-43b9-923b-f0b1295e0ade",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2c743532-40d3-4492-9a7a-4d97d6cd68e2",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"petitioner_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"respondent_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Debra\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"daughter\",\n      \"relationship_to_petitioner\": \"daughter\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    },\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Amenediel\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"son\",\n      \"relationship_to_petitioner\": \"son\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"peytonlist@cobrakai.com\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41342678908\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"marymouser@cobrakai.com\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41342678909\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create family - missing petitioner",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "82b106ea-552f-42e9-812e-134d46c399af",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "01950b3c-8cce-431c-8ca6-a3b72471557e",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"respondent_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Debra\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"daughter\",\n      \"relationship_to_petitioner\": \"daughter\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    },\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Amenediel\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"son\",\n      \"relationship_to_petitioner\": \"son\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"peytonlist@cobrakai.com\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41342678908\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"marymouser@cobrakai.com\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41342678909\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create family - missing respondent",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "070f9514-2c8b-49d8-b72c-3e0c3e1c4698",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "16364623-808a-4e80-86f6-4e8fd8881c50",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"petitioner_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Debra\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"daughter\",\n      \"relationship_to_petitioner\": \"daughter\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    },\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Amenediel\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"son\",\n      \"relationship_to_petitioner\": \"son\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"peytonlist@cobrakai.com\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41342678908\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"marymouser@cobrakai.com\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41342678909\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create family - missing children",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ad901e1b-3afa-47f4-9c7a-3875df1bf760",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f0a6a8e9-dc46-478e-9263-41de1a6ad715",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"petitioner_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"respondent_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create family - petitioner_info_attributes and petitioner_uuid are present",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4b218599-b26f-4029-9656-f7d2af8177d2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "71470ce3-ed08-4631-a8c7-3abc231b1b51",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"petitioner_uuid\": \"{{client_uuid}}\",\n  \"petitioner_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"respondent_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Debra\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"daughter\",\n      \"relationship_to_petitioner\": \"daughter\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    },\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Amenediel\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"son\",\n      \"relationship_to_petitioner\": \"son\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"peytonlist@cobrakai.com\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41342678908\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"marymouser@cobrakai.com\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41342678909\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create family - both respondent_info_attributes and respondent_uuid provided",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "38e5c085-9f49-4503-8a91-be36611c2852",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4ed1197-07eb-4390-b90f-0f5f0cdd6770",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"petitioner_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"respondent_uuid\": \"{{client_uuid}}\",\n  \"respondent_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Debra\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"daughter\",\n      \"relationship_to_petitioner\": \"daughter\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    },\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Amenediel\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"son\",\n      \"relationship_to_petitioner\": \"son\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"peytonlist@cobrakai.com\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41342678908\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"marymouser@cobrakai.com\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41342678909\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create family - petitioner uuid",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "49a9d825-22fe-426b-9227-d9ef70c243d1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ab4b57e0-7bf7-4b86-a5be-b44badb6f49b",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"petitioner_uuid\": \"{{client_uuid}}\",\n  \"respondent_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Debra\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"daughter\",\n      \"relationship_to_petitioner\": \"daughter\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    },\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Amenediel\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"son\",\n      \"relationship_to_petitioner\": \"son\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"peytonlist@cobrakai.com\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41342678908\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"marymouser@cobrakai.com\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41342678909\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create family - respondent uuid provided",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "11dda50b-d3b9-46c6-a8ad-8df670962171",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad30de48-e490-4670-8e28-40a2fa318384",
+								"exec": [
+									"var response_body = JSON.parse(responseBody);",
+									"",
+									"// Petitioner Information",
+									"var petitioner_info = response_body['petitioner_info']",
+									"",
+									"var petitioner_id = petitioner_info['id']",
+									"var petitioner_uuid = petitioner_info['uuid']",
+									"",
+									"var petitioner_addr = petitioner_info['address']",
+									"var petitioner_phone_contacts = petitioner_info['phone_contacts']",
+									"",
+									"var petitioner_collateral_contacts = petitioner_info['petitioner_info']['contacts'][0]",
+									"var petitioner_emergency_contacts = petitioner_info['petitioner_info']['contacts'][1]",
+									"",
+									"// Respondent Information",
+									"var respondent_info = response_body['respondent_info']",
+									"",
+									"var respondent_id = respondent_info['id']",
+									"var respondent_uuid = respondent_info['uuid']",
+									"",
+									"var respondent_addr = respondent_info['address']",
+									"var respondent_phone_contacts = respondent_info['phone_contacts']",
+									"",
+									"var respondentcollateral_contacts = respondent_info['contacts'][0]",
+									"var respondent_emergency_contacts = respondent_info['contacts'][1]",
+									"",
+									"",
+									"",
+									"// console.log(client_uuid)",
+									"// postman.setEnvironmentVariable(\"client_id\", client_id);",
+									"// postman.setEnvironmentVariable(\"client_uuid\", client_uuid);",
+									"// postman.setEnvironmentVariable(\"client_address_id\", client_address_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"phone_contact_0_id\", phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_1_id\", phone_contact_1_id);",
+									"// postman.setEnvironmentVariable(\"phone_contact_2_id\", phone_contact_2_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_id\", contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_id\", contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"contact_0_address_id\", contact_0_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_0_id\", contact_0_phone_contact_0_id);",
+									"// postman.setEnvironmentVariable(\"contact_1_address_id\", contact_1_address_id);",
+									"// postman.setEnvironmentVariable(\"contact_0_phone_contact_1_id\", contact_0_phone_contact_1_id);",
+									"",
+									"// postman.setEnvironmentVariable(\"child_0_id\", child_0_id);",
+									"// postman.setEnvironmentVariable(\"child_1_id\", child_1_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"case_name\": \"Lemon vs Lennon\",\n  \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"location_uuid\": \"af7dcd26-736d-49fc-98b3-bce5aa5c36e5\",\n  \"current_user\": \"test user\",\n  \"petitioner_info_attributes\": {\n    \"first_name\": \"John\",\n    \"middle_name\": \"Smith\",\n    \"last_name\": \"Catan\",\n    \"relationship_to_respondent\": \"husband\",\n    \"dob\": \"1980-10-09\",\n    \"gender\": \"male\",\n    \"ssn\": \"220-23-5602\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone_contacts_attributes\": [\n    {\n      \"ordinality\": 1,\n      \"phone_type\": \"home\",\n      \"phone_number\": \"+41345678901\",\n      \"phone_extension\": \"123\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    },\n    {\n      \"ordinality\": 2,\n      \"phone_type\": \"mobile\",\n      \"phone_number\": \"+42345678901\",\n      \"phone_extension\": \"456\",\n      \"not_okay_to_leave_message\": false,\n      \"current_user\": \"test\"\n    }],\n    \"address_attributes\": {\n      \"address_line_1\": \"San Roque\",\n      \"address_line_2\": \"45678\",\n      \"city\": \"Pasay\",\n      \"state\": \"MM\",\n      \"postcode\": \"1303\",\n      \"current_user\": \"Peter Parker\"\n    }\n  },\n  \"respondent_uuid\": {{client_uuid}},\n  \"emergency_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Catan\",\n      \"first_name\": \"Demi\",\n      \"contact_type\": 1,\n      \"relationship\": \"Mother\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Striker\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+42345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Ssee\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Austin\",\n        \"state\": \"Texas\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"collateral_contacts_attributes\": [\n    {\n      \"last_name\": \"Morningstar\",\n      \"middle_name\": \"Sun\",\n      \"first_name\": \"Luci\",\n      \"contact_type\": 2,\n      \"relationship\": \"Father\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"phone_contacts_attributes\": [\n      {\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+91345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+92345678901\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }],\n      \"address_attributes\": {\n        \"address_line_1\": \"Cervantes de Quijote\",\n        \"address_line_2\": \"45678\",\n        \"city\": \"Blackwood\",\n        \"state\": \"MM\",\n        \"postcode\": \"1303\",\n        \"current_user\": \"Peter Parker\"\n      }\n    }\n  ],\n  \"children_attributes\": [\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Debra\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"daughter\",\n      \"relationship_to_petitioner\": \"daughter\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"Mary Watson\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41345678902\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    },\n    {\n      \"last_name\": \"Catan\",\n      \"first_name\": \"Amenediel\",\n      \"middle_name\": \"Jo\",\n      \"gender\": \"female\",\n      \"relationship_to_respondent\": \"son\",\n      \"relationship_to_petitioner\": \"son\",\n      \"email\": \"{{$randomEmail}}\",\n      \"current_user\": \"peytonlist@cobrakai.com\",\n      \"address_attributes\": {\n        \"address_line_1\": \"San Dionisio\",\n        \"address_line_2\": \"68254\",\n        \"city\": \"Makati\",\n        \"state\": \"MM\",\n        \"postcode\": \"8107\",\n        \"current_user\": \"Peter Parker\"\n      },\n      \"phone_contacts_attributes\": [{\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+41342678908\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"marymouser@cobrakai.com\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+41342678909\",\n        \"phone_extension\": \"456\",\n        \"not_okay_to_leave_message\": false,\n        \"current_user\": \"test\"\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/families/",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"families",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
