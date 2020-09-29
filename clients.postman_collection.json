@@ -17,12 +17,12 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "2b7a96b0-e753-4688-9d68-f534383ab027",
+										"id": "1d1edc0d-dc24-4233-adff-70b406276b91",
 										"exec": [
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"pm.environment.set(\"URL\", \"https://uvuzr03vma.execute-api.us-west-2.amazonaws.com/\");",
+											"pm.environment.set(\"URL\", \"https://thzo4nyzlg.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"pm.environment.set(\"STAGE\", \"7199\");",
+											"pm.environment.set(\"STAGE\", \"7522\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -38,13 +38,13 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8bd70268-c3ef-4218-941f-344c91c3efa6",
+										"id": "7006ebb6-b709-44e0-9c4f-3b2f7c9815f9",
 										"exec": [
 											"// This will be moved to subscribers, or a setup url, or authorizer",
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"postman.setEnvironmentVariable(\"URL\", \"https://uvuzr03vma.execute-api.us-west-2.amazonaws.com/\");",
+											"postman.setEnvironmentVariable(\"URL\", \"https://thzo4nyzlg.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"postman.setEnvironmentVariable(\"STAGE\", \"7199\");",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7522\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -259,13 +259,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}{{STAGE}}/clients/{{client_uuid}}/profile",
+							"raw": "{{URL}}{{STAGE}}/clients/c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb/profile",
 							"host": [
 								"{{URL}}{{STAGE}}"
 							],
 							"path": [
 								"clients",
-								"{{client_uuid}}",
+								"c4cc4f20-416a-4cdf-85b1-5caa4b4ec1bb",
 								"profile"
 							]
 						}
@@ -349,7 +349,33 @@
 			"item": [
 				{
 					"name": "setup",
-					"item": [],
+					"item": [
+						{
+							"name": "list all clients",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query getClients($subscriberUuid: ID!, $searchKey: String, $offset: Int, $limit: Int) {\n        clients(subscriberUuid: $subscriberUuid, searchKey: $searchKey, offset: $offset, limit: $limit) {\n          id\n          uuid\n          lastName\n          middleName\n          firstName\n          email\n          dob\n          gender\n          ssn\n          ethnicityId\n          maritalStatusId\n          height\n          weight\n          driversLicense\n          livesWith\n          employment\n          educationCompleted\n          status\n          lastActiveAt\n          createdBy\n          updatedBy\n          createdAt\n          updatedAt\n\n          address {\n            uuid\n            addressLine1\n            addressLine2\n            city\n            state\n            postcode\n          }\n\n          clientsCustomFields {\n            uuid\n            subscriberUuid\n            customFieldUuid\n            name\n            sectionName\n            entity\n            textValue\n            numericValue\n            dateValue\n            choiceValue\n            multiLineValue\n          }\n\n          subscriberClients {\n            uuid\n            subscriberUuid\n            locationUuid\n            clientId\n          }\n\n          phoneContacts {\n            uuid\n            phoneType\n            phoneNumber\n            phoneExtension\n            notOkayToLeaveMessage\n            primary\n            ordinality\n          }\n\n          contacts {\n            uuid\n            lastName\n            middleName\n            firstName\n            livesAt\n            email\n            contactType\n\n            address {\n              uuid\n              addressLine1\n              addressLine2\n              city\n              state\n              postcode\n            }\n\n            phoneContacts {\n              uuid\n              phoneType\n              phoneNumber\n              phoneExtension\n              notOkayToLeaveMessage\n              primary\n              ordinality\n            }\n          }\n\n          clientContacts {\n            uuid\n            clientId\n            caseId\n            contactId\n            relationship\n            contactType\n          }\n\n          children {\n            uuid\n            lastName\n            middleName\n            firstName\n            gender\n            dob\n            livesWith\n            email\n\n            address {\n              uuid\n              addressLine1\n              addressLine2\n              city\n              state\n              postcode\n            }\n\n            phoneContacts {\n              uuid\n              phoneType\n              phoneNumber\n              phoneExtension\n              notOkayToLeaveMessage\n              primary\n              ordinality\n            }\n          }\n\n          clientChildren {\n            uuid\n            caseId\n            childId\n            relationship\n          }\n        }\n      }",
+										"variables": "{\n \"offset\": 0,\n \"limit\": 10,\n \"subscriberUuid\": \"{{subscriber_uuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"clients_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
 				},
@@ -361,7 +387,107 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query showClientProfile($uuid: ID!) {\n  showClientProfile(uuid: $uuid) {\n      uuid\n      lastName\n      firstName\n      middleName\n      email\n      phone\n      dob\n      gender\n      height\n      weight\n      livesWith\n      employment\n      educationCompleted\n      medications {\n        uuid\n        name\n        dosage\n        physicianName\n        physicianPhoneNumber\n        physicianEmail\n        timeOnMedication\n        comments\n      }\n      vehicleInformations {\n        uuid\n        year\n        make\n        model\n        color\n        license\n      }\n      children {\n        firstName\n      }\n      personalHistories {\n        uuid\n        details\n      }\n      emergencyContacts {\n        uuid\n        firstName\n        middleName\n        lastName\n        livesAt\n        notOkToLeaveMessage\n        phoneContacts\n        contactType\n        email\n      }\n      collateralContacts {\n        uuid\n        firstName\n        middleName\n        lastName\n        livesAt\n        notOkToLeaveMessage\n        phoneContacts\n        contactType\n        email\n      }\n   }\n}",
+								"query": "query showClientProfile($uuid: ID!) {\n  showClientProfile(uuid: $uuid) {\n      uuid\n      lastName\n      firstName\n      middleName\n      email\n      phone\n      dob\n      gender\n      height\n      weight\n      livesWith\n      employment\n      educationCompleted\n      medications {\n        uuid\n        name\n        dosage\n        physicianName\n        physicianEmail\n        timeOnMedication\n        comments\n      }\n      vehicleInformations {\n        uuid\n        year\n        make\n        model\n        color\n        license\n      }\n      children {\n        firstName\n      }\n      personalHistories {\n        uuid\n        details\n      }\n      emergencyContacts {\n        uuid\n        firstName\n        middleName\n        lastName\n        phoneContacts {\n            id\n        }\n        contactType\n        email\n      }\n      collateralContacts {\n        uuid\n        firstName\n        middleName\n        lastName\n        phoneContacts {\n            id\n        }\n        contactType\n        email\n      }\n   }\n}",
+								"variables": "{\n   \"uuid\":\"{{client_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createClient($input: CreateClientInput!) { \n  createClient(input: $input) {\n    id\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    email\n    ssn\n    ethnicityId\n    maritalStatusId\n    height\n    weight\n    driversLicense\n    livesWith\n    employment\n    educationCompleted\n    status\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address {\n      id\n      uuid\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    subscriberClients {\n      uuid\n      subscriberUuid\n      locationUuid\n      clientId\n    }\n\n    phoneContacts {\n      id\n      uuid\n      phoneType\n      phoneNumber\n      phoneExtension\n      notOkayToLeaveMessage\n      primary\n      ordinality\n      createdBy\n      updatedBy\n    }\n\n    contacts {\n      id\n      uuid\n      lastName\n      middleName\n      firstName\n      contactType\n      createdBy\n      updatedBy\n\n      address {\n        id\n        uuid\n        addressLine1\n        addressLine2\n        city\n        state\n        postcode\n        createdBy\n        updatedBy\n      }\n\n      phoneContacts {\n        id\n        uuid\n        phoneType\n        phoneNumber\n        phoneExtension\n        notOkayToLeaveMessage\n        primary\n        ordinality\n        createdBy\n        updatedBy\n      }\n    }\n\n    clientContacts {\n      uuid\n      contactId\n      relationship\n    }\n\n    children {\n      id\n      uuid\n      lastName\n      middleName\n      firstName\n      dob\n      age\n      livesWith\n      email\n      createdBy\n      updatedBy\n\n      address {\n        id\n        uuid\n        addressLine1\n        addressLine2\n        city\n        state\n        postcode\n        createdBy\n        updatedBy\n      }\n\n      phoneContacts {\n        id\n        uuid\n        phoneType\n        phoneNumber\n        phoneExtension\n        notOkayToLeaveMessage\n        primary\n        ordinality\n        createdBy\n        updatedBy\n      }\n    }\n\n    clientChildren {\n      uuid\n      childId\n      relationship\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"subscriberUuid\":       \"subscriber-uuid\",\n    \"locationUuid\":         \"location-uuid\",\n    \"userRef\":              \"user-ref\",\n    \"lastName\":             \"last-name\",\n    \"middleName\":           \"middle-name\",\n    \"firstName\":            \"first-name\",\n    \"gender\":               \"Male\",\n    \"dob\":                  \"1990-06-07\",\n    \"email\":                \"sample_email@email.com\",\n    \"ssn\":                  \"620755842\",\n    \"ethnicityId\":          2,\n    \"maritalStatusId\":      1,\n    \"height\":               \"5.3\",\n    \"weight\":               135.9,\n    \"driversLicense\":       \"P400-4237-5050\",\n    \"livesWith\":            \"friend\",\n    \"employment\":           \"employment\",\n    \"educationCompleted\":   \"education-completed\",\n    \"status\":               \"active\",\n    \"currentUser\":          \"rspec test\",\n\n    \"addressAttributes\": {\n      \"addressLine1\":       \"28\",\n      \"addressLine2\":       \"Lake St\",\n      \"city\":               \"Oak Park\",\n      \"state\":              \"IL\",\n      \"postcode\":           \"60301\",\n      \"currentUser\":        \"rspec test\"\n    },\n\n    \"phoneContactsAttributes\": [\n      {\n        \"ordinality\": 1,\n        \"phoneType\": \"home\",\n        \"phoneNumber\": \"+12345678901\",\n        \"phoneExtension\": \"123\",\n        \"notOkayToLeaveMessage\": false,\n        \"primary\": true,\n        \"currentUser\": \"rspec test\"\n      },\n      {\n        \"ordinality\": 2,\n        \"phoneType\": \"mobile\",\n        \"phoneNumber\": \"+12345678902\",\n        \"phoneExtension\": \"456\",\n        \"notOkayToLeaveMessage\": true,\n        \"primary\": false,\n        \"currentUser\": \"rspec test\"\n      },\n      {\n        \"ordinality\": 3,\n        \"phoneType\": \"mobile\",\n        \"phoneNumber\": \"+12345678903\",\n        \"phoneExtension\": \"324\",\n        \"notOkayToLeaveMessage\": false,\n        \"primary\": false,\n        \"currentUser\": \"rspec test\"\n      }\n    ],\n\n    \"contactsAttributes\": [\n      {\n        \"lastName\": \"Contact Last\",\n        \"middleName\": \"Contact Middle\",\n        \"firstName\": \"Contact First\",\n        \"relationship\": \"coworker\",\n        \"currentUser\": \"rspec test\",\n        \"addressAttributes\": {\n          \"addressLine1\":       \"2955\",\n          \"addressLine2\":       \"Elkview Drive\",\n          \"city\":               \"Roswell\",\n          \"state\":              \"GA\",\n          \"postcode\":           \"30075\",\n          \"currentUser\":        \"rspec test\"\n        },\n        \"phoneContactsAttributes\": [\n          {\n            \"ordinality\": 1,\n            \"phoneType\": \"home\",\n            \"phoneNumber\": \"+12345678904\",\n            \"phoneExtension\": \"123\",\n            \"notOkayToLeaveMessage\": false,\n            \"primary\": true,\n            \"currentUser\": \"rspec test\"\n          },\n          {\n            \"ordinality\": 2,\n            \"phoneType\": \"mobile\",\n            \"phoneNumber\": \"+12345678905\",\n            \"phoneExtension\": \"456\",\n            \"notOkayToLeaveMessage\": true,\n            \"primary\": false,\n            \"currentUser\": \"rspec test\"\n          },\n          {\n            \"ordinality\": 3,\n            \"phoneType\": \"mobile\",\n            \"phoneNumber\": \"+12345678906\",\n            \"phoneExtension\": \"324\",\n            \"notOkayToLeaveMessage\": false,\n            \"primary\": false,\n            \"currentUser\": \"rspec test\"\n          }\n        ]\n      }\n    ],\n\n    \"childrenAttributes\": [\n      {\n        \"lastName\": \"Child Last\",\n        \"middleName\": \"Child Middle\",\n        \"firstName\": \"Child First\",\n        \"relationship\": \"son\",\n        \"dob\": \"1987-01-16\",\n        \"age\": 33,\n        \"livesWith\": \"Isaac Asimov\",\n        \"email\": \"child_sample_email@testemail.com\",\n        \"currentUser\": \"rspec test\",\n        \"addressAttributes\": {\n          \"addressLine1\":       \"995\",\n          \"addressLine2\":       \"Blair Court\",\n          \"city\":               \"Houstonia\",\n          \"state\":              \"MS\",\n          \"postcode\":           \"65333\",\n          \"currentUser\":        \"rspec test\"\n        },\n        \"phoneContactsAttributes\": [\n          {\n            \"ordinality\": 1,\n            \"phoneType\": \"home\",\n            \"phoneNumber\": \"+12345678907\",\n            \"phoneExtension\": \"123\",\n            \"notOkayToLeaveMessage\": false,\n            \"primary\": true,\n            \"currentUser\": \"rspec test\"\n          },\n          {\n            \"ordinality\": 2,\n            \"phoneType\": \"mobile\",\n            \"phoneNumber\": \"+12345678908\",\n            \"phoneExtension\": \"456\",\n            \"notOkayToLeaveMessage\": true,\n            \"primary\": false,\n            \"currentUser\": \"rspec test\"\n          },\n          {\n            \"ordinality\": 3,\n            \"phoneType\": \"mobile\",\n            \"phoneNumber\": \"+12345678909\",\n            \"phoneExtension\": \"324\",\n            \"notOkayToLeaveMessage\": false,\n            \"primary\": false,\n            \"currentUser\": \"rspec test\"\n          }\n        ]\n      }\n    ]\n  }\n}\n"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateClient($input: UpdateClientInput!) { \n  updateClient(input: $input) {\n    id\n    uuid\n    lastName\n    middleName\n    firstName\n    gender\n    dob\n    email\n    ssn\n    ethnicityId\n    maritalStatusId\n    height\n    weight\n    driversLicense\n    livesWith\n    employment\n    educationCompleted\n    status\n    lastActiveAt\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address {\n      id\n      uuid\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n      createdBy\n      updatedBy\n    }\n\n    subscriberClients {\n      uuid\n      subscriberUuid\n      locationUuid\n      clientId\n    }\n\n    phoneContacts {\n      id\n      uuid\n      phoneType\n      phoneNumber\n      phoneExtension\n      notOkayToLeaveMessage\n      primary\n      ordinality\n      createdBy\n      updatedBy\n    }\n\n    contacts {\n      id\n      uuid\n      lastName\n      middleName\n      firstName\n      contactType\n      createdBy\n      updatedBy\n\n      address {\n        id\n        uuid\n        addressLine1\n        addressLine2\n        city\n        state\n        postcode\n        createdBy\n        updatedBy\n      }\n\n      phoneContacts {\n        id\n        uuid\n        phoneType\n        phoneNumber\n        phoneExtension\n        notOkayToLeaveMessage\n        primary\n        ordinality\n        createdBy\n        updatedBy\n      }\n    }\n\n    clientContacts {\n      uuid\n      contactId\n      relationship\n    }\n\n    children {\n      id\n      uuid\n      lastName\n      middleName\n      firstName\n      dob\n      age\n      livesWith\n      email\n      createdBy\n      updatedBy\n\n      address {\n        id\n        uuid\n        addressLine1\n        addressLine2\n        city\n        state\n        postcode\n        createdBy\n        updatedBy\n      }\n\n      phoneContacts {\n        id\n        uuid\n        phoneType\n        phoneNumber\n        phoneExtension\n        notOkayToLeaveMessage\n        primary\n        ordinality\n        createdBy\n        updatedBy\n      }\n    }\n\n    clientChildren {\n      uuid\n      childId\n      relationship\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\": \"{{client_uuid}}\",\n    \"last_name\": \"Patton\",\n    \"middle_name\": \"Genevieve\",\n    \"first_name\": \"Suzanne\",\n    \"gender\": \"Feale\",\n    \"dob\": \"1985-05-22\",\n    \"email\": \"suzanpatton@fishingoo.com\",\n    \"height\": \"5.3\",\n    \"weight\": 123.0,\n    \"ssn\": \"204566450\",\n    \"ethnicity_id\": 3,\n    \"marital_status_id\": 2,\n    \"drivers_license\": \"P-350-990-923-322\",\n    \"lives_with\": \"Ramona Nguyen\",\n    \"employment\": \"Grove High School\",\n    \"education_completed\": \"Masteral\",\n    \"status\": \"inactive\",\n    \"current_user\": \"rspec update\",\n    \"address_attributes\": {\n      \"id\": 1,\n      \"address_line_1\": \"86\",\n      \"address_line_2\": \"Heggen St.\",\n      \"city\": \"Hudson\",\n      \"state\": \"WI\",\n      \"postcode\": \"54016\",\n      \"current_user\": \"rspec update\"\n    },\n    \"phone_contacts_attributes\": [\n      {\n        \"id\": 1,\n        \"ordinality\": 1,\n        \"phone_type\": \"home\",\n        \"phone_number\": \"+12345678901\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"primary\": true,\n        \"current_user\": \"rspec update\"\n      },\n      {\n        \"id\": 2,\n        \"ordinality\": 2,\n        \"phone_type\": \"mobile\",\n        \"phone_number\": \"+12345678902\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": true,\n        \"primary\": false,\n        \"current_user\": \"rspec update\"\n      },\n      {\n        \"id\": 3,\n        \"ordinality\": 3,\n        \"phone_type\": \"other\",\n        \"phone_number\": \"+12345678903\",\n        \"phone_extension\": \"123\",\n        \"not_okay_to_leave_message\": false,\n        \"primary\": false,\n        \"current_user\": \"rspec update\"\n      }\n    ],\n    \"contacts_attributes\": [\n      {\n        \"id\": 1,\n        \"last_name\": \"Last updated\",\n        \"middle_ame\": \"Mid updated\",\n        \"first_ame\": \"First updated\",\n        \"relationship\": \"other\",\n        \"current_user\": \"rspec update\",\n        \"address_attributes\": {\n          \"id\": 2,\n          \"address_line_1\":       \"2955\",\n          \"address_line_2\":       \"Elkview Drive\",\n          \"city\":               \"Roswell\",\n          \"state\":              \"GA\",\n          \"postcode\":           \"30075\",\n          \"current_user\":        \"rspec update\"\n        },\n        \"phone_contacts_attributes\": [\n          {\n            \"id\": 4,\n            \"ordinality\": 1,\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678904\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"primary\": true,\n            \"current_user\": \"rspec update\"\n          },\n          {\n            \"id\": 5,\n            \"ordinality\": 2,\n            \"phone_type\": \"mobile\",\n            \"phone_number\": \"+12345678905\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": true,\n            \"primary\": false,\n            \"current_user\": \"rspec update\"\n          },\n          {\n            \"id\": 6,\n            \"ordinality\": 3,\n            \"phone_type\": \"other\",\n            \"phone_number\": \"+12345678906\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"primary\": false,\n            \"current_user\": \"rspec update\"\n          }\n        ]\n      }\n    ],\n    \"children_attributes\": [\n      {\n        \"id\": 1,\n        \"last_name\": \"Child Last update\",\n        \"middle_name\": \"Child Middle update\",\n        \"first_name\": \"Child First update\",\n        \"relationship\": \"son\",\n        \"dob\": \"1987-01-16\",\n        \"age\": 33,\n        \"lives_with\": \"Isaac Asimov\",\n        \"email\": \"child_sample_email@testemail.com\",\n        \"current_user\": \"rspec update\",\n        \"address_attributes\": {\n          \"id\": 3,\n          \"addressLine1\":       \"995\",\n          \"addressLine2\":       \"Blair Court\",\n          \"city\":               \"Houstonia\",\n          \"state\":              \"MS\",\n          \"postcode\":           \"65333\",\n          \"current_user\":        \"rspec update\"\n        },\n        \"phone_contacts_attributes\": [\n          {\n            \"id\": 7,\n            \"ordinality\": 1,\n            \"phone_type\": \"home\",\n            \"phone_number\": \"+12345678907\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"primary\": true,\n            \"current_user\": \"rspec update\"\n          },\n          {\n            \"id\": 8,\n            \"ordinality\": 2,\n            \"phone_type\": \"mobile\",\n            \"phone_number\": \"+12345678908\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": true,\n            \"primary\": false,\n            \"current_user\": \"rspec update\"\n          },\n          {\n            \"id\": 9,\n            \"ordinality\": 3,\n            \"phone_type\": \"other\",\n            \"phone_number\": \"+12345678909\",\n            \"phone_extension\": \"123\",\n            \"not_okay_to_leave_message\": false,\n            \"primary\": false,\n            \"current_user\": \"rspec update\"\n          }\n        ]\n      }\n    ]\n  }\n}\n"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteClient($input: DeleteClientInput!) {\n  deleteClient(input: $input) {\n    uuid\n  }\n}",
+								"variables": "{\n   \"uuid\":\"{{client_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show a client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showClient($uuid: ID!) {\n  showClient(uuid: $uuid) {\n    id\n    uuid\n    lastName\n    middleName\n    firstName\n    email\n    dob\n    gender\n    ssn\n    ethnicityId\n    maritalStatusId\n    height\n    weight\n    driversLicense\n    livesWith\n    employment\n    educationCompleted\n    status\n    lastActiveAt\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    address {\n      uuid\n      addressLine1\n      addressLine2\n      city\n      state\n      postcode\n    }\n\n    clientsCustomFields {\n      uuid\n      subscriberUuid\n      customFieldUuid\n      name\n      sectionName\n      entity\n      textValue\n      numericValue\n      dateValue\n      choiceValue\n      multiLineValue\n    }\n\n    subscriberClients {\n      uuid\n      subscriberUuid\n      locationUuid\n      clientId\n    }\n\n    phoneContacts {\n      uuid\n      phoneType\n      phoneNumber\n      phoneExtension\n      notOkayToLeaveMessage\n      primary\n      ordinality\n    }\n\n    contacts {\n      uuid\n      lastName\n      middleName\n      firstName\n      livesAt\n      email\n      contactType\n\n      address {\n        uuid\n        addressLine1\n        addressLine2\n        city\n        state\n        postcode\n      }\n\n      phoneContacts {\n        uuid\n        phoneType\n        phoneNumber\n        phoneExtension\n        notOkayToLeaveMessage\n        primary\n        ordinality\n      }\n    }\n\n    clientContacts {\n      uuid\n      clientId\n      caseId\n      contactId\n      relationship\n      contactType\n    }\n\n    children {\n      uuid\n      lastName\n      middleName\n      firstName\n      gender\n      dob\n      livesWith\n      email\n\n      address {\n        uuid\n        addressLine1\n        addressLine2\n        city\n        state\n        postcode\n      }\n\n      phoneContacts {\n        uuid\n        phoneType\n        phoneNumber\n        phoneExtension\n        notOkayToLeaveMessage\n        primary\n        ordinality\n      }\n    }\n\n    clientChildren {\n      uuid\n      caseId\n      childId\n      relationship\n    }\n  }\n}",
 								"variables": "{\n   \"uuid\":\"{{client_uuid}}\"\n}"
 							}
 						},
