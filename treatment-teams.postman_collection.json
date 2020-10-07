@@ -1,0 +1,657 @@
+{
+	"info": {
+		"_postman_id": "f2c58a5d-defe-4fde-9092-99b555dde129",
+		"name": "treatment-teams",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "5f8d6291-1a55-42a6-a0d0-a977eef5343c",
+										"exec": [
+											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"7707\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "38322a4a-0bab-4b87-84af-585fdafa15e7",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7707\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");",
+											"postman.setEnvironmentVariable(\"enrollment_uuid\", \"9c5c2aae-89ab-48c5-a2d1-d2eca84baadc\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/treatment_teams?enrollment_uuid={{enrollment_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"treatment_teams"
+									],
+									"query": [
+										{
+											"key": "enrollment_uuid",
+											"value": "{{enrollment_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2470374c-59fc-442f-ad03-1fbea12367bb",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "975be6f1-bb15-4bba-9949-2eebb484e522",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var criminal_background_id = jsonData['id']",
+									"var criminal_background_uuid = jsonData['uuid']",
+									"",
+									"postman.setEnvironmentVariable(\"criminal_background_id\", criminal_background_id);",
+									"postman.setEnvironmentVariable(\"criminal_background_uuid\", criminal_background_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n  \"first_name\": \"Robin\",\n  \"last_name\": \"Scherbatsky\",\n  \"primary_staff\": true,\n  \"staff_uuid\": \"9dda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"from_date\": \"2020-10-06T18:10:37.707Z\",\n  \"current_user\": \"test@rspec.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/treatment_teams",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"treatment_teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "call create again and it should fail",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6cb4559b-7db6-42ce-b4a4-ea234dd38cb0",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "90e27609-2a96-4552-8efb-e2796dc191ce",
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {",
+									"  pm.response.to.have.status(422);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n  \"first_name\": \"Ted\",\n  \"last_name\": \"Mosby\",\n  \"primary_staff\": true,\n  \"staff_uuid\": \"9dda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"from_date\": \"2020-10-06T18:10:37.707Z\",\n  \"current_user\": \"test@rspec.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/treatment_teams",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"treatment_teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2096d92c-0b31-45a0-a83c-3932a9d739dc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/treatment_teams/{{treatment_team_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"treatment_teams",
+								"{{treatment_team_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b086a824-d178-4bad-9838-d0d3a2ec988d",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/treatment_teams/{{treatment_team_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"treatment_teams",
+								"{{treatment_team_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9fc75a68-7d2b-46df-bfb5-6b952657cccf",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"Lily\",\n  \"last_name\": \"Aldrin\",\n  \"primary_staff\": false,\n  \"staff_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n  \"from_date\": \"2020-05-06T18:10:37.707Z\",\n  \"to_date\": \"2020-10-06T18:10:37.707Z\",\n  \"current_user\": \"test@rspec.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/treatment_teams/{{treatment_team_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"treatment_teams",
+								"{{treatment_team_uuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all enrollment treatment team staffs",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "5466c447-dbaf-44e9-87e6-f66213a2defa",
+										"exec": [
+											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"7707\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"// pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"type": "text",
+										"value": "{{id_token}}"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"type": "text",
+										"value": "{{subscriber_uuid}}"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"type": "text",
+										"value": "{{user_uuid}}"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"type": "text",
+										"value": "{{user_type}}"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listTreatmentTeams($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listTreatmentTeams(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    primaryStaff\n    staffUuid\n    staffName\n    fromDate\n    toDate\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+										"variables": "{\n \"enrollmentUuid\": \"{{enrollment_uuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create treatment team staff",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1d8efd41-5075-4bc2-9799-e7f7724dc1d6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var criminal_background_uuid = jsonData['data']['createCriminalBackground']['uuid']",
+									"postman.setEnvironmentVariable(\"criminal_background_uuid\", criminal_background_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createStaff($input: CreateStaffInput!) {\n  createStaff(input: $input) {\n    uuid\n    enrollmentId\n    primaryStaff\n    staffUuid\n    staffName\n    fromDate\n    toDate\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{treatment_team_uuid}}\",\n     \"firstName\": \"Barney\",\n     \"lastName\": \"Stinson\",\n     \"primaryStaff\": true,\n     \"staffUuid\": \"9dda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n     \"fromDate\": \"2020-10-01T18:10:37.707Z\",\n     \"currentUser\": \"joserizal@dotc.gov.ph\"  \n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update treatment team staff",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateStaff($input: UpdateStaffInput!) {\n  updateStaff(input: $input) {\n    uuid\n    enrollmentId\n    primaryStaff\n    staffUuid\n    staffName\n    fromDate\n    toDate\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{treatment_team_uuid}}\",\n     \"firstName\": \"Marshall\",\n     \"lastName\": \"Eriksen\",\n     \"primaryStaff\": true,\n     \"staffUuid\": \"9dda9a1f-98f1-4ce2-ba4a-372f0dc32f52\",\n     \"fromDate\": \"2020-10-01T18:10:37.707Z\",\n     \"currentUser\": \"joserizal@dotc.gov.ph\"  \n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show treatment team staff",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showStaff($uuid: ID!) {\n  showStaff(uuid: $uuid) {\n    uuid\n    enrollmentId\n    primaryStaff\n    staffUuid\n    staffName\n    fromDate\n    toDate\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n   \"uuid\":\"{{treatment_team_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete treatment team staff",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteStaff($input: DeleteStaffInput!) {\n  deleteStaff(input: $input) {\n    uuid\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\":\"{{treatment_team_uuid}}\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
