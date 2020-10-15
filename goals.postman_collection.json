@@ -1,0 +1,1135 @@
+{
+	"info": {
+		"_postman_id": "09619d2e-e12a-45da-b930-b81226362b7b",
+		"name": "goals",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1f9e8905-21d9-417b-bf70-96a4c9aeca03",
+										"exec": [
+											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"7707\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "cc718a86-6423-43e1-8399-5289f2850ff0",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"postman.setEnvironmentVariable(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"postman.setEnvironmentVariable(\"STAGE\", \"7707\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"postman.setEnvironmentVariable(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");",
+											"postman.setEnvironmentVariable(\"enrollment_uuid\", \"9c5c2aae-89ab-48c5-a2d1-d2eca84baadc\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/goals?enrollment_uuid={{enrollment_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"goals"
+									],
+									"query": [
+										{
+											"key": "enrollment_uuid",
+											"value": "{{enrollment_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "progress_logs",
+					"item": [
+						{
+							"name": "add progress log",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2c424468-dd52-445a-b31f-17b818127fcd",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "d56db972-f51e-48f9-898d-21b200d8bcec",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"var goal_id = jsonData['id']",
+											"var goal_uuid = jsonData['uuid']",
+											"",
+											"postman.setEnvironmentVariable(\"goal_id\", goal_id);",
+											"postman.setEnvironmentVariable(\"goal_uuid\", goal_uuid);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"comments\": \"This is a new log.\",\n  \"current_user\": \"test@rspec.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}/progress_logs",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"goals",
+										"{{goal_uuid}}",
+										"progress_logs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update progress log",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3ea59636-1bdc-4909-b79d-925a52bde7dc",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"comments\": \"Modified comment\",\n  \"updated_by\": \"awesometest@rspec.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}/progress_logs/{{progress_log_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"goals",
+										"{{goal_uuid}}",
+										"progress_logs",
+										"{{progress_log_uuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete progress log",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "84ab2262-dffe-450b-b8d7-69f54282ea55",
+										"exec": [
+											"// URL: []",
+											"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"6532\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}/progress_logs/{{progress_log_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"goals",
+										"{{goal_uuid}}",
+										"progress_logs",
+										"{{progress_log_uuid}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8925d866-3224-421d-94b4-d2b8428345f4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "33352e56-714c-4e76-abd6-804d7f339b7c",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var goal_id = jsonData['id']",
+									"var goal_uuid = jsonData['uuid']",
+									"",
+									"postman.setEnvironmentVariable(\"goal_id\", goal_id);",
+									"postman.setEnvironmentVariable(\"goal_uuid\", goal_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n  \"domain_type\": 1,\n  \"treatment_area_type\": 2,\n  \"title\": \"Self-care\",\n  \"set_on\": \"2020-10-06T18:10:37.707Z\",\n  \"targeted_for\": \"2020-11-06T18:10:37.707Z\",\n  \"planned_duration\": 2,\n  \"use_duration_in\": \"days\",\n  \"current_user\": \"test@rspec.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/goals",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"goals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create with progress log",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9615f91f-e4f7-4816-a3dc-16e5bde3dbb7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "dca9d55d-24ec-4f86-8dfb-3ed703fe8416",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var goal_id = jsonData['id']",
+									"var goal_uuid = jsonData['uuid']",
+									"",
+									"postman.setEnvironmentVariable(\"goal_id\", goal_id);",
+									"postman.setEnvironmentVariable(\"goal_uuid\", goal_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"enrollment_uuid\": \"{{enrollment_uuid}}\",\n  \"domain_type\": 1,\n  \"treatment_area_type\": 2,\n  \"title\": \"Self-care\",\n  \"set_on\": \"2020-10-06T18:10:37.707Z\",\n  \"targeted_for\": \"2020-11-06T18:10:37.707Z\",\n  \"planned_duration\": 2,\n  \"use_duration_in\": \"days\",\n  \"current_user\": \"test@rspec.com\",\n  \"progress_logs_attributes\": [\n    {\n      \"comments\": \"This is a new log.\",\n      \"current_user\": \"test@rspec.com\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/goals",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"goals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "28baef1b-e626-445f-9880-55429dd46976",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"goals",
+								"{{goal_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b12a6b9f-5350-4e7f-bb23-f6ec48c48c13",
+								"exec": [
+									"// URL: []",
+									"pm.environment.set(\"URL\", \"https://9g908trvva.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"6532\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"goals",
+								"{{goal_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3a5b8c8c-262e-4cc5-8c89-76b7ca4ccdcd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"domain_type\": 3,\n  \"treatment_area_type\": 4,\n  \"title\": \"Self-improvement\",\n  \"set_on\": \"2020-10-05T18:10:37.707Z\",\n  \"targeted_for\": \"2020-12-06T18:10:37.707Z\",\n  \"planned_duration\": 2,\n  \"use_duration_in\": \"months\",\n  \"current_user\": \"test@rspec.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"goals",
+								"{{goal_uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "complete goal",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1557270f-775c-4fdc-b5b5-db7f50795119",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"completeted_on\": \"2020-12-06T18:10:37.707Z\",\n  \"updated_by\": \"test@rspec.com\",\n  \"progress_logs_attributes\": [\n    {\n      \"comments\": \"This goal is complete.\",\n      \"current_user\": \"test@rspec.com\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"goals",
+								"{{goal_uuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all enrollment goals",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7ff5671a-ec98-4ce4-8ec0-c250c45ff6ad",
+										"exec": [
+											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"7707\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"// pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"type": "text",
+										"value": "{{id_token}}"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"type": "text",
+										"value": "{{subscriber_uuid}}"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"type": "text",
+										"value": "{{user_uuid}}"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"type": "text",
+										"value": "{{user_type}}"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listGoals($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listGoals(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }    \n  }\n}",
+										"variables": "{\n \"enrollmentUuid\": \"{{enrollment_uuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "progress logs",
+					"item": [
+						{
+							"name": "create progress log",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "355f5df7-c41e-4a87-8c94-b12a0d596146",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"var goal_uuid = jsonData['data']['createCriminalBackground']['uuid']",
+											"postman.setEnvironmentVariable(\"goal_uuid\", goal_uuid);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation addProgressLog($input: CreateProgressLogInput!) {\n  addProgressLog(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+										"variables": "{\n  \"input\": {\n     \"uuid\":\"{{goal_uuid}}\",\n     \"comments\": \"a random comment.\",\n     \"currentUser\": \"joserizal@dotc.gov.ph\"  \n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update progress log",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updateProgressLog($input: UpdateProgessLogInput!) {\n  updateProgressLog(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"uuid\":\"{{goal_uuid}}\",\n    \"progressLogUuid\":\"{{progress_log_uuid}}\",\n    \"comments\": \"shocks\",\n    \"updatedBy\": \"po@dotc.gov.ph\"  \n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete progress log",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation deleteProgressLog($input: DeleteProgressLogInput!) {\n  deleteProgressLog(input: $input) {\n    uuid\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"uuid\":\"{{goal_uuid}}\",\n    \"progressLogUuid\":\"{{progress_log_uuid}}\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8cd67d10-8a62-4587-a5ed-ee0541cd5c64",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var goal_uuid = jsonData['data']['createCriminalBackground']['uuid']",
+									"postman.setEnvironmentVariable(\"goal_uuid\", goal_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createGoal($input: CreateGoalInput!) {\n  createGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{goal_uuid}}\",\n     \"domainType\": 1,\n     \"treatmentAreaType\": 2,\n     \"title\": \"self-care\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 2,\n     \"useDurationIn\": \"months\",\n     \"currentUser\": \"joserizal@dotc.gov.ph\"  \n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create goal with progress log",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42f25e0b-f0da-4321-8297-fb2b2c027ec7",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var goal_uuid = jsonData['data']['createCriminalBackground']['uuid']",
+									"postman.setEnvironmentVariable(\"goal_uuid\", goal_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"type": "text",
+								"value": "{{id_token}}"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"type": "text",
+								"value": "{{subscriber_uuid}}"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"type": "text",
+								"value": "{{user_uuid}}"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"type": "text",
+								"value": "{{user_type}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createGoal($input: CreateGoalInput!) {\n  createGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{goal_uuid}}\",\n     \"domainType\": 1,\n     \"treatmentAreaType\": 2,\n     \"title\": \"self-care\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 2,\n     \"useDurationIn\": \"months\",\n     \"currentUser\": \"martin@dotc.gov.ph\",\n     \"progressLogsAttributes\": [\n      {\n        \"comments\": \"new improvement log.\",\n        \"currentUser\": \"ron@dotc.gov.ph\"\n      }\n     ]\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update goal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateGoal($input: UpdateGoalInput!) {\n  updateGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n     \"goalUuid\":\"{{goal_uuid}}\",\n     \"domainType\": 3,\n     \"treatmentAreaType\": 4,\n     \"title\": \"self-care and analysis\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 7,\n     \"useDurationIn\": \"days\",\n     \"currentUser\": \"joserizal@dotc.gov.ph\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "complete goal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"type": "text",
+								"value": "{{id_token}}"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"type": "text",
+								"value": "{{subscriber_uuid}}"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"type": "text",
+								"value": "{{user_uuid}}"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"type": "text",
+								"value": "{{user_type}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation completeGoal($input: UpdateGoalInput!) {\n  completeGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n     \"goalUuid\":\"{{goal_uuid}}\",\n     \"completedOn\": \"2020-10-01T18:10:37.707Z\",\n     \"updatedBy\": \"joserizal@dotc.gov.ph\",\n     \"progressLogsAttributes\": [\n      {\n        \"comments\": \"new improvement log completed.\",\n        \"currentUser\": \"ron@dotc.gov.ph\"\n      }\n     ]\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show goal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query showGoal($uuid: ID!) {\n  showGoal(uuid: $uuid) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+								"variables": "{\n   \"uuid\":\"{{goal_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete goal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation deleteGoal($input: DeleteGoalInput!) {\n  deleteGoal(input: $input) {\n    uuid\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\":\"{{goal_uuid}}\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
