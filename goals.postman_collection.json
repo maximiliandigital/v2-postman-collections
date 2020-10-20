@@ -20,9 +20,9 @@
 										"id": "1f9e8905-21d9-417b-bf70-96a4c9aeca03",
 										"exec": [
 											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
-											"pm.environment.set(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"pm.environment.set(\"URL\", \"https://pw7bhiv9mk.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"pm.environment.set(\"STAGE\", \"7707\");",
+											"pm.environment.set(\"STAGE\", \"8000\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -42,9 +42,9 @@
 										"exec": [
 											"// This will be moved to subscribers, or a setup url, or authorizer",
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"postman.setEnvironmentVariable(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"postman.setEnvironmentVariable(\"URL\", \"https://pw7bhiv9mk.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"postman.setEnvironmentVariable(\"STAGE\", \"7707\");",
+											"postman.setEnvironmentVariable(\"STAGE\", \"8000\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -53,7 +53,7 @@
 											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
 											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
 											"postman.setEnvironmentVariable(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");",
-											"postman.setEnvironmentVariable(\"enrollment_uuid\", \"9c5c2aae-89ab-48c5-a2d1-d2eca84baadc\");"
+											"postman.setEnvironmentVariable(\"enrollment_uuid\", \"84b5d0d4-0841-4226-936f-d61da313e7da\");"
 										],
 										"type": "text/javascript"
 									}
@@ -506,7 +506,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"completeted_on\": \"2020-12-06T18:10:37.707Z\",\n  \"updated_by\": \"test@rspec.com\",\n  \"progress_logs_attributes\": [\n    {\n      \"comments\": \"This goal is complete.\",\n      \"current_user\": \"test@rspec.com\"\n    }\n  ]\n}",
+							"raw": "{\n  \"completed_on\": \"2020-12-06T18:10:37.707Z\",\n  \"updated_by\": \"test@rspec.com\",\n  \"progress_logs_attributes\": [\n    {\n      \"comments\": \"This goal is complete.\",\n      \"current_user\": \"test@rspec.com\"\n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -514,13 +514,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}",
+							"raw": "{{URL}}{{STAGE}}/goals/{{goal_uuid}}/complete",
 							"host": [
 								"{{URL}}{{STAGE}}"
 							],
 							"path": [
 								"goals",
-								"{{goal_uuid}}"
+								"{{goal_uuid}}",
+								"complete"
 							]
 						}
 					},
