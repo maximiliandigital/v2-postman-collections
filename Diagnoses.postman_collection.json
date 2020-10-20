@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "21bb4730-d7e2-47ef-9194-c8dee588ab3f",
+		"name": "Diagnoses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"enrollment_uuid\": \"97d538ac-a80c-4664-96ca-fb2aa6e4c3db\",\n    \"source\": \"DSM-5\",\n    \"description\": \"test-desc\",\n    \"diagnosis_type\": \"primary\",\n    \"comments\": \"This is only test\",\n    \"current_user\": \"rspec\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fgjinhszl6.execute-api.us-west-2.amazonaws.com/7994/diagnoses",
+							"protocol": "https",
+							"host": [
+								"fgjinhszl6",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"7994",
+								"diagnoses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fgjinhszl6.execute-api.us-west-2.amazonaws.com/7994/diagnoses?enrollment_uuid=97d538ac-a80c-4664-96ca-fb2aa6e4c3db",
+							"protocol": "https",
+							"host": [
+								"fgjinhszl6",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"7994",
+								"diagnoses"
+							],
+							"query": [
+								{
+									"key": "enrollment_uuid",
+									"value": "97d538ac-a80c-4664-96ca-fb2aa6e4c3db"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"description\": \"description\",\n    \"diagnosis_type\": \"secondary\",\n    \"comments\": \"This is only for test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fgjinhszl6.execute-api.us-west-2.amazonaws.com/7994/diagnoses/4eabda36-7d01-4e2f-8ab3-8b2728bdc493",
+							"protocol": "https",
+							"host": [
+								"fgjinhszl6",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"7994",
+								"diagnoses",
+								"4eabda36-7d01-4e2f-8ab3-8b2728bdc493"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fgjinhszl6.execute-api.us-west-2.amazonaws.com/7994/diagnoses/4eabda36-7d01-4e2f-8ab3-8b2728bdc493",
+							"protocol": "https",
+							"host": [
+								"fgjinhszl6",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"7994",
+								"diagnoses",
+								"4eabda36-7d01-4e2f-8ab3-8b2728bdc493"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://fgjinhszl6.execute-api.us-west-2.amazonaws.com/7994/diagnoses/4eabda36-7d01-4e2f-8ab3-8b2728bdc493",
+							"protocol": "https",
+							"host": [
+								"fgjinhszl6",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"7994",
+								"diagnoses",
+								"4eabda36-7d01-4e2f-8ab3-8b2728bdc493"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
