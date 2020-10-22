@@ -545,9 +545,9 @@
 										"id": "7ff5671a-ec98-4ce4-8ec0-c250c45ff6ad",
 										"exec": [
 											"// URL: [circleci-16kdq0bk0d, circleci-master: t5u8vjnkc3]",
-											"pm.environment.set(\"URL\", \"https://kdttji38dk.execute-api.us-west-2.amazonaws.com/\");",
+											"pm.environment.set(\"URL\", \"https://4ji3teqvy8.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"pm.environment.set(\"STAGE\", \"7707\");",
+											"pm.environment.set(\"STAGE\", \"8001\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -555,7 +555,7 @@
 											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
 											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
 											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
-											"// pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+											"pm.environment.set(\"enrollment_uuid\", \"565229ce-c14d-4baa-84a7-b04def959966\");"
 										],
 										"type": "text/javascript"
 									}
@@ -594,7 +594,7 @@
 									"mode": "graphql",
 									"graphql": {
 										"query": "query listGoals($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  listGoals(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }    \n  }\n}",
-										"variables": "{\n \"enrollmentUuid\": \"{{enrollment_uuid}}\"\n}"
+										"variables": "{\n \"enrollmentUuid\": \"565229ce-c14d-4baa-84a7-b04def959966\"\n}"
 									}
 								},
 								"url": {
@@ -627,8 +627,9 @@
 										"exec": [
 											"var jsonData = JSON.parse(responseBody);",
 											"",
-											"var goal_uuid = jsonData['data']['createCriminalBackground']['uuid']",
-											"postman.setEnvironmentVariable(\"goal_uuid\", goal_uuid);",
+											"var progress_log_uuid = jsonData['data']['addProgressLog']['progressLogs'][0]['uuid']",
+											"console.log(progress_log_uuid)",
+											"postman.setEnvironmentVariable(\"progress_log_uuid\", progress_log_uuid);",
 											""
 										],
 										"type": "text/javascript"
@@ -667,8 +668,8 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation addProgressLog($input: CreateProgressLogInput!) {\n  addProgressLog(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
-										"variables": "{\n  \"input\": {\n     \"uuid\":\"{{goal_uuid}}\",\n     \"comments\": \"a random comment.\",\n     \"currentUser\": \"joserizal@dotc.gov.ph\"  \n  }\n}"
+										"query": "mutation addProgressLog($input: AddProgressLogInput!) {\n  addProgressLog(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      uuid\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+										"variables": "{\n  \"input\": {\n     \"uuid\":\"{{goal_uuid}}\",\n     \"comments\": \"a random comment.\"\n  }\n}"
 									}
 								},
 								"url": {
@@ -799,8 +800,10 @@
 								"id": "8cd67d10-8a62-4587-a5ed-ee0541cd5c64",
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
+									"console.log(jsonData)",
 									"",
-									"var goal_uuid = jsonData['data']['createCriminalBackground']['uuid']",
+									"var goal_uuid = jsonData['data']['createGoal']['uuid']",
+									"console.log(goal_uuid)",
 									"postman.setEnvironmentVariable(\"goal_uuid\", goal_uuid);",
 									""
 								],
@@ -835,13 +838,19 @@
 								"key": "X-Treat-User-Type",
 								"value": "{{user_type}}",
 								"type": "text"
+							},
+							{
+								"key": "X-Treat-Email",
+								"value": "{{email}}",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation createGoal($input: CreateGoalInput!) {\n  createGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
-								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{goal_uuid}}\",\n     \"domainType\": 1,\n     \"treatmentAreaType\": 2,\n     \"title\": \"self-care\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 2,\n     \"useDurationIn\": \"months\",\n     \"currentUser\": \"joserizal@dotc.gov.ph\"  \n  }\n}"
+								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{enrollment_uuid}}\",\n     \"domainType\": 1,\n     \"treatmentAreaType\": 2,\n     \"title\": \"self-care\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 2,\n     \"useDurationIn\": \"months\"\n  }\n}"
 							}
 						},
 						"url": {
@@ -908,7 +917,7 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation createGoal($input: CreateGoalInput!) {\n  createGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
-								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{goal_uuid}}\",\n     \"domainType\": 1,\n     \"treatmentAreaType\": 2,\n     \"title\": \"self-care\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 2,\n     \"useDurationIn\": \"months\",\n     \"currentUser\": \"martin@dotc.gov.ph\",\n     \"progressLogsAttributes\": [\n      {\n        \"comments\": \"new improvement log.\",\n        \"currentUser\": \"ron@dotc.gov.ph\"\n      }\n     ]\n  }\n}"
+								"variables": "{\n  \"input\": {\n     \"enrollmentUuid\":\"{{enrollment_uuid}}\",\n     \"domainType\": 1,\n     \"treatmentAreaType\": 2,\n     \"title\": \"self-care\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 2,\n     \"useDurationIn\": \"months\",\n     \"progressLogsAttributes\": [\n      {\n        \"comments\": \"new improvement log.\",\n        \"currentUser\": \"ron@dotc.gov.ph\"\n      }\n     ]\n  }\n}"
 							}
 						},
 						"url": {
@@ -959,7 +968,7 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation updateGoal($input: UpdateGoalInput!) {\n  updateGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
-								"variables": "{\n  \"input\": {\n     \"goalUuid\":\"{{goal_uuid}}\",\n     \"domainType\": 3,\n     \"treatmentAreaType\": 4,\n     \"title\": \"self-care and analysis\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 7,\n     \"useDurationIn\": \"days\",\n     \"currentUser\": \"joserizal@dotc.gov.ph\"\n  }\n}"
+								"variables": "{\n  \"input\": {\n     \"uuid\":\"{{goal_uuid}}\",\n     \"domainType\": 3,\n     \"treatmentAreaType\": 4,\n     \"title\": \"self-care and analysis\",\n     \"setOn\": \"2020-10-01T18:10:37.707Z\",\n     \"targetedFor\": \"2020-10-01T18:10:37.707Z\",\n     \"plannedDuration\": 7,\n     \"useDurationIn\": \"days\"\n  }\n}"
 							}
 						},
 						"url": {
@@ -1009,8 +1018,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation completeGoal($input: UpdateGoalInput!) {\n  completeGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
-								"variables": "{\n  \"input\": {\n     \"goalUuid\":\"{{goal_uuid}}\",\n     \"completedOn\": \"2020-10-01T18:10:37.707Z\",\n     \"updatedBy\": \"joserizal@dotc.gov.ph\",\n     \"progressLogsAttributes\": [\n      {\n        \"comments\": \"new improvement log completed.\",\n        \"currentUser\": \"ron@dotc.gov.ph\"\n      }\n     ]\n  }\n}"
+								"query": "mutation completeGoal($input: CompleteGoalInput!) {\n  completeGoal(input: $input) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n     \"uuid\":\"{{goal_uuid}}\",\n     \"completedOn\": \"2020-10-01T18:10:37.707Z\",\n     \"progressLogsAttributes\": [\n      {\n        \"comments\": \"new improvement log completed.\",\n        \"currentUser\": \"ron@dotc.gov.ph\"\n      }\n     ]\n  }\n}"
 							}
 						},
 						"url": {
@@ -1028,6 +1037,23 @@
 				},
 				{
 					"name": "show goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca4d3152-3aed-4c3b-8a11-b4c4b4647080",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var progress_log_uuid = jsonData['data']['showGoal']['progressLogs'][0]['uuid']",
+									"console.log(progress_log_uuid)",
+									"postman.setEnvironmentVariable(\"progress_log_uuid\", progress_log_uuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1060,7 +1086,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query showGoal($uuid: ID!) {\n  showGoal(uuid: $uuid) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
+								"query": "query showGoal($uuid: ID!) {\n  showGoal(uuid: $uuid) {\n    uuid\n    enrollmentId\n    domainType\n    treatmentAreaType\n    title\n    setOn\n    targetedFor\n    plannedDuration\n    useDurationIn\n    completedOn\n    actualDuration\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n    progressLogs {\n      uuid\n      comments\n      createdBy\n      updatedBy\n      createdAt\n      updatedAt\n    }\n  }\n}",
 								"variables": "{\n   \"uuid\":\"{{goal_uuid}}\"\n}"
 							}
 						},
