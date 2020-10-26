@@ -216,29 +216,112 @@
 					"response": []
 				},
 				{
-					"name": "listEnrollments",
+					"name": "update custom identifiers",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query listEnrollments($clientUuid: ID!, $offset: Int, $limit: Int) {\n          listEnrollments(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n            id \n            uuid \n            clientUuid\n            subscriberUuid\n            enrollmentTypeId\n            referralDate\n            referralReceivedDate\n            dischargedOn\n            locationUuid\n            treatmentStartDate\n            treatmentEndDate\n            enrollmentStatusId\n            firstAppointmentDate\n            reasonForReferral\n            referrerUuid\n            organizationUuid\n            caseUuid\n            refNum\n            pid\n            cii\n            createdBy\n            updatedBy\n            createdAt\n            updatedAt\n\n            enrollmentClients{\n              id  \n              clientUuid\n              enrollmentId\n              relationshipToOtherClient\n              clientRole\n              deletedAt\n              createdAt\n              updatedAt\n            }\n\n            \n\n          }\n        }",
-								"variables": "{\n         \"offset\": 0,\n         \"limit\": 10,\n         \"clientUuid\": \"a08d5598-0c79-4721-aa88-e47887e68685\"\n        }"
+								"query": "mutation updateCustomIdentifiers($input: UpdateCustomIdentifiersInput!) { \n  updateCustomIdentifiers(input: $input) {\n    uuid\n    clientUuid\n    subscriberUuid\n    enrollmentTypeId\n    referralDate\n    referralReceivedDate\n    dischargedOn\n    locationUuid\n    treatmentStartDate\n    treatmentEndDate\n    enrollmentStatusId\n    firstAppointmentDate\n    reasonForReferral\n    referrerUuid\n    organizationUuid\n    caseUuid\n    refNum\n    pid\n    cii\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"uuid\": \"f4f878c4-b934-4d01-89c7-2f658ba12c0a\",\n    \"refNum\": \"a\",\n    \"cii\": \"b\",\n    \"pid\": \"c\"\n  }\n}"
 							}
 						},
 						"url": {
-							"raw": "https://z0a6jig13m.execute-api.us-west-2.amazonaws.com/6926/enrollments_bff/graphql",
+							"raw": "https://hnsds3t6g4.execute-api.us-west-2.amazonaws.com/8402/enrollments_bff/graphql",
 							"protocol": "https",
 							"host": [
-								"z0a6jig13m",
+								"hnsds3t6g4",
 								"execute-api",
 								"us-west-2",
 								"amazonaws",
 								"com"
 							],
 							"path": [
-								"6926",
+								"8402",
+								"enrollments_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listEnrollments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query listEnrollments($clientUuid: ID!, $offset: Int, $limit: Int) {\n  listEnrollments(clientUuid: $clientUuid, offset: $offset, limit: $limit) {\n    id \n    uuid \n    clientUuid\n    subscriberUuid\n    enrollmentTypeId\n    referralDate\n    referralReceivedDate\n    dischargedOn\n    locationUuid\n    treatmentStartDate\n    treatmentEndDate\n    enrollmentStatusId\n    firstAppointmentDate\n    reasonForReferral\n    referrerUuid\n    organizationUuid\n    caseUuid\n    refNum\n    pid\n    cii\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n\n    enrollmentClients{\n      id  \n      clientUuid\n      enrollmentId\n      relationshipToOtherClient\n      clientRole\n      deletedAt\n      createdAt\n      updatedAt\n    }\n  }\n}",
+								"variables": "{\n  \"offset\": 0,\n  \"limit\": 10,\n  \"clientUuid\": \"a08d5598-0c79-4721-aa88-e47887e68685\"\n} "
+							}
+						},
+						"url": {
+							"raw": "https://hnsds3t6g4.execute-api.us-west-2.amazonaws.com/8402/enrollments_bff/graphql",
+							"protocol": "https",
+							"host": [
+								"hnsds3t6g4",
+								"execute-api",
+								"us-west-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"8402",
 								"enrollments_bff",
 								"graphql"
 							]
