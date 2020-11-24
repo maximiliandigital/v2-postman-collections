@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "9cbbfcba-d11f-4f13-8fa0-7653de24218d",
+		"name": "cases",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4498d7bd-60cf-4f26-a615-cfd0617a9ee7",
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://k437am8i7e.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"8613\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "76793a33-c8cf-48b6-a49c-d781372ab1be",
+										"exec": [
+											"// This will be moved to subscribers, or a setup url, or authorizer",
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"// postman.setEnvironmentVariable(\"URL\", \"https://k437am8i7e.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"// postman.setEnvironmentVariable(\"STAGE\", \"8613\");",
+											"",
+											"// uuids: ",
+											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+											"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+											"// postman.setEnvironmentVariable(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/cases?subscriber_uuid={{subscriber_uuid}}",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"cases"
+									],
+									"query": [
+										{
+											"key": "subscriber_uuid",
+											"value": "{{subscriber_uuid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "caseload-clients",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fdb3a924-19a2-469c-80d4-6a3df8820acc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subscriber_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"caseload_clients"
+							],
+							"query": [
+								{
+									"key": "subscriber_uuid",
+									"value": "{{subscriber_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "caseload-families",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6f6ce4e2-391f-4fcc-b8c1-160aa515a116",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subscriber_uuid}}",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"caseload_families"
+							],
+							"query": [
+								{
+									"key": "subscriber_uuid",
+									"value": "{{subscriber_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "list all cases",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query cases($subscriberUuid: ID!, $searchKey: String, $offset: Int, $limit: Int) {\n  cases(uuid: $uuid) {\n    id\n    uuid\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}\n",
+										"variables": "{\n \"offset\": 0,\n \"limit\": 10,\n \"subscriberUuid\": \"{{subscriber_uuid}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"clients_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "individual cases listing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query caseloadClients($uuid: ID!) {\n  caseloadClients(uuid: $uuid) {\n    id\n    uuid\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}\n",
+								"variables": "{\n   \"uuid\":\"{{client_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "family cases listing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query caseloadFamilies($uuid: ID!) {\n  caseloadFamilies(uuid: $uuid) {\n    id\n    uuid\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+								"variables": "{\n   \"uuid\":\"{{client_uuid}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"clients_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
