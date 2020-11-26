@@ -12,7 +12,7 @@
 					"name": "setup",
 					"item": [
 						{
-							"name": "list",
+							"name": "list cases",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -20,9 +20,9 @@
 										"id": "4498d7bd-60cf-4f26-a615-cfd0617a9ee7",
 										"exec": [
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"pm.environment.set(\"URL\", \"https://k437am8i7e.execute-api.us-west-2.amazonaws.com/\");",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"pm.environment.set(\"STAGE\", \"8613\");",
+											"pm.environment.set(\"STAGE\", \"master\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -30,7 +30,7 @@
 											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
 											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
 											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
-											"pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+											"// pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
 										],
 										"type": "text/javascript"
 									}
@@ -98,8 +98,42 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subscriber_uuid}}",
 							"host": [
@@ -134,7 +168,33 @@
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subscriber_uuid}}",
 							"host": [
@@ -148,6 +208,95 @@
 									"key": "subscriber_uuid",
 									"value": "{{subscriber_uuid}}"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create case",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subscriber_uuid\": \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\",\n    \"name\": \"new case\",\n    \"kind\": \"family\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/cases",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"cases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show case",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/cases/bf5c1996-0b24-4f17-afcb-1697ea1586e5",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"cases",
+								"bf5c1996-0b24-4f17-afcb-1697ea1586e5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete case",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/cases/bf5c1996-0b24-4f17-afcb-1697ea1586e5",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"cases",
+								"bf5c1996-0b24-4f17-afcb-1697ea1586e5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update case",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"new test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/cases/cbbf9d88-63ed-4830-824c-2703a809a4bf",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"cases",
+								"cbbf9d88-63ed-4830-824c-2703a809a4bf"
 							]
 						}
 					},
