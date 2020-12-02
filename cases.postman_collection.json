@@ -123,7 +123,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subs_uuid}}",
+							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subs_uuid}}&view=my&current_user_uuid=a5feff94-7dfe-4454-9346-4a36ca5caeda",
 							"host": [
 								"{{URL}}{{STAGE}}"
 							],
@@ -134,6 +134,14 @@
 								{
 									"key": "subscriber_uuid",
 									"value": "{{subs_uuid}}"
+								},
+								{
+									"key": "view",
+									"value": "my"
+								},
+								{
+									"key": "current_user_uuid",
+									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda"
 								}
 							]
 						}
@@ -184,7 +192,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subs_uuid}}",
+							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subs_uuid}}&view=my&current_user_uuid=a5feff94-7dfe-4454-9346-4a36ca5caeda",
 							"host": [
 								"{{URL}}{{STAGE}}"
 							],
@@ -195,6 +203,14 @@
 								{
 									"key": "subscriber_uuid",
 									"value": "{{subs_uuid}}"
+								},
+								{
+									"key": "view",
+									"value": "my"
+								},
+								{
+									"key": "current_user_uuid",
+									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda"
 								}
 							]
 						}
