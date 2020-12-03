@@ -20,9 +20,9 @@
 										"id": "4498d7bd-60cf-4f26-a615-cfd0617a9ee7",
 										"exec": [
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-											"pm.environment.set(\"URL\", \"https://j687qfcx7e.execute-api.us-west-2.amazonaws.com/\");",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
 											"// STAGE: [master, dev, custom stage - 6532]",
-											"pm.environment.set(\"STAGE\", \"9102\");",
+											"pm.environment.set(\"STAGE\", \"master\");",
 											"",
 											"// uuids: ",
 											"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -30,7 +30,7 @@
 											"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
 											"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
 											"// '60459767-f0fb-4850-a669-54966d5cfa42'",
-											"pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+											"pm.environment.set(\"subs_uuid\", \"cb71f252-2bbe-4e83-8fe9-f8a44671a71e\");"
 										],
 										"type": "text/javascript"
 									}
@@ -50,7 +50,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL}}{{STAGE}}/cases?subscriber_uuid={{subs_uuid}}",
+									"raw": "{{URL}}{{STAGE}}/cases?subscriber_uuid={{subs_uuid}}&limit=100",
 									"host": [
 										"{{URL}}{{STAGE}}"
 									],
@@ -61,6 +61,10 @@
 										{
 											"key": "subscriber_uuid",
 											"value": "{{subs_uuid}}"
+										},
+										{
+											"key": "limit",
+											"value": "100"
 										}
 									]
 								}
@@ -123,7 +127,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subs_uuid}}&view=my&current_user_uuid=a5feff94-7dfe-4454-9346-4a36ca5caeda",
+							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subs_uuid}}&limit=100",
 							"host": [
 								"{{URL}}{{STAGE}}"
 							],
@@ -137,11 +141,17 @@
 								},
 								{
 									"key": "view",
-									"value": "my"
+									"value": "my",
+									"disabled": true
 								},
 								{
 									"key": "current_user_uuid",
-									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda"
+									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "100"
 								}
 							]
 						}
@@ -192,7 +202,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subs_uuid}}&view=my&current_user_uuid=a5feff94-7dfe-4454-9346-4a36ca5caeda",
+							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subs_uuid}}&limit=100",
 							"host": [
 								"{{URL}}{{STAGE}}"
 							],
@@ -206,11 +216,17 @@
 								},
 								{
 									"key": "view",
-									"value": "my"
+									"value": "my",
+									"disabled": true
 								},
 								{
 									"key": "current_user_uuid",
-									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda"
+									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "100"
 								}
 							]
 						}
@@ -372,7 +388,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query listCases($offset: Int, $limit: Int) {\n  listCases(offset: $offset, limit: $limit) {\n    uuid\n    subscriberUuid\n    name\n    kind\n    deletedAt\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+										"query": "query listCases($offset: Int, $limit: Int) {\n  listCases(offset: $offset, limit: $limit) {\n    uuid\n    subscriberUuid\n    name\n    kind\n    primaryStaffUuid\n    deletedAt\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
 										"variables": "{\n \"offset\": 0,\n \"limit\": 10,\n \"subscriberUuid\": \"{{subs_uuid}}\"\n}"
 									}
 								},
@@ -687,9 +703,9 @@
 								"id": "df0acf17-eb3d-481d-a814-131932f70c63",
 								"exec": [
 									"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-									"// pm.environment.set(\"URL\", \"https://a0hkxjuupe.execute-api.us-west-2.amazonaws.com/\");",
+									"pm.environment.set(\"URL\", \"https://a0hkxjuupe.execute-api.us-west-2.amazonaws.com/\");",
 									"// STAGE: [master, dev, custom stage - 6532]",
-									"// pm.environment.set(\"STAGE\", \"8998\");",
+									"pm.environment.set(\"STAGE\", \"8998\");",
 									"",
 									"// uuids: ",
 									"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -735,8 +751,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query individualCasesListing($offset: Int, $limit: Int) {\n  individualCasesListing(offset: $offset, limit: $limit) {\n    id\n    clientId\n    kind\n    name\n    primaryStaffUuid\n    uuid\n    client {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    },\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
-								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10\n}"
+								"query": "query individualCasesListing($view: String, $offset: Int, $limit: Int) {\n  individualCasesListing(view: $view, offset: $offset, limit: $limit) {\n    id\n    clientId\n    kind\n    name\n    primaryStaffUuid\n    uuid\n    client {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    },\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
+								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"view\": \"all\"\n}"
 							}
 						},
 						"url": {
@@ -753,7 +769,81 @@
 					"response": []
 				},
 				{
-					"name": "family cases listing",
+					"name": "my individual cases listing",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dcb52791-d9a2-4e51-98b0-187f9db8e0cb",
+								"exec": [
+									"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+									"pm.environment.set(\"URL\", \"https://a0hkxjuupe.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"8998\");",
+									"",
+									"// uuids: ",
+									"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+									"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+									"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+									"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+									"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+									"// pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"type": "text",
+								"value": "{{id_token}}"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"type": "text",
+								"value": "{{subscriber_uuid}}"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"type": "text",
+								"value": "{{user_uuid}}"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"type": "text",
+								"value": "{{user_type}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query individualCasesListing($view: String, $offset: Int, $limit: Int) {\n  individualCasesListing(view: $view, offset: $offset, limit: $limit) {\n    id\n    clientId\n    kind\n    name\n    primaryStaffUuid\n    uuid\n    client {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    },\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
+								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"view\": \"my\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/provider_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"provider_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all family cases listing",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -761,9 +851,9 @@
 								"id": "93538cf7-21be-4320-87b5-b8d8311b4142",
 								"exec": [
 									"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
-									"// pm.environment.set(\"URL\", \"https://a0hkxjuupe.execute-api.us-west-2.amazonaws.com/\");",
+									"pm.environment.set(\"URL\", \"https://a0hkxjuupe.execute-api.us-west-2.amazonaws.com/\");",
 									"// STAGE: [master, dev, custom stage - 6532]",
-									"// pm.environment.set(\"STAGE\", \"8998\");",
+									"pm.environment.set(\"STAGE\", \"8998\");",
 									"",
 									"// uuids: ",
 									"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
@@ -809,8 +899,82 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query familyCasesListing($offset: Int, $limit: Int) {\n  familyCasesListing(offset: $offset, limit: $limit) {\n    uuid\n    id\n    kind\n    name\n    primaryStaffUuid\n    petitioner {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    respondent {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
-								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10\n}"
+								"query": "query familyCasesListing($view: String, $offset: Int, $limit: Int) {\n  familyCasesListing(view: $view, offset: $offset, limit: $limit) {\n    uuid\n    id\n    kind\n    name\n    primaryStaffUuid\n    petitioner {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    respondent {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
+								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"view\": \"all\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/provider_bff/graphql",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"provider_bff",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "my family cases listing",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ae6e9e25-b1bc-458d-9d30-af98c1cfc135",
+								"exec": [
+									"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+									"pm.environment.set(\"URL\", \"https://a0hkxjuupe.execute-api.us-west-2.amazonaws.com/\");",
+									"// STAGE: [master, dev, custom stage - 6532]",
+									"pm.environment.set(\"STAGE\", \"8998\");",
+									"",
+									"// uuids: ",
+									"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+									"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+									"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+									"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+									"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+									"// pm.environment.set(\"subscriber_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query familyCasesListing($view: String, $offset: Int, $limit: Int) {\n  familyCasesListing(view: $view, offset: $offset, limit: $limit) {\n    uuid\n    id\n    kind\n    name\n    primaryStaffUuid\n    petitioner {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    respondent {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
+								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"view\": \"my\"\n}"
 							}
 						},
 						"url": {
