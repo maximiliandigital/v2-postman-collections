@@ -76,7 +76,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "caseload-clients",
+					"name": "caseload-all-clients",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -127,7 +127,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subs_uuid}}&limit=100",
+							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subs_uuid}}&view=all&limit=100",
 							"host": [
 								"{{URL}}{{STAGE}}"
 							],
@@ -141,8 +141,7 @@
 								},
 								{
 									"key": "view",
-									"value": "my",
-									"disabled": true
+									"value": "all"
 								},
 								{
 									"key": "current_user_uuid",
@@ -159,7 +158,162 @@
 					"response": []
 				},
 				{
-					"name": "caseload-families",
+					"name": "caseload-my-clients",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fe5a4ae7-e0a6-4db0-8b82-10f2452ad8c4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"value": "{{id_token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"value": "{{subscriber_uuid}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"value": "{{user_uuid}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"value": "{{user_type}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/caseload_clients?subscriber_uuid={{subs_uuid}}&view=my&current_user_uuid=a5feff94-7dfe-4454-9346-4a36ca5caeda&limit=100",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"caseload_clients"
+							],
+							"query": [
+								{
+									"key": "subscriber_uuid",
+									"value": "{{subs_uuid}}"
+								},
+								{
+									"key": "view",
+									"value": "my"
+								},
+								{
+									"key": "current_user_uuid",
+									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda"
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "caseload-all-families",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9598da57-b2d6-4d29-bf7a-3a3519a7f002",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "X-Treat-Identity-Token",
+								"type": "text",
+								"value": "{{id_token}}"
+							},
+							{
+								"key": "X-Treat-Subscriber-Uuid",
+								"type": "text",
+								"value": "{{subscriber_uuid}}"
+							},
+							{
+								"key": "X-Treat-User-Uuid",
+								"type": "text",
+								"value": "{{user_uuid}}"
+							},
+							{
+								"key": "X-Treat-User-Type",
+								"type": "text",
+								"value": "{{user_type}}"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subs_uuid}}&view=all&limit=100",
+							"host": [
+								"{{URL}}{{STAGE}}"
+							],
+							"path": [
+								"caseload_families"
+							],
+							"query": [
+								{
+									"key": "subscriber_uuid",
+									"value": "{{subs_uuid}}"
+								},
+								{
+									"key": "view",
+									"value": "all"
+								},
+								{
+									"key": "current_user_uuid",
+									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "caseload-my-families",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -202,7 +356,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subs_uuid}}&limit=100",
+							"raw": "{{URL}}{{STAGE}}/caseload_families?subscriber_uuid={{subs_uuid}}&view=my&current_user_uuid=a5feff94-7dfe-4454-9346-4a36ca5caeda&limit=100",
 							"host": [
 								"{{URL}}{{STAGE}}"
 							],
@@ -216,13 +370,11 @@
 								},
 								{
 									"key": "view",
-									"value": "my",
-									"disabled": true
+									"value": "my"
 								},
 								{
 									"key": "current_user_uuid",
-									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda",
-									"disabled": true
+									"value": "a5feff94-7dfe-4454-9346-4a36ca5caeda"
 								},
 								{
 									"key": "limit",
@@ -404,14 +556,21 @@
 								}
 							},
 							"response": []
-						},
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "crud",
+					"item": [
 						{
-							"name": "show case",
+							"name": "delete case",
 							"event": [
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "cab24d20-5b9d-4277-8125-8be104ad33e6",
+										"id": "fd720533-1ee1-468f-85fc-09acddcdbdc4",
 										"exec": [
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
 											"// pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
@@ -435,98 +594,35 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{access_token}}",
-										"type": "text"
+										"type": "text",
+										"value": "Bearer {{access_token}}"
 									},
 									{
 										"key": "X-Treat-Identity-Token",
-										"value": "{{id_token}}",
-										"type": "text"
+										"type": "text",
+										"value": "{{id_token}}"
 									},
 									{
 										"key": "X-Treat-Subscriber-Uuid",
-										"value": "{{subscriber_uuid}}",
-										"type": "text"
+										"type": "text",
+										"value": "{{subscriber_uuid}}"
 									},
 									{
 										"key": "X-Treat-User-Uuid",
-										"value": "{{user_uuid}}",
-										"type": "text"
+										"type": "text",
+										"value": "{{user_uuid}}"
 									},
 									{
 										"key": "X-Treat-User-Type",
-										"value": "{{user_type}}",
-										"type": "text"
+										"type": "text",
+										"value": "{{user_type}}"
 									}
 								],
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query showCase($uuid: ID!) {\n  showCase(uuid: $uuid) {\n    uuid\n    subscriberUuid\n    name\n    kind\n    deletedAt\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-										"variables": "{\n  \"uuid\": \"c638eed3-fb92-437e-90b3-5a61b633c3fe\"\n}\n"
-									}
-								},
-								"url": {
-									"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
-									"host": [
-										"{{URL}}{{STAGE}}"
-									],
-									"path": [
-										"clients_bff",
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create case",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "004302bf-6ee5-4a59-8ff2-6dcc3e28f04e",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{access_token}}",
-										"type": "text"
-									},
-									{
-										"key": "X-Treat-Identity-Token",
-										"value": "{{id_token}}",
-										"type": "text"
-									},
-									{
-										"key": "X-Treat-Subscriber-Uuid",
-										"value": "{{subscriber_uuid}}",
-										"type": "text"
-									},
-									{
-										"key": "X-Treat-User-Uuid",
-										"value": "{{user_uuid}}",
-										"type": "text"
-									},
-									{
-										"key": "X-Treat-User-Type",
-										"value": "{{user_type}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "mutation createCase($input: CreateCaseInput!) {\ncreateCase(input: $input) {\n    uuid\n    subscriberUuid\n    name\n    kind\n    deletedAt\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
-										"variables": "{\n  \"input\": {\n    \"name\": \"Tomato vs Lemon\",\n    \"kind\": \"family\"\n  }\n}"
+										"query": "mutation deleteCase($input: DeleteCaseInput!) {\n    deleteCase(input: $input) {\n    uuid\n  }\n}",
+										"variables": "{\n \"input\": {\n    \"uuid\": \"d7d75860-b95c-41bb-8344-254af4d9ee26\" \n }\n}"
 									}
 								},
 								"url": {
@@ -617,12 +713,75 @@
 							"response": []
 						},
 						{
-							"name": "delete case",
+							"name": "create case",
 							"event": [
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "fd720533-1ee1-468f-85fc-09acddcdbdc4",
+										"id": "004302bf-6ee5-4a59-8ff2-6dcc3e28f04e",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Identity-Token",
+										"value": "{{id_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-Subscriber-Uuid",
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Uuid",
+										"value": "{{user_uuid}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Treat-User-Type",
+										"value": "{{user_type}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createCase($input: CreateCaseInput!) {\ncreateCase(input: $input) {\n    uuid\n    subscriberUuid\n    name\n    kind\n    deletedAt\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"name\": \"Tomato vs Lemon\",\n    \"kind\": \"family\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/clients_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"clients_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show case",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "cab24d20-5b9d-4277-8125-8be104ad33e6",
 										"exec": [
 											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
 											"// pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
@@ -646,35 +805,35 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"type": "text",
-										"value": "Bearer {{access_token}}"
+										"value": "Bearer {{access_token}}",
+										"type": "text"
 									},
 									{
 										"key": "X-Treat-Identity-Token",
-										"type": "text",
-										"value": "{{id_token}}"
+										"value": "{{id_token}}",
+										"type": "text"
 									},
 									{
 										"key": "X-Treat-Subscriber-Uuid",
-										"type": "text",
-										"value": "{{subscriber_uuid}}"
+										"value": "{{subscriber_uuid}}",
+										"type": "text"
 									},
 									{
 										"key": "X-Treat-User-Uuid",
-										"type": "text",
-										"value": "{{user_uuid}}"
+										"value": "{{user_uuid}}",
+										"type": "text"
 									},
 									{
 										"key": "X-Treat-User-Type",
-										"type": "text",
-										"value": "{{user_type}}"
+										"value": "{{user_type}}",
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation deleteCase($input: DeleteCaseInput!) {\n    deleteCase(input: $input) {\n    uuid\n  }\n}",
-										"variables": "{\n \"input\": {\n    \"uuid\": \"d7d75860-b95c-41bb-8344-254af4d9ee26\" \n }\n}"
+										"query": "query showCase($uuid: ID!) {\n  showCase(uuid: $uuid) {\n    uuid\n    subscriberUuid\n    name\n    kind\n    deletedAt\n    createdBy\n    updatedBy\n    createdAt\n    updatedAt\n  }\n}",
+										"variables": "{\n  \"uuid\": \"c638eed3-fb92-437e-90b3-5a61b633c3fe\"\n}\n"
 									}
 								},
 								"url": {
@@ -751,8 +910,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query individualCasesListing($view: String, $offset: Int, $limit: Int) {\n  individualCasesListing(view: $view, offset: $offset, limit: $limit) {\n    id\n    clientId\n    kind\n    name\n    primaryStaffUuid\n    uuid\n    client {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    },\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
-								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"view\": \"all\"\n}"
+								"query": "query individualCasesListing($view: String, $offset: Int, $limit: Int) {\n  individualCasesListing(view: $view, offset: $offset, limit: $limit) {\n    id\n    clientId\n    kind\n    name\n    primaryStaffUuid\n    uuid\n    client {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    },\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      enrollmentType {\n        id\n        name\n        code\n        description\n        kind\n        uuid\n      }\n      enrollmentStatus {\n        id\n        name\n        enrollmentTypeId\n        ordinalNo\n        standard\n        subscriberUuid\n        uuid\n      }\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
+								"variables": "{\n    \"offset\": 3,\n    \"limit\": 1,\n    \"view\": \"all\"\n}"
 							}
 						},
 						"url": {
@@ -825,8 +984,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query individualCasesListing($view: String, $offset: Int, $limit: Int) {\n  individualCasesListing(view: $view, offset: $offset, limit: $limit) {\n    id\n    clientId\n    kind\n    name\n    primaryStaffUuid\n    uuid\n    client {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    },\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
-								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"view\": \"my\"\n}"
+								"query": "query individualCasesListing($view: String, $offset: Int, $limit: Int) {\n  individualCasesListing(view: $view, offset: $offset, limit: $limit) {\n    id\n    clientId\n    kind\n    name\n    primaryStaffUuid\n    uuid\n    client {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    },\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      enrollmentType {\n        id\n        name\n        code\n        description\n        kind\n        uuid\n      }\n      enrollmentStatus {\n        id\n        name\n        enrollmentTypeId\n        ordinalNo\n        standard\n        subscriberUuid\n        uuid\n      }\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
+								"variables": "{\n    \"offset\": 0,\n    \"limit\": 5,\n    \"view\": \"my\"\n}"
 							}
 						},
 						"url": {
@@ -899,7 +1058,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query familyCasesListing($view: String, $offset: Int, $limit: Int) {\n  familyCasesListing(view: $view, offset: $offset, limit: $limit) {\n    uuid\n    id\n    kind\n    name\n    primaryStaffUuid\n    petitioner {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    respondent {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
+								"query": "query familyCasesListing($view: String, $offset: Int, $limit: Int) {\n  familyCasesListing(view: $view, offset: $offset, limit: $limit) {\n    uuid\n    id\n    kind\n    name\n    primaryStaffUuid\n    petitioner {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    respondent {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      enrollmentType {\n        id\n        name\n        code\n        description\n        kind\n        uuid\n      }\n      enrollmentStatus {\n        id\n        name\n        enrollmentTypeId\n        ordinalNo\n        standard\n        subscriberUuid\n        uuid\n      }\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
 								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"view\": \"all\"\n}"
 							}
 						},
@@ -973,7 +1132,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query familyCasesListing($view: String, $offset: Int, $limit: Int) {\n  familyCasesListing(view: $view, offset: $offset, limit: $limit) {\n    uuid\n    id\n    kind\n    name\n    primaryStaffUuid\n    petitioner {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    respondent {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
+								"query": "query familyCasesListing($view: String, $offset: Int, $limit: Int) {\n  familyCasesListing(view: $view, offset: $offset, limit: $limit) {\n    uuid\n    id\n    kind\n    name\n    primaryStaffUuid\n    petitioner {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    respondent {\n      address {\n        addressLine1\n        addressLine2\n        city\n        id\n        postcode\n        state\n      }\n      email\n      firstName\n      id\n      lastName\n      middleName\n      phoneContacts {\n        id\n        notOkayToLeaveMessage\n        ordinality\n        phoneExtension\n        phoneNumber\n        phoneType\n        primary\n        uuid\n      }\n      uuid\n    }\n    enrollment {\n      id\n      caseUuid\n      cii\n      uuid\n      subscriberUuid\n      clientUuid\n      dischargedOn\n      enrollmentIdentifier\n      enrollmentStatusId\n      enrollmentTypeId\n      firstAppointmentDate\n      locationUuid\n      organizationUuid\n      petitionerUuid\n      pid\n      reactivatedOn\n      reasonForReferral\n      referralDate\n      referralReceivedDate\n      respondentUuid\n      enrollmentType {\n        id\n        name\n        code\n        description\n        kind\n        uuid\n      }\n      enrollmentStatus {\n        id\n        name\n        enrollmentTypeId\n        ordinalNo\n        standard\n        subscriberUuid\n        uuid\n      }\n      tasks {\n        completedTasks\n        allTasks\n      }\n    }\n  }\n}\n",
 								"variables": "{\n    \"offset\": 0,\n    \"limit\": 10,\n    \"view\": \"my\"\n}"
 							}
 						},
