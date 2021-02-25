@@ -1,0 +1,574 @@
+{
+	"info": {
+		"_postman_id": "727d03ad-981a-4290-bd75-b4a00b18dc8d",
+		"name": "documents",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Enrollments",
+			"item": [
+				{
+					"name": "Document Categories",
+					"item": [
+						{
+							"name": "Attach Single File",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createDocument($input: createDocumentInput!) {\n  createDocument(input: $input) {\n    id\n    uuid\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"uuid\": \"{{enrollment_uuid}}\",\n    \"status\": 0\n  }\n}\n"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Attaching Multiple Files",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createDocument($input: createDocumentInput!) {\n  createDocument(input: $input) {\n    id\n    uuid\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"uuid\": \"{{enrollment_uuid}}\",\n    \"status\": 0\n  }\n}\n"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createDocument($input: createDocumentInput!) {\n  createDocument(input: $input) {\n    id\n    uuid\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"uuid\": \"{{enrollment_uuid}}\",\n    \"status\": 0\n  }\n}\n"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createDocument($input: createDocumentInput!) {\n  createDocument(input: $input) {\n    id\n    uuid\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"uuid\": \"{{enrollment_uuid}}\",\n    \"status\": 0\n  }\n}\n"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Documents",
+					"item": [
+						{
+							"name": "enrollments - list documents",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listDocuments($enrollmentUuid: ID, $searchKey: String, $categoryUuids: [ID!], $offset: Int, $limit: Int) {\n  listDocuments(enrollmentUuid: $enrollmentUuid, searchKey: $searchKey, categoryUuids: $categoryUuids, offset: $offset, limit: $limit) {\n    id\n    uuid\n    enrollmentId\n    name\n    fileKey\n  }\n}\n",
+										"variables": "{\n  \"enrollmentUuid\": \"a81ae148-cff5-4170-88ea-9aaacecb18a8\",\n  \"categoryUuids\": [\n    \"174dc7f3-f509-4ac7-90d3-3dac731374d5\",\n    \"bdeaba0d-91dd-4076-8512-5e9e29d76403\"\n  ],\n  \"searchKey\": \"sample\",\n  \"offset\": 0,\n  \"limit\": 10\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - create document",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createDocument($input: CreateDocumentInput!) {\n  createDocument(input: $input) {\n    enrollmentDocuments {\n      id\n      uuid\n      enrollmentId\n      name\n      fileKey\n    }\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"enrollmentUuid\": \"f6a8df1d-64ba-47f4-8a53-ad7b1e5ce399\",\n    \"categoryUuids\": [\n      \"f6e77c94-0b8f-4fe0-892f-6fcbf12ba60a\"\n    ],\n    \"uploadedFiles\": [\n      {\n        \"name\": \"sample.ext\",\n        \"key\": \"https://samplefilestorageurl.com/sample.ext\"\n      }\n    ]\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - show document",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query showDocument($uuid: ID!) {\n  showDocument(uuid: $uuid) {\n    id\n    uuid\n    enrollmentId\n    name\n    fileKey\n  }\n}",
+										"variables": "{\n  \"uuid\": \"28d09fd6-93e8-4d44-97b5-699c92b07676\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - delete document",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation deleteDocument($input: DeleteDocumentInput!) {\n  deleteDocument(input: $input) {\n    uuid\n    deleteInformation\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"uuid\": \"a9abc4c8-70d4-4240-9029-16199584ab64\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - create upload url",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createUploadUrl($input: CreateUploadUrlInput!) {\n  createUploadUrl(input: $input) {\n    key\n    uploadUrl\n  }\n}\n",
+										"variables": "{\n  \"input\": {\n    \"enrollmentUuid\": \"b6f1f7e0-7f01-4f07-bebd-3a97f9791eec\",\n    \"filename\": \"filename.ext\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - create upload url  multipart",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createUploadPartUrl($input: CreateUploadPartUrlInput!) {\n  createUploadPartUrl(input: $input) {\n    uploadUrl\n  }\n}\n",
+										"variables": "{\n  \"input\": {\n    \"key\": \"7d3aff11-e763-4243-9e18-d8b97634a845\",\n    \"uploadId\": \"some-random-upload-id\",\n    \"partNumber\": 1\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - start multipart upload",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation startMultipartUpload($input: StartMultipartUploadInput!) {\n  startMultipartUpload(input: $input) {\n    key\n    uploadId\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"filename\": \"filename.ext\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - complate multipart upload",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation completeMultipartUpload($input: CompleteMultipartUploadInput!) {\n  completeMultipartUpload(input: $input) {\n    etag\n    key\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"key\": \"path/filename.ext\",\n    \"uploadId\": \"some-random-upload-id\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - abort multipart upload",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation abortMultipartUpload($input: AbortMultipartUploadInput!) {\n  abortMultipartUpload(input: $input) {\n    status\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"key\": \"filename.ext\",\n    \"uploadId\": \"some-upload-id\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments - delete file",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+											"pm.environment.set(\"URL\", \"https://t5u8vjnkc3.execute-api.us-west-2.amazonaws.com/\");",
+											"// STAGE: [master, dev, custom stage - 6532]",
+											"pm.environment.set(\"STAGE\", \"master\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation deleteFile($input: DeleteFileInput!) {\n  deleteFile(input: $input) {\n    status\n  }\n}",
+										"variables": "{\n  \"input\": {\n    \"key\": \"path/filename.ext\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+									"host": [
+										"{{URL}}{{STAGE}}"
+									],
+									"path": [
+										"enrollments_bff",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Subscribers",
+			"item": []
+		}
+	]
+}
