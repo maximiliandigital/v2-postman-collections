@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "b61a2827-62cf-4c6c-8733-dfd3756810cf",
+		"name": "case-homeworks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "caseHomeworkList",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+							"pm.environment.set(\"URL\", \"https://bi94umugmj.execute-api.us-west-2.amazonaws.com/\");",
+							"// STAGE: [master, dev, custom stage - 6532]",
+							"pm.environment.set(\"STAGE\", \"8017\");",
+							"",
+							"// uuids: ",
+							"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+							"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+							"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+							"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+							"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+							"pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query caseHomeworkList($enrollmentUuid: ID!, $offset: Int, $limit: Int) {\n  caseHomeworkList(enrollmentUuid: $enrollmentUuid, offset: $offset, limit: $limit) {\n    id\n    uuid\n  }\n}",
+						"variables": "{\n  \"enrollmentUuid\": \"fc2d0de6-4b50-4643-b9c8-e51dc28b9f7d\",\n  \"limit\": 10\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+					"host": [
+						"{{URL}}{{STAGE}}"
+					],
+					"path": [
+						"enrollments_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "caseHomeworkCreate",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+							"pm.environment.set(\"URL\", \"https://bi94umugmj.execute-api.us-west-2.amazonaws.com/\");",
+							"// STAGE: [master, dev, custom stage - 6532]",
+							"pm.environment.set(\"STAGE\", \"8017\");",
+							"",
+							"// uuids: ",
+							"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+							"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+							"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+							"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+							"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+							"// pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var case_homework_uuid = jsonData['uuid']",
+							"console.log(case_homework_uuid)",
+							"postman.setEnvironmentVariable(\"case_homework_uuid\", case_homework_uuid);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation caseHomeworCreate($input: CaseHomeworkCreateInput!) {\n  caseHomeworkCreate(input: $input) {\n    status\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"enrollmentUuid\": \"fc2d0de6-4b50-4643-b9c8-e51dc28b9f7d\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+					"host": [
+						"{{URL}}{{STAGE}}"
+					],
+					"path": [
+						"enrollments_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "caseHomeworkShow",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+							"pm.environment.set(\"URL\", \"https://bi94umugmj.execute-api.us-west-2.amazonaws.com/\");",
+							"// STAGE: [master, dev, custom stage - 6532]",
+							"pm.environment.set(\"STAGE\", \"8017\");",
+							"",
+							"// uuids: ",
+							"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+							"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+							"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+							"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+							"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+							"// pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query caseHomeworkShow($uuid: ID!) {\n  caseHomeworkShow(uuid: $uuid) {\n    status\n  }\n}",
+						"variables": "{\n \"uuid\": \"f5c69621-1dd7-488f-9df3-b8339c5756e2\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+					"host": [
+						"{{URL}}{{STAGE}}"
+					],
+					"path": [
+						"enrollments_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "caseHomeworkUpdate",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+							"pm.environment.set(\"URL\", \"https://bi94umugmj.execute-api.us-west-2.amazonaws.com/\");",
+							"// STAGE: [master, dev, custom stage - 6532]",
+							"pm.environment.set(\"STAGE\", \"8017\");",
+							"",
+							"// uuids: ",
+							"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+							"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+							"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+							"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+							"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+							"// pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation caseHomeworkUpdate($input: CaseHomeworkUpdateInput!) {\n  caseHomeworkUpdate(input: $input) {\n    id\n    uuid\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"{{case_homework_uuid}}\"\n  }\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+					"host": [
+						"{{URL}}{{STAGE}}"
+					],
+					"path": [
+						"enrollments_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "caseHomeworkDelete",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// URL: [circleci-9g908trvva, circleci-master: t5u8vjnkc3]",
+							"pm.environment.set(\"URL\", \"https://bi94umugmj.execute-api.us-west-2.amazonaws.com/\");",
+							"// STAGE: [master, dev, custom stage - 6532]",
+							"pm.environment.set(\"STAGE\", \"8017\");",
+							"",
+							"// uuids: ",
+							"// 'adda9a1f-98f1-4ce2-ba4a-372f0dc32f51'",
+							"// '0529b05b-d516-48ea-b454-d1638237fd6b'",
+							"// '8246284f-2bba-4b20-bdfb-207241d64d36'",
+							"// 'cb71f252-2bbe-4e83-8fe9-f8a44671a71e'",
+							"// '60459767-f0fb-4850-a669-54966d5cfa42'",
+							"// pm.environment.set(\"subs_uuid\", \"adda9a1f-98f1-4ce2-ba4a-372f0dc32f51\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Identity-Token",
+						"value": "{{id_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-Subscriber-Uuid",
+						"value": "{{subscriber_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Uuid",
+						"value": "{{user_uuid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Treat-User-Type",
+						"value": "{{user_type}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation caseHomeworkDelete($input: CaseHomeworkDeleteInput!) {\n  caseHomeworkDelete(input: $input) {\n    uuid\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"uuid\": \"f5c69621-1dd7-488f-9df3-b8339c5756e2\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{URL}}{{STAGE}}/enrollments_bff/graphql",
+					"host": [
+						"{{URL}}{{STAGE}}"
+					],
+					"path": [
+						"enrollments_bff",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
